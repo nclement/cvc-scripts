@@ -1,4 +1,4 @@
-# Nathan's CVC Scripts # 
+# Nathan's CVC Scripts #
 Here are some cool scripts I've found useful. I've tried to make them usable on
 many different platforms by creating a Makefile.def file that houses all the
 paths for various files and folders. Inside this file you'll also find some
