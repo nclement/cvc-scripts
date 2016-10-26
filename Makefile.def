@@ -1,0 +1,37 @@
+#-------------------------------------------------
+# Define CVC binaries in this directory. You can download them from the link
+# listed before each variable.
+#
+# https://svn.ices.utexas.edu/repos/cvc/trunk/MolSurf/
+# /work/01872/nclement/MolSurf/release/bin/MolSurf
+MolSurf=DOES_NOT_EXIST
+# https://svn.ices.utexas.edu/repos/cvc/trunk/MolEnergy/
+# /work/01872/nclement/MolEnergy/release/bin/MolEnergy
+MolEnergy=DOES_NOT_EXIST
+# https://svn.ices.utexas.edu/repos/cvc/trunk/OPA-Ref/
+GPUEnergy=DOES_NOT_EXIST
+# https://svn.ices.utexas.edu/repos/cvc/branches/TexMol-Qt4/
+TEXMOL_QT4=DOES_NOT_EXIST
+# https://svn.ices.utexas.edu/repos/cvc/trunk/F2Dock-refactored/
+F2DOCK_REFACTORED=DOES_NOT_EXIST
+# https://svn.ices.utexas.edu/repos/cvc/branches/F3Dock/
+F3DOCK=DOES_NOT_EXIST
+
+#--------------------------------------
+# Following are programs not used by the lab.
+# /work/01872/nclement/software/pdb2pqr-src-2.1.0/pdb2pqr.py
+PDB2PQR=DOES_NOT_EXIST
+# /work/01872/nclement/scripts/docking/f2dgen/pqrTof2d.py
+PQR2F2D_PY=DOES_NOT_EXIST
+# /work/01872/nclement/software/TMalign/TMalign
+TM_ALIGN=DOES_NOT_EXIST
+# /work/01872/nclement/software/pymol/pymol
+PYMOL=DOES_NOT_EXIST
+AMBER=DOES_NOT_EXIST
+# /opt/apps/intel13/mvapich2_1_9/amber/12.0/dat/reslib/leap/leaprc.ff03
+AMBER_leaprc_path=DOES_NOT_EXIST
+
+# /work/01872/nclement/software/zdock3.0.2_linux_x64/
+ZDOCK_DIR=DOES_NOT_EXIST
+# /work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6
+MGL_DIR=DOES_NOT_EXIST

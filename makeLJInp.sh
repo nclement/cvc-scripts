@@ -1,0 +1,5 @@
+echo "staticMoleculePQR PQR/${1}.pqr"
+echo "movingMoleculePQR PQR/${2}.pqr"
+echo "numThreads 1"
+echo "epsilon 0.2"
+echo "useSSE false"

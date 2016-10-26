@@ -1,0 +1,12 @@
+#! /bin/bash
+DOCKING_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
+SCRIPTS_DIR=${DOCKING_SCRIPTS_DIR}/../
+source ${SCRIPTS_DIR}/Makefile.def
+
+# Set in Makefile.def
+#MGL_DIR="/work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6"
+#PQR2F2D_PY="/work/01872/nclement/scripts/docking/f2dgen/pqrTof2d2.py"
+#PQR2F2D_PY="/work/01872/nclement/scripts/docking/f2dgen/pqrTof2d.py"
+
+# Environment variables are throwing us off. Ignore them.
+$MGL_DIR/bin/python -E $PQR2F2D_PY $@
