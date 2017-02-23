@@ -29,6 +29,7 @@ while(<>) {
 
 	if ($resi != $prev_res) {
 		# Don't print out residues that only have one atom
+    # (this causes pdb2pqr and stuff to fail... "not enough heavy atoms")
 		if ($resi_count > 1) {
 			print $residue_output;
 		}

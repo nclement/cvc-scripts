@@ -37,5 +37,5 @@ test-existence: Makefile.def
 	@test -f ${MolEnergy} || echo "  Error: MolEnergy does not exist. Please install and update Makefile.def"
 	@test -f ${TEXMOL_QT4} || echo "  Error: TexMol does not exist. Please install and update Makefile.def"
 	@test -f ${F2DOCK_REFACTORED} || echo "  Error: F2Dock does not exist. Please install and update Makefile.def"
-	@test -f ${F3DOCK} || echo "  Error: F3Dock does not exist. Please install and update Makefile.def"
+	@test -d ${F3DOCK_DIR} || echo "  Error: F3Dock does not exist. Please install and update Makefile.def"
 	@test -f ${PDB2PQR} || echo "  Error: PDB2PQR does not exist. Please install and update Makefile.def"

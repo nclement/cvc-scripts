@@ -9,16 +9,30 @@ source $SCRIPTS_DIR/modules_amber
 # Must have the correct modules loaded (amber)
 
 PDB=$1
+NCYC=${2:-1000} # If you want to specify the number of cycles, do so here.
 VAC=${PDB}_vac
+PDB_SHORT=`echo $PDB | sed 's/.pdb$//'`
 
 mkdir -p AMBER
 mkdir -p INP
+mkdir -p ERR
 
 echo "Processing ${PDB}..."
 ${SCRIPTS_DIR}/makeTLeapInp.sh ${PDB} > INP/${PDB}.tleap
-tleap -s -f INP/${PDB}.tleap
-${SCRIPTS_DIR}/makeAmberInp.sh > INP/${PDB}.amberin
+# This needs to work.
+if tleap -s -f INP/${PDB}.tleap | grep "FATAL" > ERR/${PDB}.tleap.error; then
+  # Remove the offending atoms
+  $SCRIPTS_DIR/fixAmber_errors.pl $PDB ERR/${PDB}.tleap.error $PDB
+  # Try it again
+  if tleap -s -f INP/${PDB}.tleap | grep "FATAL"; then
+    # Otherwise, hard quit
+    echo "FATAL ERROR: Could not generate tleap"
+    exit
+  fi
+fi
+
+${SCRIPTS_DIR}/makeAmberInp.sh $NCYC > INP/${PDB}.amberin
 echo ibrun sander -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
 ibrun sander -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
-# Overwriting the previous PDB file -- is this what we want to do?
-ambpdb -p AMBER/${VAC}.top < AMBER/${VAC}.min.crd > ${PDB}
+# Extract the new file.
+ambpdb -p AMBER/${VAC}.top < AMBER/${VAC}.min.crd > AMBER/${PDB_SHORT}_ambermin.pdb

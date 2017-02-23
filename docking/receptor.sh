@@ -11,6 +11,7 @@ FIXPQR=${SCRIPTS_DIR}/fix_pqr.pl
 # The static molecule is the receptor.
 
 RECEPTOR=$1
+QUALITY=${2:-256}
 
 	j=$(echo "$RECEPTOR" | sed s/\.pdb$/.pqr/g)
 	k=$(echo "$RECEPTOR" | sed s/\.pdb$/_1.7.f2d/g)
@@ -33,8 +34,8 @@ if [ ! -f $k ]; then
 fi
 
 if [ ! -f $l ]; then
-	echo "Executing: $MolSurf -surfaceUsingAdaptiveGrid $j $l 128"
-	$MolSurf -surfaceUsingAdaptiveGrid "$j" "$l" 128
+	echo "Executing: $MolSurf -surfaceUsingAdaptiveGrid $j $l $QUALITY"
+	$MolSurf -surfaceUsingAdaptiveGrid "$j" "$l" $QUALITY
 fi
 
 if [ ! -f $n ]; then

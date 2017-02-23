@@ -8,6 +8,7 @@ FIXPQR=${SCRIPTS_DIR}/fix_pqr.pl
 # The moving molecule is the ligand.
 
 LIGAND=$1
+QUALITY=${2:-256}
 
 	j=$(echo "$LIGAND" | sed s/\.pdb$/.pqr/g)
 	k=$(echo "$LIGAND" | sed s/\.pdb$/.f2d/g)
@@ -36,8 +37,8 @@ if [ ! -f $k ]; then
 fi
 
 if [ ! -f $l ]; then
-	echo "Executing: $MolSurf -surfaceUsingAdaptiveGrid $j $l 128"
-	$MolSurf -surfaceUsingAdaptiveGrid "$j" "$l" 128
+	echo "Executing: $MolSurf -surfaceUsingAdaptiveGrid $j $l $QUALITY"
+	$MolSurf -surfaceUsingAdaptiveGrid "$j" "$l" $QUALITY
 fi
 
 if [ ! -f $n ]; then

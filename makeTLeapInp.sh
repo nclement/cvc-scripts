@@ -8,5 +8,6 @@ source $SCRIPTS_DIR/Makefile.def
 
 echo source ${AMBER_leaprc_path}
 echo $PDB_SHORT = loadPdb $PDB
+echo solvateBox $PDB_SHORT WATBOX216 10 # add explicit waters
 echo saveAmberParm $PDB_SHORT AMBER/$VAC.top AMBER/$VAC.crd
 echo Quit

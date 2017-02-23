@@ -10,7 +10,8 @@ source $SCRIPTS_DIR/modules_mol
 #PDB2PQR=/work/01872/nclement/software/pdb2pqr-src-2.1.0/pdb2pqr.py
 
 # Note: PDB must have the trailing ".pdb" on the end
-PDB=$1
+PDB_full=$1
+PDB=`basename $PDB_full`
 SIZE=$2
 PB=$3
 
@@ -22,8 +23,8 @@ mkdir -p RAW
 mkdir -p QUAD
 
 if [ ! -f PQR/${PDB}.pqr ]; then
-	echo python $PDB2PQR --ff=amber $PDB PQR/${PDB}.pqr
-	python $PDB2PQR --ff=amber $PDB PQR/${PDB}.pqr
+	echo python $PDB2PQR --ff=amber $PDB_full PQR/${PDB}.pqr
+	python $PDB2PQR --ff=amber $PDB_full PQR/${PDB}.pqr
 fi
 
 echo "${MolSurf} -surfaceUsingAdaptiveGrid PQR/${PDB}.pqr RAWN/${PDB}.rawn ${SIZE}"
