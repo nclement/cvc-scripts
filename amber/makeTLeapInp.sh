@@ -2,7 +2,7 @@ PDB=$1
 VAC=${PDB}_vac
 PDB_SHORT=`echo $PDB | sed 's/.pdb$//'`
 
-SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
+SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"/../
 # Need variables to be defined here.
 source $SCRIPTS_DIR/Makefile.def
 
