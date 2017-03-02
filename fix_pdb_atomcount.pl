@@ -16,6 +16,7 @@ my $atom_count = 1;
 my $resi_count = 0;
 my $count = 0;
 my $prev_res = -1;
+my $prev_insertion = " ";
 my $residue_output = "";
 
 while(<>) {
@@ -27,13 +28,11 @@ while(<>) {
 	}
 	my $line = $_;
 	my $resi = substr($line, 22, 4);
-	my $vacancy = substr($line, 26, 1);
-	# If there's something in the vacancy column, just ignore this
-	# residue--because it means there are more than one possible
-	# residues.
-	next if ($vacancy ne " ");
+  # If there's something in the insertion column, it means it's been inserted
+  # to preserve protein residue numbering.
+	my $insertion = substr($line, 26, 1);
 
-	if ($resi != $prev_res) {
+	if ($resi != $prev_res || $insertion != $prev_insertion) {
 		# Don't print out residues that only have one atom
 		if ($resi_count > 1) {
 			print $residue_output;
@@ -42,6 +41,7 @@ while(<>) {
 		$resi_count = 0;
 		$count++;
 		$prev_res = $resi;
+    $prev_insertion = $insertion;
 	}
   substr( $line, 5, 6 ) = sprintf("% 6d", $atom_count++);
 	substr( $line, 22, 4 ) = sprintf("%4d", $count);

@@ -9,4 +9,5 @@ source ${SCRIPTS_DIR}/Makefile.def
 #PQR2F2D_PY="/work/01872/nclement/scripts/docking/f2dgen/pqrTof2d.py"
 
 # Environment variables are throwing us off. Ignore them.
+#$MGL_DIR/bin/python -E -m trace --trace $PQR2F2D_PY $@
 $MGL_DIR/bin/python -E $PQR2F2D_PY $@

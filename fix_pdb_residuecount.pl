@@ -8,7 +8,10 @@ use strict;
 my $resi_count = 0;
 my $count = 0;
 my $prev_res = -1;
+my $prev_insertion = " ";
 my $residue_output = "";
+
+my $def_chain = "A";
 
 while(<>) {
 	if (!/^(ATOM|HETATM)/) {
@@ -17,17 +20,24 @@ while(<>) {
 		next;
 	}
 	my $line = $_;
+  my $chain = substr($line, 21, 1);
 	my $resi = substr($line, 22, 4);
-	my $vacancy = substr($line, 26, 1);
+	my $insertion = substr($line, 26, 1);
 	# If there's something in the insertion column, remove it
   # and keep going
   # Insertion column enforces similar numbering among different species.
   # We don't care about numbering here.
-	if ($vacancy ne " ") {
+	if ($insertion ne " ") {
     substr( $line, 26, 1) = " ";
   }
 
-	if ($resi != $prev_res) {
+  if ($chain eq " ") {
+    substr($line, 21, 1) = $def_chain;
+  } else {
+    $def_chain = $chain;
+  }
+
+	if ($resi != $prev_res || $insertion != $prev_insertion) {
 		# Don't print out residues that only have one atom
     # (this causes pdb2pqr and stuff to fail... "not enough heavy atoms")
 		if ($resi_count > 1) {
@@ -37,6 +47,7 @@ while(<>) {
 		$resi_count = 0;
 		$count++;
 		$prev_res = $resi;
+    $prev_insertion = $insertion;
 	}
 	substr( $line, 22, 4 ) = sprintf("%4d", $count);
 	$residue_output .= $line;

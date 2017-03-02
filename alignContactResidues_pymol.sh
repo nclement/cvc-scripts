@@ -22,15 +22,28 @@ SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 source $SCRIPTS_DIR/Makefile.def
 #PYMOL=/work/01872/nclement/software/pymol/pymol
 
-rms=$($PYMOL -c -p << EOF
+cmd=$($PYMOL -c -p << EOF
 load $protR, pR
 load $protL, pL
 load $protA, pA
 alter all, segi=""
 select contact, name ca & pR & (all within $X of pL)
   # selects residues from pA that have names and resi atoms match pR
-align contact and pR, pA like contact
+#my_dict = { 'pR' : [] }
+#cmd.iterate("(contact & pR)","pR.append((resi,resn,chain))",space=my_dict)
+#print my_dict['pR']
+#my_dict = { 'pA' : [] }
+#cmd.iterate("(pA like contact)","pA.append((resi,resn,chain))",space=my_dict)
+#print my_dict['pA']
+#align contact and pR, pA like contact
+align pA like contact, contact and pR
 save $output, pA
 EOF
 )
-echo $rms
+#echo $cmd
+if [ $? -eq 0 ]; then
+  echo "Success!"
+else
+  echo "Didn't work. Check output. Here's what Pymol said:"
+  echo $cmd
+fi

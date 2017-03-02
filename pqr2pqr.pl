@@ -5,6 +5,7 @@ while(<>) {
 		print $_;
 		next;
 	}
+  print "found line [$_]\n";
 	my $line = $_;
 
 	substr ($line, 74) = "";
