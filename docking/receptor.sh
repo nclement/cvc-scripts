@@ -25,14 +25,6 @@ if [ ! -f $j ]; then
 	python $PDB2PQR --ff=amber "$RECEPTOR" "$j"
 fi
 
-if [ ! -f $k ]; then
-	echo "generating f2d $RECEPTOR to $k"
-	echo $PQR2F2D "$j" 1.7
-	$PQR2F2D "$j" 1.7
-	#$FIXPQR $k > $k.tmp
-	#cp $k.tmp $k
-fi
-
 if [ ! -f $l ]; then
 	echo "Executing: $MolSurf -surfaceUsingAdaptiveGrid $j $l $QUALITY"
 	$MolSurf -surfaceUsingAdaptiveGrid "$j" "$l" $QUALITY
@@ -47,3 +39,12 @@ if [ ! -f $o ]; then
 	echo "Executing: $MolSurf --aSpline -quad $n gaussian 1 $o"
 	$MolSurf -aSpline -quad "$n" gaussian 1 "$o"
 fi
+
+if [ ! -f $k ]; then
+	echo "generating f2d $RECEPTOR to $k"
+	echo $PQR2F2D "$j" "$n" 1.7
+	$PQR2F2D "$j" "$n" 1.7
+	#$FIXPQR $k > $k.tmp
+	#cp $k.tmp $k
+fi
+
