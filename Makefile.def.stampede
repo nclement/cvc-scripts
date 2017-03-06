@@ -1,0 +1,51 @@
+#-------------------------------------------------
+# Define CVC binaries in this directory. You can download them from the link
+# listed before each variable.
+#
+# https://svn.ices.utexas.edu/repos/cvc/trunk/MolSurf/
+# /work/01872/nclement/MolSurf/release/bin/MolSurf
+MolSurf=/work/01872/nclement/MolSurf/release/bin/MolSurf
+# https://svn.ices.utexas.edu/repos/cvc/trunk/MolEnergy/
+# /work/01872/nclement/MolEnergy/release/bin/MolEnergy
+MolEnergy=/work/01872/nclement/MolEnergy/release/bin/MolEnergy
+# https://svn.ices.utexas.edu/repos/cvc/trunk/OPA-Ref/
+GPUEnergy=/work/01872/nclement/OPARef
+# https://svn.ices.utexas.edu/repos/cvc/branches/TexMol-Qt4/
+TEXMOL_QT4=/work/01872/nclement/TexMol-Qt4/release/bin/TexMol
+# https://svn.ices.utexas.edu/repos/cvc/trunk/F2Dock-refactored/
+F2DOCK_REFACTORED=/work/01872/nclement/cvc_fresh/F2Dock-refactored/Release/bin/F2Dock
+# A previous version of F2Dock
+F2DOCK_PREV=/work/01872/nclement/F2Dock_prev/src/runF2Dock.sh
+# https://svn.ices.utexas.edu/repos/cvc/branches/F3Dock/
+F3DOCK_DIR=/work/01872/nclement/F3Dock/release/bin
+
+#--------------------------------------
+# Following are programs not developed by the lab.
+#
+# Download from http://www.poissonboltzmann.org/docs/downloads/#downloads
+PDB2PQR=/work/01872/nclement/software/pdb2pqr-src-2.1.0/pdb2pqr.py
+#
+# Download from http://zhanglab.ccmb.med.umich.edu/TM-align/
+# /work/01872/nclement/software/TMalign/TMalign
+TM_ALIGN=/work/01872/nclement/software/TMalign/TMalign
+#
+# Download from https://www.pymol.org/
+# /work/01872/nclement/software/pymol/pymol
+PYMOL=/work/01872/nclement/software/pymol/pymol
+#
+# Download from http://ambermd.org/antechamber/download.html
+# Also included as a module on many systems (try 'module spider amber')
+AMBER=DOES_NOT_EXIST
+# /opt/apps/intel13/mvapich2_1_9/amber/12.0/dat/reslib/leap/leaprc.ff03
+AMBER_leaprc_path=/opt/apps/intel13/mvapich2_1_9/amber/12.0/dat/reslib/leap/leaprc.ff03
+#
+# Download from http://zdock.umassmed.edu/software/
+# /work/01872/nclement/software/zdock3.0.2_linux_x64/
+ZDOCK_DIR=/work/01872/nclement/software/zdock3.0.2_linux_x64/
+#
+# Download from http://mgltools.scripps.edu/downloads
+# /work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6
+MGL_DIR=/work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6
+#
+# Download from http://dunbrack.fccc.edu/scwrl4/SCWRL4.php
+SCWRL4=/work/01872/nclement/software/Scwrl4/Scwrl4
