@@ -41,7 +41,8 @@ echo " number processors: $NPROC"
 #stage=2
 
 SCRIPTS="$(dirname -- "$(readlink -f -- "$0")")"
-source $SCRIPTS/../Makefile.def
+SCRIPTS=$SCRIPTS/..
+source $SCRIPTS/Makefile.def
 
 DOCK_SCRIPTS=$SCRIPTS/docking
 
@@ -54,15 +55,15 @@ DOCK_LIGAND=$DOCK_SCRIPTS/ligand.sh
 #DOCK_SCORE=/work/01872/nclement/scripts/docking/postprocessing/getSortedScores.sh
 DOCK_SCORE="$DOCK_SCRIPTS/postprocessing/getSortedPostClusterScores.sh"
 FIX_PDB=$SCRIPTS/fix_pdb_residuecount.pl
-HINGES_RECURSIVE="$F3DOCK_DIR/bin/FCC_HingeProt"
+HINGES_RECURSIVE="$F3DOCK_DIR/FCC_HingeProt"
 GET_RMSD=$SCRIPTS/docking/getRMSDAtoms.sh
-SAMPLE_RAMACHANDRAN="$F3Dock_DIR/bin/sampleProtein_Rama"
+SAMPLE_RAMACHANDRAN="$F3DOCK_DIR/sampleProtein_Rama"
 SINGLES="$SCRIPTS/runSingles_parallel.sh"
 
 echo "############################"
 echo "# 0. Generating rmsd atoms #"
 echo "############################"
-if [ $stage -le 6 ]; then
+if [ $stage -le 0 ]; then
   mkdir -p $OUTDIR/orig
   # Fix the ligand so it doesn't have any errors.
   $FIX_PDB $LIG_GOLD > $OUTDIR/orig/lig_gold.pdb
@@ -76,9 +77,6 @@ if [ $stage -le 6 ]; then
   $PYMOL -qrc $SCRIPTS/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $REC_GOLD \
         | grep -v "^PyMOL" > $RMSD_ATOMS
 fi
-
-echo "Press [Enter] to continue"
-read
 
 echo "###############################################################"
 echo "# 1. Performing recursive chain decomposition (One time only) #"

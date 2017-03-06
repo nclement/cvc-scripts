@@ -5,6 +5,9 @@ paths for various files and folders. Inside this file you'll also find some
 paths that currently work on Stampede. You should just be able to change the
 paths inside this file and it should work across all the scripts.
 
+You can use Makefile.def.stampede for stampede or Makefile.def.lonestar for either
+machine.
+
 Run
 ```bash
 make

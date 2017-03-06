@@ -5,7 +5,7 @@ source ${SCRIPTS_DIR}/Makefile.def
 
 # Set in Makefile.def
 #MGL_DIR="/work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6"
-PQR2F2D_PY="${DOCKING_SCRIPTS_DIR}/f2dgen/pqrTof2d2.py"
+PQR2F2D_PY="${DOCKING_SCRIPTS_DIR}/pqrTof2d2.py"
 
 # Environment variables are throwing us off. Ignore them.
 #$MGL_DIR/bin/python -E -m trace --trace $PQR2F2D_PY $@

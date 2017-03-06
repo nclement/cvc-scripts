@@ -7,7 +7,7 @@ RECEPTOR=${DOCKING_SCRIPTS_DIR}/receptor.sh
 GEN_PARAM=${DOCKING_SCRIPTS_DIR}/gen-param-file.sh
 #F2D=/work/01872/nclement/cvc_fresh/F2Dock-refactored/Release/bin/F2Dock
 # Previous version of D2Dock gives better scoring.
-F2D_prev=/work/01872/nclement/F2Dock_prev/src/runF2Dock.sh
+F2D_prev=${F2DOCK_PREV}
 F2D=${F2DOCK_REFACTORED}
 
 #module load gcc/4.7.1

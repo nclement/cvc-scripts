@@ -14,6 +14,8 @@ GPUEnergy=/work/01872/nclement/OPARef
 TEXMOL_QT4=/work/01872/nclement/TexMol-Qt4/release/bin/TexMol
 # https://svn.ices.utexas.edu/repos/cvc/trunk/F2Dock-refactored/
 F2DOCK_REFACTORED=/work/01872/nclement/cvc_fresh/F2Dock-refactored/Release/bin/F2Dock
+# A previous version of F2Dock
+F2DOCK_PREV=/work/01872/nclement/F2Dock_prev/src/runF2Dock.sh
 # https://svn.ices.utexas.edu/repos/cvc/branches/F3Dock/
 F3DOCK_DIR=/work/01872/nclement/F3Dock/release/bin
 
