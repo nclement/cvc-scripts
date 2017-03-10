@@ -7,12 +7,23 @@ my $numConf = shift;
 die "usage extractXForms.pl <# XForms> <F2Dock.txt>\n" if (@ARGV < 1);
 my @lines = <>;
 
+my $format = 
+
 print "$numConf\n";
 my $count = 0;
+my $length = 0;
 for (reverse @lines) {
+  if (/OUTPUT FORMAT: (\d+)/) {
+    $length
+  }
   next if /^#/;
   last if ++$count == $numConf;
 
   my @elems = split;
-  print join(" ",@elems[15 .. 26]), "\n";
+  # Old version of F2Dock
+  if (@elems == 54) {
+    print join(" ",@elems[40 .. 51]), "\n";
+  } else {
+    print join(" ",@elems[15 .. 26]), "\n";
+  }
 }
