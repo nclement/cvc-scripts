@@ -25,6 +25,8 @@ my @errs = grep /FATAL:\s+Atom/, @t_lines;
 close($PDB_IN);
 close($T_ERR);
 
+my %fixed = ();
+
 for (@errs) {
   /.R<.?(...) (\d+)>.A<(\S+)/;
   my $res = $1;
@@ -45,6 +47,12 @@ for (@errs) {
   # It's possible the residue is named something funky. So let's try and just
   # delete all the offending atoms.
   if (!$found_err) {
+    # Ignore it if we've already fixed it.
+    if (defined $fixed{$atom}) {
+      print "Already fixed atom $atom, continuing\n";
+      next;
+    }
+
     print "Uh-oh. Couldn't remove error. Removing all matches to $atom\n";
     my $del = 0;
     for (my $i = 0; $i < @pdb_lines; ++$i) {
@@ -54,6 +62,7 @@ for (@errs) {
         $pdb_lines[$i] = "";
         $del++;
         $found_err = 1;
+        $fixed{$atom} = 1;
       }
     }
     print "  deleted $del things\n";
@@ -63,6 +72,11 @@ for (@errs) {
   # digits and try again.
   if (!$found_err) {
     $atom =~ s/^\d*([^\d]+)\d*$/$1/;
+    # We've already dealt with this atom.
+    if (defined $fixed{$atom}) {
+      print "Already fixed atom $atom, continuing\n";
+      next;
+    }
     print "Hmm... Still can't find error. trying with atom $atom\n";
     my $del = 0;
     for (my $i = 0; $i < @pdb_lines; ++$i) {
@@ -73,6 +87,7 @@ for (@errs) {
         $pdb_lines[$i] = "";
         $del++;
         $found_err = 1;
+        $fixed{$atom} = 1;
       }
     }
     print "  deleted $del things\n";

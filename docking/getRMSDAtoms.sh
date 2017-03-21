@@ -25,6 +25,8 @@ DOCKING_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 SCRIPTS=$DOCKING_SCRIPTS_DIR/../
 source $DOCKING_SCRIPTS_DIR/../Makefile.def
 
+#echo $PYMOL -qrc $SCRIPTS/get_contact_ca_rmsd_atoms.py -- $LIGAND_GOLD $RECEPTOR_GOLD
+
 count=1
 IFS=$'\n'
 $PYMOL -qrc $SCRIPTS/get_contact_ca_rmsd_atoms.py -- $LIGAND_GOLD $RECEPTOR_GOLD \

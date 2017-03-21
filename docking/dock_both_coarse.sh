@@ -20,7 +20,8 @@ REC=$2 # Needs to be a PDB, and needs PDB to exist
 OUT=$3 # Output file name. Should be .txt, and will add .inp to the input filename
 RMSD_ATOMS=$4 # Optional, for adding RMSD. Should be ligand (moving) RMSD atoms
 gridSpacing=2.4 # Can go lower for more fine, higher for more coarse
-rotFile=deg20.mtx # Can change if you want
+#rotFile=deg20.mtx # Can change if you want
+rotFile=deg15.mtx # Can change if you want
 # Optional parameters are:
 #   RES_CONT_FILTER
 #      controls the residue contact filter (breaks docking with non-

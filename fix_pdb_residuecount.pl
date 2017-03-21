@@ -29,6 +29,7 @@ while(<>) {
   # We don't care about numbering here.
 	if ($insertion ne " ") {
     substr( $line, 26, 1) = " ";
+    #$resi .= $insertion;
   }
 
   if ($chain eq " ") {
@@ -37,7 +38,7 @@ while(<>) {
     $def_chain = $chain;
   }
 
-	if ($resi != $prev_res || $insertion != $prev_insertion) {
+	if ($resi ne $prev_res || $insertion ne $prev_insertion) {
 		# Don't print out residues that only have one atom
     # (this causes pdb2pqr and stuff to fail... "not enough heavy atoms")
 		if ($resi_count > 1) {
