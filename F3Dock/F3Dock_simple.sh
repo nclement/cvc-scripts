@@ -91,8 +91,9 @@ if [ $stage -le 1 ]; then
   cp $OUTDIR/$LIG_SHORT.pdb $OUTDIR/chains
   cp $OUTDIR/$REC_SHORT.pdb $OUTDIR/chains
   cd $OUTDIR/chains
-  $HINGES_RECURSIVE $OUTDIR/$LIG_SHORT.pdb $LIG_CHAIN . F 1 2>&1 | tee $LIG_SHORT.FCC
-  $HINGES_RECURSIVE $OUTDIR/$REC_SHORT.pdb $REC_CHAIN . F 1 2>&1 | tee $REC_SHORT.FCC
+  MAX_HP_LEVEL=4
+  $HINGES_RECURSIVE $OUTDIR/$LIG_SHORT.pdb $LIG_CHAIN . F $MAX_HP_LEVEL 1 2>&1 | tee $LIG_SHORT.FCC
+  $HINGES_RECURSIVE $OUTDIR/$REC_SHORT.pdb $REC_CHAIN . F $MAX_HP_LEVEL 1 2>&1 | tee $REC_SHORT.FCC
 fi
 
 echo "#######################################################"

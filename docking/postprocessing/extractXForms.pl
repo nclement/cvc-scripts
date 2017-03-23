@@ -4,7 +4,7 @@
 
 my $numConf = shift;
 
-die "usage extractXForms.pl <# XForms> <F2Dock.txt>\n" if (@ARGV < 1);
+die "usage extractXForms.pl <# XForms> <F2Dock.txt> (redirects to stdout)\n" if (@ARGV < 1);
 my @lines = <>;
 
 my $format = 

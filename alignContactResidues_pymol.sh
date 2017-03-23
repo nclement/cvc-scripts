@@ -15,7 +15,7 @@ protR=$1  # Receptor
 protL=$2  # Ligand
 protA=$3  # Protein A
 output=$4 # Output protein A'
-X=${5:-5}
+X=${5:-10} # Vreven et al 2015 (zlab5) suggests to use 10\AA as the limit
 
 SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 # Need variables to be defined here.
@@ -27,7 +27,8 @@ load $protR, pR
 load $protL, pL
 load $protA, pA
 alter all, segi=""
-select contact, name ca & pR & (all within $X of pL)
+# select all CA atoms in receptor that have any atom within $X of any atom in ligand
+select contact, (pR & (all within $X of pL)) & name ca
   # selects residues from pA that have names and resi atoms match pR
 #my_dict = { 'pR' : [] }
 #cmd.iterate("(contact & pR)","pR.append((resi,resn,chain))",space=my_dict)
@@ -36,6 +37,7 @@ select contact, name ca & pR & (all within $X of pL)
 #cmd.iterate("(pA like contact)","pA.append((resi,resn,chain))",space=my_dict)
 #print my_dict['pA']
 #align contact and pR, pA like contact
+# Avoids mismatches in residue numbering, etc.
 align pA like contact, contact and pR
 save $output, pA
 EOF

@@ -19,7 +19,7 @@ distance = "5"
 if len(my_argv) > 2:
   distance = my_argv[2]
 
-cmd.select("contact", "name CA & lig & (all within " + distance + " of rec)")
+cmd.select("contact", "(lig & (all within " + distance + " of rec)) & name ca")
 my_dict = { 'pA' : [] }
 cmd.iterate_state(1, "contact","pA.append([ID,x,y,z])",space=my_dict)
 
