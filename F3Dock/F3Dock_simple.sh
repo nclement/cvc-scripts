@@ -62,12 +62,13 @@ GET_RMSD=$SCRIPTS/docking/getRMSDAtoms.sh
 SAMPLE_RAMACHANDRAN="$F3DOCK_DIR/sampleProtein_Rama"
 SINGLES="$SCRIPTS/runSingles_parallel.sh"
 
+one_time=$(date +%s.%N
 echo "############################"
 echo "# 0. Generating rmsd atoms #"
 echo "############################"
 if [ $stage -le 0 ]; then
   mkdir -p $OUTDIR/orig
-  # Fix the ligand so it doesn't have any errors.
+  # Fix the ligand so it doesnt have any errors.
   $FIX_PDB $LIGAND > $OUTDIR/$LIG_SHORT.pdb
   $FIX_PDB $RECEPTOR > $OUTDIR/$REC_SHORT.pdb
   $FIX_PDB $LIG_GOLD > $OUTDIR/orig/lig_gold.pdb
@@ -82,6 +83,12 @@ if [ $stage -le 0 ]; then
         | grep -v "^PyMOL" > $RMSD_ATOMS
 fi
 
+two_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 1 is $(($two_time - $one_time)) #"
+echo "############################################"
+echo
+echo
 echo "###############################################################"
 echo "# 1. Performing recursive chain decomposition (One time only) #"
 echo "###############################################################"
@@ -96,6 +103,12 @@ if [ $stage -le 1 ]; then
   $HINGES_RECURSIVE $OUTDIR/$REC_SHORT.pdb $REC_CHAIN . F $MAX_HP_LEVEL 1 2>&1 | tee $REC_SHORT.FCC
 fi
 
+three_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 2 is $(($three_time - $two_time)) #"
+echo "############################################"
+echo
+echo
 echo "#######################################################"
 echo "# 2. Sampling according to Ramachandran distributions #"
 echo "#######################################################"
@@ -109,6 +122,12 @@ if [ $stage -le 2 ]; then
   $SAMPLE_RAMACHANDRAN -i $OUTDIR/$REC_SHORT.pdb -o $samp_dir/${REC_SHORT}_samp -S $OUTDIR/chains/${REC_SHORT}_fluct_resi.txt $rama_args
 fi
 
+four_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 3 is $(($four_time - $three_time)) #"
+echo "############################################"
+echo
+echo
 echo "#####################################"
 echo "# 3. Adding side chains to proteins #"
 echo "#####################################"
@@ -117,6 +136,12 @@ if [ $stage -le 3 ]; then
   ls $samp_dir/${LIG_SHORT}_samp* $samp_dir/${REC_SHORT}_samp* | xargs -n 1 -P $NPROC sh -c '$SCWRL4 -i $1 -o $1.scfix.pdb' sh
 fi
 
+five_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 3 is $(($five_time - $four_time)) #"
+echo "############################################"
+echo
+echo
 echo "###################################################################"
 echo "# 4. Performing (brief) energy minimization and computing energy. #"
 echo "###################################################################"
@@ -151,6 +176,12 @@ head ligands_en.txt -n $NUM_SAMPS | sort -R > ligands_use.txt
 head recepts_en.txt -n $NUM_SAMPS | sort -R > recepts_use.txt
 
 
+six_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 4 is $(($six_time - $five_time)) #"
+echo "############################################"
+echo
+echo
 echo "###################################################"
 echo "# 5. Aligning proteins back to original receptor. #"
 echo "###################################################"
@@ -173,6 +204,12 @@ if [ $stage -le 5 ]; then
   done
 fi
 
+sev_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 5 is $(($sev_time - $six_time)) #"
+echo "############################################"
+echo
+echo
 echo "##########################################"
 echo "# 6. Performing F2Dock on coarse samples #"
 echo "##########################################"
@@ -200,17 +237,23 @@ if [ $stage -le 6 ]; then
     # Need to do this to get the .pqr file.
     $DOCK_LIGAND $lig 128
     $GET_RMSD $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pqr $OUTDIR/coarse/${lig%.pdb}.pqr > $OUTDIR/coarse/dock_${i}_rmsd_atoms.txt
-    # Include the rmsd atoms just for testing purposes.
-    USE_PREV=1 $DOCK_BOTH_COARSE $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
-    $DOCK_SCORE dock_$i.txt | sed "s/^/$i /" > dock_${i}_score.txt
+##    # Include the rmsd atoms just for testing purposes.
+##    USE_PREV=1 $DOCK_BOTH_COARSE $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
+##    $DOCK_SCORE dock_$i.txt | sed "s/^/$i /" > dock_${i}_score.txt
   done
 fi
 
-# Should be in coarse directory.
-cat dock_*_score.txt | sort -k 2gr > dock_all_score.txt
+## # Should be in coarse directory.
+## cat dock_*_score.txt | sort -k 2gr > dock_all_score.txt
 
+eight_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 6 is $(($eight_time - $sev_time)) #"
+echo "############################################"
+echo
+echo
 echo "#######################################"
-echo "# 7 Re-Docking will full granulatiry. #"
+echo "# 7. Re-Docking will full granulatiry. #"
 echo "#######################################"
 if [ $stage -le 7 ]; then
   # Might need to clean it.
@@ -244,3 +287,9 @@ fi
 # Should be in fine directory.
 cat dock_*_score.txt | sort -k 2gr > dock_all_score.txt
 
+e_time=$(date +%s.%N)
+echo "############################################"
+echo "# Time for step 7 is $(($e_time - $eight_time)) #"
+echo "############################################"
+echo
+echo
