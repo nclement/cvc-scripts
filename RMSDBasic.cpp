@@ -59,7 +59,7 @@ vector<Atom*> readPDBMolecule(string fn) {
   char atomType[10];
 	while (fgets(atomLine, BUFFER_SIZE, inf) != NULL) {
     if(sscanf(atomLine, "ATOM %*d %s %*s %*s %d %f %f %f", 
-              atomType, &resi, &px, &py, &pz) != 4) {
+              atomType, &resi, &px, &py, &pz) != 5) {
       continue;
     }
 
