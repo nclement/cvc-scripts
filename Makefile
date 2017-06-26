@@ -14,8 +14,11 @@ OPT_FLAGS=-std=c++11 -O3
 DEBUG_FLAGS=-std=c++11 -g -O0
 FLAGS=${OPT_FLAGS}
 
-all : ${TARGETS} docking-post test-existence
+SUBDIRS = docking/postprocessing hbond
 
+all : ${TARGETS} subdirs test-existence
+	@echo
+	@echo "If there have been no errors, your build should be complete."
 
 RMSDMulti : RMSDMulti.cpp
 	g++ ${FLAGS} $< -o $@
@@ -26,8 +29,12 @@ RMSDBasic : RMSDBasic.cpp
 % : %.cpp
 	g++ ${FLAGS} $< -o $@
 
-docking-post:
-	${MAKE} -C docking/postprocessing
+.PHONY: subdirs $(SUBDIRS)
+
+subdirs: $(SUBDIRS)
+
+$(SUBDIRS):
+	@${MAKE} -C $@
 
 test-existence: Makefile.def
 	@# Check and see which ones are in existence.

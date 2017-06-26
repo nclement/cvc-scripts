@@ -1,0 +1,4511 @@
+* ...
+* ...
+* Copyright (c) 1986, 1987, 1988, 1989, 1990, 1991, 1992
+* Molecular Simulations Incorporated
+* Confidential and Proprietary: All Rights Reserved
+* ...
+* ....
+* TEMPLATE FOR CREATING CHARMm RTF file 
+* ....
+*     (%_m) replaced by first 4 characters of molecule name
+*           in QUANTA (if used)
+* ..
+* Build RTF for %m
+* ...
+* sorted alphabetically; metals follow organics
+* Atom type numbers 201-229 are reserved for special QUANTA display atom types.
+* Atom type numbers 235-253 are reserved for special XPLOR Engh and Huber types
+* Last current active number is 253.
+*
+   22    0
+MASS   170 AR    39.948   Ar ! Argon
+MASS     7 B     10.81    B  ! Boron
+MASS    14 C     12.01100 C  ! Carbonyl or Guanidinium carbon
+MASS   190 C3    12.01100 C  ! Carbonyl carbon in 3-membered aliphatic ring
+MASS   192 C4    12.01100 C  ! Carbonyl carbons in 4-membered aliphatic ring
+MASS    21 C5R   12.01100 C  ! Aromatic carbon in a five membered ring
+MASS   248 C5W   12.01100 C  ! Aromatic carbon in a five membered ring E&H
+MASS    23 C5RE  13.01900 C  ! Extended aromatic carbon in five membered ring
+MASS    28 C5RP  12.01100 C  ! for Aryl-Aryl bond between C5R rings
+MASS   189 C5RQ  12.01100 C  ! for second Ar-Ar bond between C5RP rings (ortho)
+MASS    22 C6R   12.01100 C  ! Aromatic carbon in a six  membered ring
+MASS   243 CF    12.01100 C  ! Aromatic carbon in 6 membered ring trp E&H
+MASS   251 CY    12.01100 C  ! Aromatic carbon in 6 membered ring tyr E&H
+MASS   252 CY2   12.01100 C  ! Aromatic carbon in 6 membered ring tyr E&H
+MASS    24 C6RE  13.01900 C  ! Extended aromatic carbon in six membered ring
+MASS   244 CR1E  13.01900 C  ! Extended aromatic carbon six membered ring E&H
+MASS   250 CR1W  12.01100 C  ! Extended aromatic carbon six ring trp E&H
+MASS    29 C6RP  12.01100 C  ! for Aryl-Aryl bond between C6R rings 
+MASS   194 C6RQ  12.01100 C  ! Carbon of C6RP type ortho to C6RP pair
+MASS   230 CF1   12.01100 C  ! Carbon with one Fluorine
+MASS   231 CF2   12.01100 C  ! Carbon with two Fluorines
+MASS   232 CF3   12.01100 C  ! Carbons with three Fluorines
+MASS    11 CH1E  13.01900 C  ! Extended atom carbon with one hydrogen
+MASS    12 CH2E  14.02700 C  ! Extended atom carbon with two hydrogens
+MASS   246 CH2P  14.02700 C  ! Extended atom carbon with two h - pro E&H
+MASS   237 CH2G  14.02700 C  ! Extended atom carbon with two hydrogens E&H
+MASS    13 CH3E  15.03500 C  ! Extended atom carbon with three hydrogens
+MASS    15 CM    12.01100 C  ! Carbonmonoxide, or other triply bonded, carbon
+MASS   199 CP3   12.01100 C  ! Carbon on nitrogen in proline ring
+MASS   197 CPH1  12.01100 C  ! CG and CD2 carbons in histidine ring
+MASS   238 C5    12.01100 C  ! CG carbons in histidine ring E&H
+MASS   239 CR1H  13.01900 C  ! CD2 carbons in histidine ring E&H
+MASS   198 CPH2  13.01900 C  ! CE1 carbon in histidine ring
+MASS   240 CRHH  13.01900 C  ! CE1 carbon in histidine ring E&H
+MASS   195 CQ66  12.01100 C  ! Third adjacent pair of CR66 types in fused rings
+MASS    25 CR55  12.01100 C  ! Aromatic carbon-merged five membered rings
+MASS    26 CR56  12.01100 C  ! Aromatic carbon-merged five/six membered rings 
+MASS   249 CW    12.01100 C  ! Aromatic carbon-merged five/six membered rings 
+MASS    27 CR66  12.01100 C  ! Aromatic carbon-merged six membered rings
+MASS   196 CS66  12.01100 C  ! Second adjacent pair of CR66 types in fused rings
+MASS    10 CT    12.01100 C  ! Aliphatic carbon (tetrahedral)
+MASS   191 CT3   12.01100 C  ! in 3-membered aliphatic ring, usually tetrahedral
+MASS   193 CT4   12.01100 C  ! in 4-membered aliphatic ring, usually tetrahedral
+MASS    16 CUA1  12.01100 C  ! Carbon in double bond, first pair
+MASS    17 CUA2  12.01100 C  ! Carbon in double bond, second conjugated pair   
+MASS    20 CUA3  12.01100 C  ! Carbon in double bond, third conjugated pair 
+MASS    18 CUY1  12.01100 C  ! Carbon in triple bond, first pair
+MASS    19 CUY2  12.01100 C  ! Carbon in triple bond, second conjugated pair
+MASS     1 H      1.00800 H  ! Hydrogen bonding hydrogen (neutral group)
+MASS     3 HA     1.00800 H  ! Aliphatic or aromatic hydrogen
+MASS     2 HC     1.00800 H  ! Hydrogen bonding hydrogen (charged group)
+MASS   168 HE     4.00260 He ! Helium
+MASS     9 HMU    1.00800 H  ! Mu-bonded hydrogen for metals and boron-hydride
+MASS     8 HO     1.00800 H  ! Hydrogen on an alcohol oxygen
+MASS     4 HT     1.00800 H  ! TIPS3P water model hydrogen
+MASS   171 KR    83.80    Kr ! Krypton
+MASS     5 LP     0.0        ! ST2 lone pair
+MASS    31 N     14.00670 N  ! Nitrogen; planar-valence of 3, i.e. nitrile, etc.
+MASS   235 NH1   14.00670 N  ! Nitrogen; planar-valence of 3  E&H - peptide
+MASS   236 NH2   14.00670 N  ! Nitrogen; planar-valence of 3  E&H - amide
+MASS   241 NH3   14.00670 N  ! Nitrogen; E&H - amino
+MASS   245 NPX   14.00670 N  ! Proline nitrogen, or similar E&H
+MASS   234 N3    14.00670 N  ! Nitrogen in a three membered ring
+MASS    34 N5R   14.00670 N  ! Nitrogen in a five membered aromatic ring
+MASS    30 N5RP  14.00670 N  ! for Ar-Ar bond between five membered rings 
+MASS    35 N6R   14.00670 N  ! Nitrogen in a six membered aromatic ring
+MASS    39 N6RP  14.00670 N  ! for Aryl-Aryl bond between six membered rings
+MASS    37 NC    14.00670 N  ! Charged guanidinium-type nitrogen
+MASS   186 NC2   14.00670 N  ! for neutral guanidinium group - Arg sidechain  
+MASS   169 NE    20.179   Ne ! Neon
+MASS    38 NO2   14.00670 N  ! Nitrogen in nitro, or related, group
+MASS    32 NP    14.00670 N  ! Nitrogen in peptide, amide, or related, group 
+MASS   183 NR1   14.00670 N  ! Protonated nitrogen in neutral histidine ring
+MASS   184 NR2   14.00670 N  ! Unprotonated nitrogen in neutral histidine ring
+MASS   185 NR3   14.00670 N  ! Nitrogens in charged histidine ring
+MASS   182 NR55  14.00670 N  ! N at fused bond between two 5-membered aromatics
+MASS   180 NR56  14.00670 N  ! N at fused bond between 5 and 6-membered aryls
+MASS   181 NR66  14.00670 N  ! N at fused bond between two 6-membered aromatics
+MASS    36 NT    14.00670 N  ! Nitrogen (tetrahedral), i.e. Amine, etc.
+MASS    33 NX    14.00670 N  ! Proline nitrogen, or similar
+MASS    40 O     15.99940 O  ! Carbonyl oxygen for amides, or related structures
+MASS    56 O2M   15.99940 O  ! Oxygen in Si-O-Al or Al-O-Al bond
+MASS    52 O5R   15.99940 O  ! Oxygen in 5 membered aromatic ring-radicals, etc.
+MASS    53 O6R   15.99940 O  ! Oxygen in 6 membered aromatic ring-radicals, etc.
+MASS    41 OA    15.99940 O  ! Carbonyl oxygen for aldehydes, or related 
+MASS    51 OAC   15.99940 O  ! Carbonyl oxygen for acids, or related
+MASS    43 OC    15.99940 O  ! Charged oxygen
+MASS    50 OE    15.99940 O  ! Ether oxygen / Acetal oxygen
+MASS    47 OH2   15.99940 O  ! ST2  water model oxygen
+MASS    42 OK    15.99940 O  ! Carbonyl oxygen for ketones, or related 
+MASS    48 OM    15.99940 O  ! Carbonmonoxide, or other triply bonded, oxygen
+MASS    49 OS    15.99940 O  ! Ester oxygen
+MASS    57 OSH    0.00000 O  ! Massless O for zeolites, or related cage cmpds.
+MASS    55 OSI   15.99940 O  ! Oxygen in Si-O-Si bond
+MASS    45 OT    15.99940 O  ! Hydroxyl oxygen (tetrahedral) or Ionizable acid 
+MASS   247 OH1   15.99940 O  ! Hydroxyl oxygen (tetrahedral) E&H
+MASS    46 OW    15.99940 O  ! TIP3P water model oxygen
+MASS    64 P6R   30.9738  P  ! Phosphorous in aromatic 6-membered ring
+MASS    61 PO3   30.9738  P  ! Phosphorous bonded to three oxygens
+MASS    62 PO4   30.9738  P  ! Phosphorous bonded to four oxygens
+MASS    60 PT    30.9738  P  ! Phosphorous, general; usually tetrahedral
+MASS    63 PUA1  30.9738  P  ! Phosphorous double bond 
+MASS   233 PUY1  30.9738  P  ! Triple bonded phosphorus
+MASS   173 RN   222.0     Rn ! Radon
+MASS    72 S5R   32.0600  S  ! Sulphur in a five membered aromatic ring  
+MASS    73 S6R   32.0600  S  ! Sulphur in a six membered aromatic ring 
+MASS    74 SE    32.060   S  ! Thioether sulphur
+MASS   242 SM    32.060   S  ! Thioether sulphur  E&H
+MASS   253 S     32.060   S  ! Thioether sulphur  E&H
+MASS    71 SH1E  33.06800 S  ! Extended atom sulphur with one hydrogen
+MASS    75 SK    32.060   S  ! Thioketone sulphur
+MASS    76 SO1   32.0600  S  ! Sulphur bonded to one oxygen
+MASS    77 SO2   32.0600  S  ! Sulphur bonded to two oxygens
+MASS    78 SO3   32.0600  S  ! Sulphur bonded to three oxygens
+MASS    79 SO4   32.0600  S  ! Sulphur bonded to four oxygens
+MASS    70 ST    32.06000 S  ! Sulphur, general; usually tetrahedral
+MASS   131 XAT  210.0     At ! Astatine
+MASS    94 XBR   79.904   Br ! Bromine
+MASS    93 XCL   35.45300 Cl ! Chlorine
+MASS   172 XE   131.29    Xe ! Xenon
+MASS    92 XF    18.99840 F  ! Fluorine
+MASS    95 XI   126.9045  I  ! Iodine
+MASS   126 MAC  227.0278  Ac ! Actinium
+MASS   111 MAG  107.868   Ag ! Silver
+MASS    91 MAL   26.9815  Al ! ALuminum
+MASS   159 MAM  243.0     Am ! Americium
+MASS   101 MAS   74.9216  As ! Arsenic
+MASS   119 MAU  196.08    Au ! Gold
+MASS   115 MBA  137.33    Ba ! Barium
+MASS     6 MBE    9.01218 Be ! Beryllium
+MASS   122 MBI  208.9804  Bi ! Bismuth
+MASS   161 MBK  247.0     Bk ! Berkelium
+MASS    84 MCA   40.080   Ca ! Calcium 
+MASS   112 MCD  112.41    Cd ! Cadmium
+MASS   124 MCE  140.12    Ce ! Cerium
+MASS   162 MCF  251.0     Cf ! Californium
+MASS   160 MCM  247.0     Cm ! Curium
+MASS    99 MCO   58.9332  Co ! Cobalt
+MASS    98 MCR   51.996   Cr ! Chromium
+MASS    89 MCS  132.9054  Cs ! Cesium
+MASS    96 MCU   63.546   Cu ! Copper
+MASS   150 MDY  162.50    Dy ! Dysprosium
+MASS   152 MER  167.26    Er ! Erbium
+MASS   163 MES  252.0     Es ! Einsteinium
+MASS   147 MEU  151.96    Eu ! Europium
+MASS   164 MFM  257.0     Fm ! Fermium
+MASS    86 FE   55.847   Fe ! Iron
+MASS   142 MFR  223.0     Fr ! Francium
+MASS   135 MGA   69.72    Ga ! Gallium
+MASS   148 MGD  157.25    Gd ! Gadolinium
+MASS   136 MGE   72.59    Ge ! Germanium
+MASS   175 MHA  262.0     Ha ! Hahnium
+MASS   138 MHF  178.49    Hf ! Hafnium
+MASS   120 MHG  200.59    Hg ! Mercury
+MASS   151 MHO  164.9304  Ho ! Holmium
+MASS   137 MIN  114.82    In ! Indium
+MASS   140 MIR  192.22    Ir ! Iridium
+MASS    83 MK    39.098   K  ! Potassium
+MASS   123 MLA  138.9055  La ! Lanthanum
+MASS    80 MLI    6.941   Li ! Lithium
+MASS   167 MLR  260.0     Lr ! Lawrencium             
+MASS   155 MLU  174.967   Lu ! Lutetium
+MASS   165 MMD  258.0     Md ! Medelevium
+MASS    82 MMG   24.305   Mg ! Magnesium
+MASS    85 MMN   54.938   Mn ! Manganese
+MASS   107 MMO   95.94    Mo ! Molybdenum
+MASS    81 MNA   22.9898  Na ! Sodium
+MASS   106 MNB   92.9064  Nb ! Niobium
+MASS   144 MND  144.24    Nd ! Neodymium
+MASS   100 MNI   58.69    Ni ! Nickel
+MASS   166 MNO  259.0     No ! Nobelium
+MASS   157 MNP  237.0482  Np ! Neptunium
+MASS   117 MOS  190.2     Os ! Osmium
+MASS   156 MPA  231.0359  Pa ! Protactinium
+MASS   121 MPB  207.2     Pb ! Lead
+MASS   110 MPD  106.42    Pd ! Palladium
+MASS   145 MPM  145.0     Pm ! Promethium
+MASS   130 MPO  209.0     Po ! Polonium
+MASS   125 MPR  140.9077  Pr ! Praseodymium
+MASS   118 MPT  195.08    Pt ! Platinum
+MASS   158 MPU  244.0     Pu ! Plutonium
+MASS   143 MRA  226.0254  Ra ! Radium
+MASS    88 MRB   85.4678  Rb ! Rubidium
+MASS   176 MRE  186.31    Re ! Rhenium
+MASS   174 MRF  261.0     Rf ! Rutherfordium/Kurchatovium
+MASS   109 MRH  102.9055  Rh ! Rhodium
+MASS   108 MRU  101.07    Ru ! Ruthenium
+MASS   114 MSB  121.75    Sb ! Antimony
+MASS   133 MSC   44.9559  Sc ! Scandium
+MASS   102 MSE   78.96    Se ! Selenium
+MASS    90 MSI   28.0855  Si ! Silicon
+MASS   177 MSIU 28.08550  Si ! Silicon when as double bond
+MASS   146 MSM  150.36    Sm ! Samarium
+MASS   113 MSN  118.69    Sn ! Tin
+MASS   103 MSR   87.62    Sr ! Strontium
+MASS   139 MTA  180.9479  Ta ! Tantalum
+MASS   149 MTB  158.9254  Tb ! Terbium
+MASS   132 MTC   98.0     Tc ! Technetium
+MASS   129 MTE  127.60    Te ! Tellurium
+MASS   127 MTH  232.0381  Th ! Thorium
+MASS   134 MTI   47.88    Ti ! Titanium
+MASS   141 MTL  204.383   Tl ! Thallium
+MASS   153 MTM  168.9342  Tm ! Thulium
+MASS   128 MU   238.0289  U  ! Uranium
+MASS    97 MV    50.9415  V  ! Vanadium
+MASS   116 MW   183.85    W  ! Tungsten
+MASS   104 MY    88.9059  Y  ! Yttrium
+MASS   154 MYB  173.04    Yb ! Ytterbium
+MASS    87 MZN   65.38    Zn ! Zinc
+MASS   105 MZR   91.22    Zr ! Zirconium
+MASS   226 ZC3   12.01
+MASS   227 ZC2   12.01
+MASS   228 ZOH   16.00
+MASS   229 ZHO    1.01
+
+DECL -CA
+DECL -C
+DECL -O
+DECL -N
+DECL +N
+DECL +H
+DECL +CA
+DECL +CB
+DECL +CG
+DECL +CD
+DECL +CE
+DECL +CZ
+
+
+
+AUTOGENERATE ANGLES DIHE
+DEFA FIRS NTER LAST CTER
+
+RESI ZN2          2.00 ! Zinc ion
+GROUP
+ATOM ZN   MZN     2.00
+PATCHING FIRST NONE LAST NONE
+
+RESI ZN           2.00 ! Zinc ion, alt
+GROUP
+ATOM ZN   MZN     2.00
+PATCHING FIRST NONE LAST NONE
+
+RESI CAL          2.00 ! Calcium ion
+GROUP
+ATOM CAL  MCA     2.00
+PATCHING FIRST NONE LAST NONE
+
+RESI CA           2.00 ! Calcium ion, alt
+GROUP
+ATOM CA   MCA     2.00
+PATCHING FIRST NONE LAST NONE
+
+!
+! The following residue definitions comprise the 20 naturally occurring
+! amino acids
+!
+
+RESI ALA          0.00  !  Alanine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH3E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H  N
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+
+RESI ARG          1.00  !  Arginine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM CD   CH2E    0.10
+ATOM NE   NP     -0.40
+ATOM HE   H       0.30
+ATOM CZ   C       0.50
+GROU
+ATOM NH1  NC     -0.45
+ATOM HH11 HC      0.35
+ATOM HH12 HC      0.35
+GROU
+ATOM NH2  NC     -0.45
+ATOM HH21 HC      0.35
+ATOM HH22 HC      0.35
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   NE        NE   HE
+BOND NE   CZ        CZ   NH1       CZ   NH2       NH1  HH11      NH1  HH12
+BOND NH2  HH21      NH2  HH22
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH NE   CD   CZ   HE        CZ   NH1  NH2  NE        NH1  HH12 HH11 CZ
+IMPH NH2  HH22 HH21 CZ
+DONO  H N
+DONO  HE NE
+DONO  HH11 NH1
+DONO  HH12 NH1
+DONO  HH21 NH2
+DONO  HH22 NH2
+ACCE  O C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   NE     0.0000    0.00  180.00    0.00   0.0000
+IC   CG   CD   NE   CZ     0.0000    0.00  180.00    0.00   0.0000
+IC   CD   NE   CZ   NH1    0.0000    0.00  180.00    0.00   0.0000
+IC   NH1  NE   *CZ  NH2    0.0000    0.00  180.00    0.00   0.0000
+IC   CD   CZ   *NE  HE     0.0000    0.00  180.00    0.00   0.0000
+IC   NE   CZ   NH1  HH11   0.0000    0.00  180.00    0.00   0.0000
+IC   HH11 CZ   *NH1 HH12   0.0000    0.00  180.00    0.00   0.0000
+IC   NE   CZ   NH2  HH21   0.0000    0.00  180.00    0.00   0.0000
+IC   HH21 CZ   *NH2 HH22   0.0000    0.00  180.00    0.00   0.0000
+
+RESI ARGN         0.00  !  Neutral arginine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM CD   CH2E    0.10
+ATOM NE   NP     -0.40
+ATOM HE   H       0.30
+ATOM CZ   C      -0.20
+GROU
+ATOM NH1  NC     -0.45
+ATOM HH11 HC      0.35
+ATOM HH12 HC      0.35
+GROU
+ATOM NH2  NC     -0.30
+ATOM HH21 HC      0.25
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   NE        NE   HE
+BOND NE   CZ        CZ   NH1       CZ   NH2       NH1  HH11      NH1  HH12
+BOND NH2  HH21      
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH NE   CD   CZ   HE        CZ   NH1  NH2  NE        NH1  HH12 HH11 CZ
+DONO  H N
+DONO  HE NE
+DONO  HH11 NH1
+DONO  HH12 NH1
+DONO  HH21 NH2
+ACCE  O C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   NE     0.0000    0.00  180.00    0.00   0.0000
+IC   CG   CD   NE   CZ     0.0000    0.00  180.00    0.00   0.0000
+IC   CD   NE   CZ   NH1    0.0000    0.00  180.00    0.00   0.0000
+IC   NH1  NE   *CZ  NH2    0.0000    0.00  180.00    0.00   0.0000
+IC   CD   CZ   *NE  HE     0.0000    0.00  180.00    0.00   0.0000
+IC   NE   CZ   NH1  HH11   0.0000    0.00  180.00    0.00   0.0000
+IC   HH11 CZ   *NH1 HH12   0.0000    0.00  180.00    0.00   0.0000
+IC   NE   CZ   NH2  HH21   0.0000    0.00  180.00    0.00   0.0000
+
+RESI ASN          0.00  !  Asparagine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   C       0.55
+ATOM OD1  O      -0.55
+GROU
+ATOM ND2  NP     -0.60
+ATOM HD21 H       0.30
+ATOM HD22 H       0.30
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   OD1       CG   ND2       ND2  HD21
+BOND ND2  HD22
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   OD1  ND2  CB        ND2  HD21 HD22 CG
+! inverted for new IMPH rules
+! IMPH CG  ND2  CB  OD1       ND2  HD21 HD22 CG
+DONO  H N
+DONO  HD21 ND2
+DONO  HD22 ND2
+ACCE  OD1 CG
+ACCE  O C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   OD1    0.0000    0.00   90.00    0.00   0.0000
+IC   OD1  CB   *CG  ND2    0.0000    0.00  180.00    0.00   0.0000
+IC   OD1  CG   ND2  HD21   0.0000    0.00  180.00    0.00   0.0000
+IC   HD21 CG   *ND2 HD22   0.0000    0.00  180.00    0.00   0.0000
+
+RESI ASP         -1.00  !  Aspartic acid
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   C       0.14
+ATOM OD1  OC     -0.57
+ATOM OD2  OC     -0.57
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   OD1       CG   OD2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   OD1  OD2  CB
+DONO  H     N
+ACCE OD1  CG
+ACCE OD2  CG
+ACCE O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   OD1    0.0000    0.00   90.00    0.00   0.0000
+IC   OD1  CB   *CG  OD2    0.0000    0.00  180.00    0.00   0.0000
+
+
+RESI ASPH          0.00  !  Aspartic acid - Protonated
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   C       0.70
+ATOM OD1  OAC    -0.55
+ATOM OD2  OT     -0.40
+ATOM HD   H       0.25
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   OD1       CG   OD2       OD2  HD
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   OD1  OD2  CB
+DONO  H     N
+DONO  HD    OD2
+ACCE OD1  CG
+ACCE OD2  CG
+ACCE O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   OD1    0.0000    0.00   90.00    0.00   0.0000
+IC   OD1  CB   *CG  OD2    0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   OD2  HD     0.0000    0.00  180.00    0.00   0.0000
+
+RESI CYS          0.00  !  Cysteine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.19 
+ATOM SG   SH1E   -0.19
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   SG
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H    N
+ACCE  O    C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   SG     0.0000    0.00 -170.00    0.00   0.0000
+IC   C    CA   CB   SG     0.0000    0.00   65.00    0.00   0.0000
+
+RESI GLN          0.00  !  Glutamine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM CD   C       0.55
+ATOM OE1  O      -0.55
+GROU
+ATOM NE2  NP     -0.60
+ATOM HE21 H       0.30
+ATOM HE22 H       0.30
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   OE1       CD   NE2
+BOND NE2  HE21      NE2  HE22
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CD   OE1  NE2  CG        NE2  HE21 HE22 CD
+! inverted for new IMPH rules
+! IMPH CD  NE2  CG  OE1       NE2  HE21 HE22 CD
+DONO  H     N
+DONO  HE21  NE2
+DONO  HE22  NE2
+ACCE  OE1  CD
+ACCE  O    C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   OE1    0.0000    0.00  180.00    0.00   0.0000
+IC   OE1  CG   *CD  NE2    0.0000    0.00  180.00    0.00   0.0000
+IC   OE1  CD   NE2  HE21   0.0000    0.00  180.00    0.00   0.0000
+IC   HE21 CD   *NE2 HE22   0.0000    0.00  180.00    0.00   0.0000
+
+RESI GLU         -1.00  !  Glutamic acid
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   CH2E    0.00
+ATOM CD   C       0.14
+ATOM OE1  OC     -0.57
+ATOM OE2  OC     -0.57
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   OE1       CD   OE2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CD   OE1  OE2  CG
+DONO  H   N
+ACCE OE1  CD
+ACCE OE2  CD
+ACCE O    C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   OE1    0.0000    0.00  180.00    0.00   0.0000
+IC   OE1  CG   *CD  OE2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI GLUH          0.00  !  Glutamic acid-Protonated
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   CH2E    0.00
+ATOM CD   C       0.70
+ATOM OE1  OAC    -0.55
+ATOM OE2  OT     -0.40
+ATOM HE   H       0.25
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   OE1       CD   OE2
+BOND OE2  HE
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CD   OE2  OE1  CG
+DONO  H   N
+DONO  HE  OE2
+ACCE OE1  CD
+ACCE OE2  CD
+ACCE O    C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   OE2    0.0000    0.00  180.00    0.00   0.0000
+IC   OE2  CG   *CD  OE1    0.0000    0.00  180.00    0.00   0.0000
+IC   CG   CD   OE2  HE     0.0000    0.00  180.00    0.00   0.0000
+
+RESI GLY          0.00  !  Glycine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH2E    0.10
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+IMPH N    -C   CA   H         C    CA   +N   O
+DONO  H     N
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+PATC FIRS GLYP LAST CGLY
+
+RESI HIS          0.00  !  Histidine (uncharged with proton on nd1) 
+GROU     
+ATOM N    NP     -0.40  
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROUP
+ATOM CG   C5R     0.10
+ATOM ND1  N5R    -0.40
+ATOM HD1  H       0.30
+GROU
+ATOM CD2  C5RE    0.10
+ATOM NE2  N5R    -0.40
+ATOM CE1  C5RE    0.30
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   ND1       CG   CD2       ND1  HD1
+BOND ND1  CE1       CD2  NE2       CE1  NE2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   ND1  CD2  CB        ND1  CG   CE1  HD1       CG   ND1  CE1  NE2
+IMPH ND1  CE1  NE2  CD2       CE1  NE2  CD2  CG        NE2  CD2  CG   ND1
+IMPH CD2  CG   ND1  CE1
+DONO  H     N
+DONO  HD1   ND1
+ACCE  NE2
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD2    0.0000    0.00   90.00    0.00   0.0000
+IC   CD2  CB   *CG  ND1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD2  CG   ND1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   ND1  CG   CD2  NE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CE1  CG   *ND1 HD1    0.0000    0.00  180.00    0.00   0.0000
+
+RESI ILE          0.00  !  Isoleucine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH1E    0.00
+ATOM CG2  CH3E    0.00
+GROU
+ATOM CG1  CH2E    0.00
+ATOM CD1  CH3E    0.00  !DB changed to CD1
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG1       CB   CG2       CG1  CD1
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CB   CG1  CG2  CA
+DONO  H     N
+ACCE  O     C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG1    0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG1  CD1    0.0000    0.00  180.00    0.00   0.0000
+IC   CG1  CA   *CB  CG2    0.0000    0.00 -120.00    0.00   0.0000
+
+RESI LEU          0.00  !  Leucine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH1E    0.00
+ATOM CD1  CH3E    0.00
+ATOM CD2  CH3E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD1       CG   CD2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   CD2  CD1  CB
+DONO  H   N
+ACCE  O   C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD1  CB   *CG  CD2    0.0000    0.00  120.00    0.00   0.0000
+
+RESI LYS          1.00  !  Lysine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+ATOM CD   CH2E    0.00
+GROU
+ATOM CE   CH2E    0.25
+ATOM NZ   NT     -0.30
+ATOM HZ1  HC      0.35
+ATOM HZ2  HC      0.35
+ATOM HZ3  HC      0.35
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   CE        CE   NZ
+BOND NZ   HZ1       NZ   HZ2       NZ   HZ3
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+DONO  HZ1   NZ
+DONO  HZ2   NZ
+DONO  HZ3   NZ
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   CE     0.0000    0.00  180.00    0.00   0.0000
+IC   CG   CD   CE   NZ     0.0000    0.00  180.00    0.00   0.0000
+IC   CD   CE   NZ   HZ1    0.0000    0.00  180.00    0.00   0.0000
+IC   HZ1  CE   *NZ  HZ2    0.0000    0.00  120.00    0.00   0.0000
+IC   HZ2  CE   *NZ  HZ3    0.0000    0.00  120.00    0.00   0.0000
+
+RESI LYSN         0.00  !  Neutral Lysine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+ATOM CD   CH2E    0.00
+GROU
+ATOM CE   CH2E    0.00
+ATOM NZ   NT     -0.30
+ATOM HZ1  H       0.15
+ATOM HZ2  H       0.15
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   CE        CE   NZ
+BOND NZ   HZ1       NZ   HZ2    
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+DONO  HZ1   NZ
+DONO  HZ2   NZ
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   CE     0.0000    0.00  180.00    0.00   0.0000
+IC   CG   CD   CE   NZ     0.0000    0.00  180.00    0.00   0.0000
+IC   CD   CE   NZ   HZ1    0.0000    0.00  180.00    0.00   0.0000
+IC   HZ1  CE   *NZ  HZ2    0.0000    0.00  120.00    0.00   0.0000
+
+RESI MET          0.00  !  Methionine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   CH2E    0.06
+ATOM SD   SE     -0.12
+ATOM CE   CH3E    0.06
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   SD        SD   CE
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+ACCE  O     C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   SD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   SD   CE     0.0000    0.00  180.00    0.00   0.0000
+
+RESI PHE          0.00  !  Phenylalanine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   C6R     0.00
+ATOM CD1  C6RE    0.00
+ATOM CD2  C6RE    0.00
+GROU
+ATOM CE1  C6RE    0.00
+ATOM CE2  C6RE    0.00
+ATOM CZ   C6RE    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD1       CG   CD2       CD1  CE1
+BOND CD2  CE2       CE1  CZ        CE2  CZ
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   CD1  CE1  CZ        CD1  CE1  CZ   CE2       CE1  CZ   CE2  CD2
+IMPH CZ   CE2  CD2  CG        CE2  CD2  CG   CD1       CD2  CG   CD1  CE1
+IMPH CG   CD1  CD2  CB
+DONO  H     N
+ACCE  O     C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  240.00    0.00   0.0000
+IC   CA   CB   CG   CD1    0.0000    0.00   90.00    0.00   0.0000
+IC   CD1  CB   *CG  CD2    0.0000    0.00  180.00    0.00   0.0000
+IC   CD1  CG   CD2  CE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CD2  CG   CD1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   CG   CD1  CE1  CZ     0.0000    0.00    0.00    0.00   0.0000
+
+RESI PRO          0.00  !  Proline
+GROU
+ATOM N    NX     -0.25
+ATOM CD   CH2E    0.10
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    CD
+BOND CA   CB        CB   CG        CG   CD
+IMPH N    -C   CA   CD        C    CA   +N   O         CA   N    C    CB
+ACCE  O  C
+IC   -C   CA   *N   CD     0.0000    0.00  180.00  108.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  -75.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00    0.00  108.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00    0.00  108.00   0.0000 !DB fix
+PATC FIRS PROP
+
+RESI SER          0.00  !  Serine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.25
+ATOM OG   OT     -0.65
+ATOM HG   HO      0.40
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   OG        OG   HG
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+DONO  HG    OG
+ACCE  OG
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   OG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   OG   HG     0.0000    0.00  180.00    0.00   0.0000
+
+
+RESI SEP         -2.00  !  Phosphoserine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM OG   OS     -0.40
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+GROU
+ATOM P    PO4     1.10
+ATOM O1P  OC     -0.90
+ATOM O2P  OC     -0.90
+ATOM O3P  OC     -0.90
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   OG        OG    P
+BOND P    O1P       P    O2P       P     O3P
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+ACCE  OG
+ACCE  O  C
+ACCE  O1P O2P 
+ACCE  O3P
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   OG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   OG   P      0.0000    0.00  180.00    0.00   0.0000
+IC   CB   OG   P    O1P    0.0000    0.00  0.0       0.00   0.0000
+IC   CB   OG   P    O2P    0.0000    0.00  0.0       0.00   0.0000
+IC   CB   OG   P    O3P    0.0000    0.00  0.0       0.00   0.0000
+
+RESI THR          0.00  !  Threonine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH1E    0.25
+ATOM OG1  OT     -0.65
+ATOM HG1  HO      0.40
+GROU
+ATOM CG2  CH3E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   OG1       CB   CG2       OG1  HG1
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CB   OG1  CG2  CA
+DONO  H     N
+DONO  HG1  OG1
+ACCE OG1
+ACCE O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   OG1    0.0000    0.00  180.00    0.00   0.0000
+IC   OG1  CA   *CB  CG2    0.0000    0.00 -120.00    0.00   0.0000
+IC   CA   CB   OG1  HG1    0.0000    0.00  180.00    0.00   0.0000
+
+RESI TRP          0.00  !  Tryptophan
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   C5R    -0.03
+ATOM CD2  CR56    0.10
+ATOM CE2  CR56   -0.04
+ATOM CE3  C6RE   -0.03
+GROU
+ATOM CD1  C5RE    0.06
+ATOM NE1  N5R    -0.36
+ATOM HE1  H       0.30
+GROU
+ATOM CZ2  C6RE    0.00
+ATOM CZ3  C6RE    0.00
+ATOM CH2  C6RE    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD1       CG   CD2       CD1  NE1
+BOND CD2  CE2       NE1  HE1       NE1  CE2       CD2  CE3       CE2  CZ2
+BOND CE3  CZ3       CZ2  CH2       CZ3  CH2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   CD1  CD2  CB        NE1  CD1  CE2  HE1       CD2  CE2  CZ2  CH2
+IMPH CE2  CZ2  CH2  CZ3       CZ2  CH2  CZ3  CE3       CH2  CZ3  CE3  CD2
+IMPH CZ3  CE3  CD2  CE2       CE3  CD2  CE2  CZ2       CG   CD1  NE1  CE2
+IMPH CD1  NE1  CE2  CD2       NE1  CE2  CD2  CG        CE2  CD2  CG   CD1
+IMPH CD2  CG   CD1  NE1       CD2  CG   CE3  CE2       CE2  NE1  CZ2  CD2
+DONO  H     N
+DONO  HE1   NE1
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  240.00    0.00   0.0000
+IC   CA   CB   CG   CD2    0.0000    0.00   90.00    0.00   0.0000
+IC   CD2  CB   *CG  CD1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD1  CG   CD2  CE2    0.0000    0.00   0.00     0.00   0.0000
+IC   CD2  CG   CD1  NE1    0.0000    0.00   0.00     0.00   0.0000
+IC   CE2  CD1  *NE1 HE1    0.0000    0.00  180.00    0.00   0.0000
+IC   CE2  CG   *CD2 CE3    0.0000    0.00  180.00    0.00   0.0000
+IC   CE2  CD2  CE3  CZ3    0.0000    0.00    0.00    0.00   0.0000
+IC   CE3  CD2  CE2  CZ2    0.0000    0.00    0.00    0.00   0.0000
+IC   CD2  CE2  CZ2  CH2    0.0000    0.00    0.00    0.00   0.0000
+
+RESI TYR          0.00  !  Tyrosine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   C6R     0.00
+GROU
+ATOM CD1  C6RE    0.00
+ATOM CE1  C6RE    0.00
+GROU
+ATOM CD2  C6RE    0.00
+ATOM CE2  C6RE    0.00
+GROU
+ATOM CZ   C6R     0.25
+ATOM OH   OT     -0.65
+ATOM HH   HO      0.40
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD1       CG   CD2       CD1  CE1
+BOND CD2  CE2       CE1  CZ        CE2  CZ        CZ   OH        OH   HH
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   CD1  CD2  CB        CZ   CE1  CE2  OH        CG   CD1  CE1  CZ
+IMPH CD1  CE1  CZ   CE2       CE1  CZ   CE2  CD2       CZ   CE2  CD2  CG
+IMPH CE2  CD2  CG   CD1       CD2  CG   CD1  CE1
+DONO  H     N
+DONO  HH    OH
+ACCE  OH
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  240.00    0.00   0.0000
+IC   CA   CB   CG   CD1    0.0000    0.00   90.00    0.00   0.0000
+IC   CD1  CB   *CG  CD2    0.0000    0.00  180.00    0.00   0.0000
+IC   CD2  CG   CD1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   CD1  CG   CD2  CE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CG   CD1  CE1  CZ     0.0000    0.00    0.00    0.00   0.0000
+IC   CE2  CE1  *CZ  OH     0.0000    0.00  180.00    0.00   0.0000
+IC   CE1  CZ   OH   HH     0.0000    0.00  180.00    0.00   0.0000
+
+RESI VAL          0.00  !  Valine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH1E    0.00
+ATOM CG1  CH3E    0.00
+ATOM CG2  CH3E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG1       CB   CG2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CB   CG2  CG1  CA
+DONO  H   N
+ACCE  O   C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG1    0.0000    0.00  180.00    0.00   0.0000
+IC   CG1  CA   *CB  CG2    0.0000    0.00  120.00    0.00   0.0000
+
+RESI HSC          1.00  !  Protonated HIS 
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.10
+ATOM CG   C5R     0.15
+ATOM CD2  C5RE    0.20
+GROU
+ATOM ND1  N5R    -0.30
+ATOM HD1  H       0.35
+GROU
+ATOM CE1  C5RE    0.45
+GROU
+ATOM NE2  N5R    -0.30
+ATOM HE2  H       0.35
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   ND1       CG   CD2       ND1  HD1
+BOND ND1  CE1       CD2  NE2       CE1  NE2       NE2  HE2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG   ND1  CD2  CB        ND1  CG   CE1  HD1       CG   ND1  CE1  NE2
+IMPH ND1  CE1  NE2  CD2       CE1  NE2  CD2  CG        NE2  CD2  CG   ND1
+IMPH CD2  CG   ND1  CE1       NE2  CD2  CE1  HE2
+DONO  H     N
+DONO  HD1   ND1
+DONO  HE2   NE2
+ACCE  O     C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD2    0.0000    0.00   90.00    0.00   0.0000
+IC   CD2  CB   *CG  ND1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD2  CG   ND1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   ND1  CG   CD2  NE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CE1  CG   *ND1 HD1    0.0000    0.00  180.00    0.00   0.0000
+IC   CE1  CD2  *NE2 HE2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI HSD          0.00  !  Histidine isomer  ( proton at ne2 )
+GROUP
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROUP
+ATOM CG   C5R     0.10
+ATOM ND1  N5R    -0.40
+ATOM CE1  C5RE    0.30
+GROU
+ATOM CD2  C5RE    0.10
+ATOM NE2  N5R    -0.40
+ATOM HE2  H       0.30
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   ND1       CG   CD2       ND1  CE1
+BOND CD2  NE2       CE1  NE2       NE2  HE2
+IMPH N  -C   CA   H         C    CA   +N   O         CA   N    C    CB
+IMPH CG  ND1 CD2 CB        NE2 CE1 CD2 HE2       CG  ND1 CE1 NE2
+IMPH ND1 CE1 NE2 CD2       CE1 NE2 CD2 CG        NE2 CD2 CG  ND1
+IMPH CD2  CG   ND1  CE1
+DONO  H     N
+DONO  HE2   NE2
+ACCE  ND1
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD2    0.0000    0.00   90.00    0.00   0.0000
+IC   CD2  CB   *CG  ND1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD2  CG   ND1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   ND1  CG   CD2  NE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CE1  CD2  *NE2 HE2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI ACE          0.00
+GROUP
+ATOM C    C       0.55
+ATOM O    O      -0.55
+ATOM CH3  CH3E    0.00
+BOND   CH3 C   C O   C +N
+IMPH   C CH3 +N O   
+IC     CH3 C +N +CA        0.00  0.00  180.00  0.00  0.00
+IC     CH3 +N *C O         0.00  0.00  180.00  0.00  0.00
+PATCH FIRST NONE
+
+RESI PCA          0.00  
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CD   C       0.55
+ATOM OE   O      -0.55
+GROU
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    CD
+BOND CA   CB        CB   CG        CG   CD
+BOND N    H         CD   OE 
+IMPH N    -C   CA   CD        C    CA   +N   O         CA   N    C    CB
+IMPH CD   N    CG   OE
+ACCE  O  C
+ACCE  OE CD
+IC   -C   CA   *N   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  -75.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00    0.00  108.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00    0.00  108.00   0.0000
+IC   CA   CD   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CG   *CD  OE     0.0000    0.00  180.00    0.00   0.0000
+PATC FIRS NONE LAST NONE
+
+RESI HYL          1.00  !  Hydroxylysine
+GROU
+ATOM N    NP     -0.40    
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM CD   CH1E    0.25
+ATOM OD2  OT      -.65
+ATOM HD2  HO      0.40
+GROU
+ATOM CE   CH2E    0.25
+ATOM NZ   NT     -0.30
+ATOM HZ1  HC      0.35
+ATOM HZ2  HC      0.35
+ATOM HZ3  HC      0.35
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   CE        CE   NZ
+BOND NZ   HZ1       NZ   HZ2       NZ   HZ3       CD   OD2       OD2  HD2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+DONO  HZ1   NZ
+DONO  HZ2   NZ
+DONO  HZ3   NZ
+DONO  HD2   OD2
+ACCE OD2
+ACCE O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   CE     0.0000    0.00  180.00    0.00   0.0000
+IC   CG   CD   CE   NZ     0.0000    0.00  180.00    0.00   0.0000
+IC   CD   CE   NZ   HZ1    0.0000    0.00  180.00    0.00   0.0000
+IC   HZ1  CE   *NZ  HZ2    0.0000    0.00  120.00    0.00   0.0000
+IC   HZ2  CE   *NZ  HZ3    0.0000    0.00  120.00    0.00   0.0000
+IC   CE   CG   *CD  OD2    0.0000    0.00  240.00    0.00   0.0000
+IC   CG   CD   OD2  HD2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI HYP          0.00  !  Hydroxyproline
+GROU
+ATOM N    NX     -0.25
+ATOM CD1  CH2E    0.10
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH1E    0.25     
+ATOM OD2  OT      -.65
+ATOM HD21 HO      0.40
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    CD1
+BOND CA   CB        CB   CG        CG   CD1       CG   OD2       OD2  HD21
+IMPH N    -C   CA   CD1       C    CA   +N   O         CA   N    C    CB
+IMPH CG   CB   CD1   OD2
+ACCE O  C
+ACCE OD2
+IC   -C   CA   *N   CD1    0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  -60.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   C    N    *CA  CB     0.0000    0.00 -120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00    0.00  108.00   0.0000
+IC   CB   CG   OD2  HD21   0.0000    0.00  180.00    0.00   0.0000
+IC   CD1   CB  *CG  OD2    0.0000    0.00  240.00    0.00   0.0000
+PATC FIRS HPRP
+
+RESI HSE          0.00  !  Homoserine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   CH2E    0.25
+ATOM OD   OT     -0.65
+ATOM HD   HO      0.40
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   OD        OD   HD
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+DONO  HD    OD
+ACCE OD
+ACCE O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   OD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   OD   HD     0.0000    0.00  180.00    0.00   0.0000
+
+RESI ORN          1.00  !  Ornithine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM CD   CH2E    0.25
+ATOM NE   NT     -0.30
+ATOM HE1  HC      0.35
+ATOM HE2  HC      0.35
+ATOM HE3  HC      0.35
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   CD        CD   NE
+BOND NE   HE1       NE   HE2       NE   HE3
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+DONO  HE1   NE
+DONO  HE2   NE
+DONO  HE3   NE
+ACCE O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   CD     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   CD   NE     0.0000    0.00  180.00    0.00   0.0000
+IC   CG   CD   NE   HE1    0.0000    0.00  180.00    0.00   0.0000
+IC   HE1  CD   *NE  HE2    0.0000    0.00  120.00    0.00   0.0000
+IC   HE2  CD   *NE  HE3    0.0000    0.00  120.00    0.00   0.0000
+
+RESI PEN          0.00  !  Penicillamine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CT      0.19
+ATOM CG1  CH3E    0.0
+ATOM CG2  CH3E    0.0
+ATOM SG   SH1E   -0.19
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   SG        CB   CG1       CB   CG2
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+ACCE O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   SG     0.0000    0.00  180.00    0.00   0.0000
+IC   SG   CA   *CB  CG1    0.0000    0.00  120.00    0.00   0.0000
+IC   SG   CA   *CB  CG2    0.0000    0.00 -120.00    0.00   0.0000
+
+RESI ALB          0.00  ! Beta alanine or 3-amino propionic acid 
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH2E    0.10
+ATOM CB   CH2E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CB   C         C    +N        C    O         N    H
+BOND CA   CB
+IMPH N    -C   CA   H         C    CB   +N   O         
+DONO  H  N
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   CB     0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   CB   C      0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CB   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB    C  +N      0.0000    0.00  180.00    0.00   0.0000
+IC   CB   C    +N  +CA     0.0000    0.00  180.00    0.00   0.0000
+PATCH FIRS GLYP
+
+RESI ABU          0.00  !  Gamma amino butyric acid or 4-amino butyric acid
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH2E    0.10
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CG   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG       
+IMPH N    -C   CA   H         C    CG   +N   O         
+DONO  H  N
+ACCE  O  C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   CB     0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   C      0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CG   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   CG   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+PATC FIRS GLYP
+
+!
+! Water models
+!
+
+RESI ST2     .000   ! NOW INCLUDES THE LONE PAIRS GIVING 5 ATOMS FOR ST2
+GROUP
+ATOM OX2  OH2     .00
+ATOM HX1  H       .24
+ATOM HX2  H       .24
+ATOM LX1  LP     -.24
+ATOM LX2  LP     -.24
+BOND OX2  HX1       OX2  HX2
+BOND OX2  LX1       OX2  LX2
+!                          NOTE: NO DONORS OR ACCEPTORS FOR ST2
+PATC  FIRS NONE LAST NONE
+
+RESI TIP3    .000   ! TIPS3P WATER MODEL
+GROUP
+ATOM OH2  OW     -0.834
+ATOM H1   HT      0.417
+ATOM H2   HT      0.417
+BOND OH2  H1        OH2  H2        H1   H2  ! THE LAST BOND IS NEEDED FOR SHAKE
+ANGL  H1 OH2 H2
+!ACCE OH2
+PATC  FIRS NONE LAST NONE
+
+RESI OH2    .000   ! WATER 
+GROUP
+ATOM OH2  OW     -0.834
+ATOM H1   HT      0.417
+ATOM H2   HT      0.417
+BOND OH2  H1       OH2  H2
+ACCE OH2
+PATC  FIRS NONE LAST NONE
+
+RESI   HOH  0.0000  ! TIPS3P WATER MODEL FOR PDB CRYSTAL WATERS
+GROUP
+ATOM O    OW     -0.834
+ATOM H1   HT      0.417
+ATOM H2   HT      0.417
+BOND O   H1        O  H2        H1   H2  ! THE LAST BOND IS NEEDED FOR SHAKE
+ANGL  H1 O H2
+!ACCE O
+PATC  FIRS NONE LAST NONE
+
+RESI   WAT  0.0000  ! TIPS3P WATER MODEL FOR PDB CRYSTAL WATERS
+GROUP
+ATOM O    OW     -0.834
+ATOM H1   HT      0.417
+ATOM H2   HT      0.417
+BOND O   H1        O  H2        H1   H2  ! THE LAST BOND IS NEEDED FOR SHAKE
+ANGL  H1 O H2
+!ACCE O
+PATC  FIRS NONE LAST NONE
+
+! The following  patches generate NH3+ and COO- on the N and C terminal ends
+
+PRES NTER         0.95
+! This patch is used to provide a charged NH3+ group for the N-terminal
+! This patch will NOT work with a GLY or PRO as the first residue (use
+!  GLYP or PROP, respectively)
+! This patch will NOT work dehydro amino acids as the first residue
+!  (use NTRU)
+GROU
+ATOM N    NT     -0.30
+ATOM HT1  HC      0.35
+ATOM HT2  HC      0.35
+ATOM HT3  HC      0.35
+DELE ATOM H
+ATOM CA   CH1E    0.20
+BOND HT1  N         HT2  N    HT3  N
+DONO  HT1   N
+DONO  HT2   N
+DONO  HT3   N
+IC   HT1  N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   HT1  CA   *N   HT2    0.0000    0.00  120.00    0.00   0.0000
+IC   HT1  CA   *N   HT3    0.0000    0.00  240.00    0.00   0.0000
+
+PRES NTRA         0.95
+! This patch is used to provide a charged NH3+ group for the N-terminal
+! with angle definitions.
+! This patch will NOT work with a GLY or PRO as the first residue (use
+!  GLYP or PROP, respectively)
+! This patch will NOT work dehydro amino acids as the first residue
+!  (use NTRU)
+GROU
+ATOM N    NT     -0.30
+ATOM HT1  HC      0.35
+ATOM HT2  HC      0.35
+ATOM HT3  HC      0.35
+DELE ATOM H
+ATOM CA   CH1E    0.20
+BOND HT1  N         HT2  N    HT3  N
+ANGLE HT1  N  CA    HT2  N CA     HT3  N CA    
+ANGLE HT1  N  HT2   HT2  N HT3    HT3  N HT1
+DIHE  HT1  N    CA   C     HT1  N    CA   HA     HT1  N    CA   CB
+DIHE  HT2  N    CA   C     HT2  N    CA   HA     HT2  N    CA   CB
+DIHE  HT3  N    CA   C     HT3  N    CA   HA     HT3  N    CA   CB
+DONO  HT1   N
+DONO  HT2   N
+DONO  HT3   N
+IC   HT1  N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   HT1  CA   *N   HT2    0.0000    0.00  120.00    0.00   0.0000
+IC   HT1  CA   *N   HT3    0.0000    0.00  240.00    0.00   0.0000
+
+PRES GLYP     0.95
+! N-terminus for glycine
+GROUP
+ATOM N    NT     -0.30
+ATOM HT1  HC      0.35
+ATOM HT2  HC      0.35
+ATOM HT3  HC      0.35
+DELETE ATOM H
+ATOM CA   CH2E    0.20
+BOND HT1  N         HT2  N    HT3  N
+!DIHE HT1  N  CA  C   
+DONO  HT1   N
+DONO  HT2   N
+DONO  HT3   N
+IC   HT1  N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   HT2  CA   *N   HT1    0.0000    0.00   60.00    0.00   0.0000
+IC   HT3  CA   *N   HT2    0.0000    0.00  -60.00    0.00   0.0000
+
+PRES PROP        0.95
+! N-terminal patch for PRO
+GROUP
+ATOM N    NT     -0.20
+ATOM HT1  HC      0.35
+ATOM HT2  HC      0.35
+ATOM CD   CH2E    0.25
+ATOM CA   CH1E    0.20
+BOND HT1  N         HT2  N
+!DIHE HT1 N  CA  C   
+DONO  HT1   N
+DONO  HT2   N
+IC   C    CA    N   CD     0.0000    0.00  120.00    0.00   0.0000
+IC   HT1  CA   *N   CD     0.0000    0.00  120.00    0.00   0.0000
+IC   HT2  CA   *N   HT1    0.0000    0.00  120.00    0.00   0.0000
+
+!
+! C-terminal patches
+!
+
+PRES CTER        -0.85
+! This patch is used to provide a charged COO- group for the C-terminal
+GROU
+ATOM C    C       0.14
+ATOM O    OC     -0.57
+ATOM OXT  OC     -0.57
+ATOM CA   CH1E    0.15
+BOND C    OXT 
+!DIHE N    CA   C OXT
+IMPH C    OXT  O CA
+ACCE O C
+ACCE OXT C
+IC   N    CA    C   O    0.0  0.0  180.0  0.0  0.0
+IC   CA   O    *C   OXT  0.0  0.0  180.0  0.0  0.0
+
+PRES CGLY       -0.85
+!This patch is used to provide a charged COO- group to Gly C-terminal
+GROUP
+ATOM C    C      0.14
+ATOM O    OC    -0.57
+ATOM OXT  OC    -0.57
+ATOM CA   CH2E   0.15
+BOND C   O          C   OXT 
+IMPH C   OXT   O    CA
+ACCE O    C
+ACCE OXT  C
+IC   N    CA    C   O    0.0  0.0  180.0  0.0  0.0
+IC   CA   O    *C   OXT  0.0  0.0  180.0  0.0  0.0
+
+PRES CTRA        -0.85
+! This patch is used to provide a charged COO- group for the C-terminal
+! with angle definitions
+GROU
+ATOM CA  CH1E   0.15
+ATOM C    C     0.14
+ATOM O  OC     -0.57
+ATOM OXT OC    -0.57
+BOND C    OXT
+ANGLE   CA    C    OXT    OXT  C  O     
+DIHE N    CA    C    OXT     N    CA    C    O
+DIHE HA   CA    C    OXT     HA   CA    C    O
+DIHE CB   CA    C    OXT     CB   CA    C    O
+IMPH C    OXT  O CA
+ACCE O C
+ACCE OXT C
+IC   N   CA    C    OXT    0.0  0.0  180.0  0.0  0.0
+IC   OXT CA    *C   O      0.0  0.0  180.0  0.0  0.0
+
+! Other patches
+!
+
+PRES DISU       0.00
+! Patch for disulphides.  Patch requires two CYS residues.
+GROUP
+ATOM 1CB  CH2E  0.19
+ATOM 1SG  ST   -0.19
+GROUP
+ATOM 2SG  ST   -0.19
+ATOM 2CB  CH2E  0.19
+BOND 1SG 2SG
+ANGL  1CB 1SG 2SG      1SG 2SG 2CB
+DIHE   1CA 1CB 1SG 2SG      
+DIHE   1CB 1SG 2SG 2CB
+DIHE   1SG 2SG 2CB 2CA     
+IC     1CA 1CB 1SG 2SG    0.0  0.0  180.0  0.0  0.0
+IC     1CB 1SG 2SG 2CB    0.0  0.0  180.0  0.0  0.0
+IC     1SG 2SG 2CB 2CA    0.0  0.0  180.0  0.0  0.0
+
+PRES LTOD 0.0
+! This patch converts an L-residue to a D-residue
+DELE IMPR 1CA 1N 1C 1CB
+IMPR 1CA 1C 1N 1CB
+DELE IC N C *CA CB
+IC   N C *CA CB       0.00  0.00  240.00  0.00  0.00
+
+! This section is from PDBPATCHA and includes PATCH residues 
+! for the C and N terminal ends of polypeptide chains.  
+!
+! N-terminal patches other than the default NH3+ patch
+!
+
+PRES  NH2   -0.05    !  Deprotonated N-terminal (NH2)
+DELETE  ATOM    HT3
+ATOM    HT1   H     .15
+ATOM    HT2   H     .15
+ATOM    N     NT   -.35
+ATOM    CA    CH1E  .00 ! change atom type for CA for GLY
+
+PRES  DEAM    0.0000    ! Removes NH3 from N-terminus altogether 
+!                       ! Wont work in SEQ BUILDER ( bad seed)
+DELETE  ATOM    HT1
+DELETE  ATOM    HT2
+DELETE  ATOM    HT3
+DELETE  ATOM    N  
+ATOM    CA    CH2E  .00 
+
+PRES  DCOH      0.000  ! Removes COOH from the C-terminus
+!                       ! Not recommended for PRO or GLY
+DELETE ATOM  O
+DELETE ATOM  OXT
+DELETE ATOM  C
+ATOM CA   CH2E    0.0
+IC   -C -N CA CB      0.00   0.000    -60.0   0.00   0.00
+
+PRES ACCP    0.95 ! N-terminal patch for ACC residue 
+GROUP
+ATOM N    NT      -.30
+ATOM HT1  HC      0.35
+ATOM HT2  HC      0.35
+ATOM HT3  HC      0.35
+DELETE ATOM H
+ATOM CA   CT      0.20
+BOND HT1  N         HT2  N    HT3  N
+DIHE HT1  N    CA   C     HT1  N   CA   CB1
+DIHE HT2  N    CA   C     HT2  N   CA   CB1
+DIHE HT3  N    CA   C     HT3  N   CA   CB1
+DONO  HT1   N
+DONO  HT2   N
+DONO  HT3   N
+IC   HT1  N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   HT2  CA   *N   HT1    0.0000    0.00  120.00    0.00   0.0000
+IC   HT3  CA   *N   HT2    0.0000    0.00  120.00    0.00   0.0000
+
+PRES  HPRP        1.00
+! N-terminal patch for HYP
+GROUP
+ATOM HT1  HC      0.35
+ATOM HT2  HC      0.35
+ATOM N    NT     -0.20
+ATOM CD1  CH2E    0.25
+ATOM CA   CH1E    0.25
+BOND HT1  N         HT2  N
+!DIHE HT1  N    CA   C      
+DONO  HT1   N
+DONO  HT2   N
+IC   C    CA    N   CD1    0.0000    0.00  120.00    0.00   0.0000
+IC   HT1  CA   *N   CD1    0.0000    0.00  120.00    0.00   0.0000
+IC   HT2  CA   *N   HT1    0.0000    0.00  120.00    0.00   0.0000
+
+PRES NTRU          0.95
+! This patch is used to provide a charged NH3+ group for the N-terminal for
+!   dehydro amino acids
+GROU
+ ATOM N    NT     -0.30
+ ATOM HT1  HC      0.35  !  Check charges
+ ATOM HT2  HC      0.35
+ ATOM HT3  HC      0.35
+ DELETE ATOM HN
+ ATOM CA   CUA1    0.20
+BOND HT1  N         HT2  N    HT3  N
+THET HT1  N    HT2            HT2  N    HT3            HT2  N    CA
+THET HT1  N    HT3            HT1  N    CA             HT3  N    CA
+DIHE HT1  N    CA   C     HT1  N   CA   CB
+DIHE HT2  N    CA   C     HT2  N   CA   CB
+DIHE HT3  N    CA   C     HT3  N   CA   CB
+DONO HT1  N
+DONO HT2  N
+DONO HT3  N
+IC   HT1  N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   HT2  CA   *N   HT1    0.0000    0.00  120.00    0.00   0.0000
+IC   HT3  CA   *N   HT2    0.0000    0.00  120.00    0.00   0.0000
+
+PRES NTME        0.35
+! N-methyl amino terminal group
+ATOM CNT  CH3E   0.35
+DELETE ATOM HT3
+DELETE IC HT1 CA *N HT3 
+BOND N CNT
+ANGL CA N CNT  HT1 N CNT  HT2 N CNT
+DIHE CNT  N  CA  C     CNT   N   CA   CB
+IC    HT1  CA  *N   CNT    0.0000  0.00  240.0  0.00  0.0000
+
+PRES NDME   .70
+! N,N-dimethyl terminal group
+ATOM CNT1  CH3E  0.35
+ATOM CNT2  CH3E  0.35
+DELETE ATOM HT2
+DELETE ATOM HT3
+DELETE IC HT1 CA *N HT2 
+DELETE IC HT1 CA *N HT3 
+BOND  N CNT1   N CNT2
+ANGL CA N CNT1   CA N CNT2  HT1 N CNT1   HT1 N CNT2   CNT1 N CNT2
+DIHE CNT1  N  CA  C  
+DIHE CNT2  N  CA  C  
+DIHE CNT1  N  CA  CB  
+DIHE CNT2  N  CA  CB  
+IC  CNT1  CA   *N  HT1       0.0000  0.00   120.00   0.00   0.0000
+IC  CNT2  CA   *N  CNT1      0.0000  0.00   120.00   0.00   0.0000
+
+PRES N3ME  1.05
+! N,N,N-trimethyl terminal group
+ATOM CNT1  CH3E  0.35
+ATOM CNT2  CH3E  0.35
+ATOM CNT3  CH3E  0.35
+DELETE ATOM HT1
+DELETE ATOM HT2
+DELETE ATOM HT3
+BOND  N CNT1   N CNT2  N  CNT3
+ANGL CA N CNT1   CA N CNT2  CNT3 N CNT1   CNT3 N CNT2   CNT1 N CNT2
+ANGL CA N CNT3   
+DIHE CNT1  N  CA  C  
+DIHE CNT1  N  CA  CB
+DIHE CNT2  N  CA  C  
+DIHE CNT2  N  CA  CB
+DIHE CNT3  N  CA  C  
+DIHE CNT3  N  CA  CB
+IC  C     CA    N  CNT1      0.0000  0.00   180.00   0.00   0.0000       
+IC  CNT1  CA   *N  CNT2      0.0000  0.00   120.00   0.00   0.0000
+IC  CNT1  CA   *N  CNT3      0.0000  0.00   240.00   0.00   0.0000
+
+PRES NFA           0.00
+! This patch replaces the N-terminal with a fatty acid amide 
+! C13H27
+! This patch will not work with PRO or GLY  as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM CT2  CH2E    0.00
+GROU
+ATOM CNT  C       0.60
+ATOM ONT  O      -0.55
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+GROUP
+ATOM  CT3  CH2E    0.00
+ATOM  CT4  CH2E    0.00
+ATOM  CT5  CH2E    0.00
+ATOM  CT6  CH2E    0.00
+ATOM  CT7  CH2E    0.00
+ATOM  CT8  CH2E    0.00
+ATOM  CT9  CH2E    0.00
+ATOM  CT10 CH2E    0.00
+ATOM  CT11 CH2E    0.00
+ATOM  CT12 CH2E    0.00
+ATOM  CT13 CH2E    0.00
+ATOM  CT14 CH3E    0.00
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND CT2  CNT       CNT   N      CNT  ONT     N   H
+BOND CT2  CT3       CT3   CT4    CT4  CT5     CT5 CT6     CT6  CT7   
+BOND CT7  CT8       CT8   CT9    CT9  CT10    CT10 CT11   CT11 CT12
+BOND CT12 CT13      CT13  CT14
+ANGL CA  N  H     CA  N  CNT     H  N  CNT     CT3 CT4 CT5  
+ANGL CT4 CT5 CT6  CT5 CT6 CT7    CT6 CT7 CT8
+ANGL CT7 CT8 CT9  CT8 CT9 CT10   CT10 CT11 CT12   CT12 CT13 CT14
+DIHE CT2  CNT   N    CA
+DIHE ONT  CNT   N    CA
+DIHE CT2  CNT   N    H
+DIHE ONT  CNT   N    H
+DIHE CNT  N     CA   C
+DIHE CNT  N     CA   CB
+DIHE ONT  N     CA   C
+DIHE ONT  N     CA   CB
+DIHE N    CNT   CT2  CT3     CNT  CT2 CT3 CT4   CT2 CT3 CT4 CT5  
+DIHE CT3  CT4   CT5  CT6     CT4  CT5 CT6 CT7   CT5 CT6 CT7 CT8 
+DIHE CT6  CT7 CT8 CT9   CT7 CT8 CT9 CT10
+DIHE CT8 CT9 CT10 CT11      CT9 CT10 CT11 CT12   CT10 CT11 CT12 CT13
+DIHE CT11 CT12 CT13 CT14
+IMPH CNT  CT2   N    ONT
+IMPH N    CNT   CA   H
+ACCE ONT C  
+DONO H N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CT2  *CNT  ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CT2  CNT   N    CA    0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CNT  *N    H     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   N    CNT   CT2   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CNT  CT2   CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  CT2  CT3   CT4   0.0000    0.00  180.00    0.00   0.0000
+IC   CT2  CT3  CT4   CT5   0.0000    0.00  180.00    0.00   0.0000
+IC   CT3  CT4  CT5   CT6   0.0000    0.00  180.00    0.00   0.0000
+IC   CT4  CT5  CT6   CT7   0.0000    0.00  180.00    0.00   0.0000
+IC   CT5  CT6  CT7   CT8   0.0000    0.00  180.00    0.00   0.0000
+IC   CT6  CT7  CT8   CT9   0.0000    0.00  180.00    0.00   0.0000
+IC   CT7  CT8  CT9   CT10  0.0000    0.00  180.00    0.00   0.0000
+IC   CT8  CT9  CT10  CT11  0.0000    0.00  180.00    0.00   0.0000
+IC   CT9  CT10 CT11  CT12  0.0000    0.00  180.00    0.00   0.0000
+IC   CT10 CT11 CT12  CT13  0.0000    0.00  180.00    0.00   0.0000
+IC   CT11 CT12 CT13  CT14  0.0000    0.00  180.00    0.00   0.0000
+
+PRES NFAG         -0.05
+! This patch replaces the N-terminal with a fatty acid amide 
+! C13H27
+! This patch  is specific for glycine at N terminus ( otherwise use NFA)
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM CT2  CH2E   -0.05
+GROU
+ATOM CNT  C       0.60
+ATOM ONT  O      -0.55
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH2E     .10
+GROUP
+ATOM  CT3  CH2E    0.00
+ATOM  CT4  CH2E    0.00
+ATOM  CT5  CH2E    0.00
+ATOM  CT6  CH2E    0.00
+ATOM  CT7  CH2E    0.00
+ATOM  CT8  CH2E    0.00
+ATOM  CT9  CH2E    0.00
+ATOM  CT10 CH2E    0.00
+ATOM  CT11 CH2E    0.00
+ATOM  CT12 CH2E    0.00
+ATOM  CT13 CH2E    0.00
+ATOM  CT14 CH3E    0.00
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND CT2  CNT       CNT   N      CNT  ONT     N   H
+BOND CT2  CT3       CT3   CT4    CT4  CT5     CT5 CT6     CT6  CT7   
+BOND CT7  CT8       CT8   CT9    CT9  CT10    CT10 CT11   CT11 CT12
+BOND CT12 CT13      CT13  CT14
+ANGL CA  N  H     CA  N  CNT     H  N  CNT     CNT CT2 CT3   CT3 CT4 CT5  
+
+ANGL CT4 CT5 CT6  CT5 CT6 CT7    CT6 CT7 CT8
+ANGL CT7 CT8 CT9  CT8 CT9 CT10   CT10 CT11 CT12   CT12 CT13 CT14
+DIHE CT2  CNT   N    CA
+DIHE ONT  CNT   N    CA
+DIHE CT2  CNT   N    H
+DIHE ONT  CNT   N    H
+DIHE CNT  N     CA   C
+DIHE CNT  N     CA   CB
+DIHE ONT  N     CA   C
+DIHE ONT  N     CA   CB
+DIHE N    CNT   CT2  CT3     CNT  CT2 CT3 CT4   CT2 CT3 CT4 CT5  
+DIHE CT3  CT4   CT5  CT6     CT4  CT5 CT6 CT7   CT5 CT6 CT7 CT8 
+DIHE CT6  CT7 CT8 CT9   CT7 CT8 CT9 CT10
+DIHE CT8 CT9 CT10 CT11      CT9 CT10 CT11 CT12   CT10 CT11 CT12 CT13
+DIHE CT11 CT12 CT13 CT14
+IMPH CNT  CT2   N    ONT
+IMPH N    CNT   CA   H
+ACCE ONT C  
+DONO H N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CT2  *CNT  ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CT2  CNT   N    CA    0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CNT  *N    H     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   N    CNT   CT2   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CNT  CT2   CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  CT2  CT3   CT4   0.0000    0.00  180.00    0.00   0.0000
+IC   CT2  CT3  CT4   CT5   0.0000    0.00  180.00    0.00   0.0000
+IC   CT3  CT4  CT5   CT6   0.0000    0.00  180.00    0.00   0.0000
+IC   CT4  CT5  CT6   CT7   0.0000    0.00  180.00    0.00   0.0000
+IC   CT5  CT6  CT7   CT8   0.0000    0.00  180.00    0.00   0.0000
+IC   CT6  CT7  CT8   CT9   0.0000    0.00  180.00    0.00   0.0000
+IC   CT7  CT8  CT9   CT10  0.0000    0.00  180.00    0.00   0.0000
+IC   CT8  CT9  CT10  CT11  0.0000    0.00  180.00    0.00   0.0000
+IC   CT9  CT10 CT11  CT12  0.0000    0.00  180.00    0.00   0.0000
+IC   CT10 CT11 CT12  CT13  0.0000    0.00  180.00    0.00   0.0000
+IC   CT11 CT12 CT13  CT14  0.0000    0.00  180.00    0.00   0.0000
+
+PRES NGUA    0.95
+! N terminal guanidino group
+! Not to be used for proline
+! change atom type for CA for GLY and edit dihedrals
+ATOM  CA   CH1E  .10
+ATOM  CNT  C     .50
+ATOM  NT2  NC   -.45
+ATOM  NT3  NC   -.45
+ATOM  HT2A HC    .35
+ATOM  HT2B HC    .35
+ATOM  HT3A HC    .35
+ATOM  HT3B HC    .35
+ATOM  N    NP   -.40
+ATOM  H    H     .25
+DELETE ATOM HT1
+DELETE ATOM HT2
+DELETE ATOM HT3
+BOND N    H     N    CNT
+BOND CNT  NT2   CNT  NT3     NT2 HT2A       NT2  HT2B
+BOND NT3 HT3A   NT3 HT3B
+ANGL  CA   N    H        CA    N    CNT        H    N    CNT
+ANGL  N    CNT  NT3     N     CNT  NT2       NT2 CNT  NT3
+ANGL  HT2A NT2 HT2B     HT2A  NT2 CNT        HT2B NT2 CNT
+ANGL  HT3A NT3 HT3B     HT3A  NT3 CNT        HT3B NT3 CNT
+DIHE  C CA N CNT   CB CA N CNT
+DIHE  C CA N H     CB CA N H 
+DIHE  CA N CNT NT2     H N CNT NT2
+DIHE  CA N CNT NT3     H N CNT NT3
+DIHE  N CNT NT2 HT2A       N CNT NT2 HT2B     
+DIHE  NT3 CNT NT2 HT2A     NT3 CNT NT2 HT2B     
+DIHE  N CNT NT3 HT3A       N CNT NT3 HT3B     
+DIHE  NT2 CNT NT3 HT3A     NT2 CNT NT3 HT3B     
+IMPH   N    CNT   CA    H           CNT   NT2  NT3  N
+IC     C    CA    N     CNT      0.0000   0.00  180.00  0.00  0.0000
+IC     CA   N     CNT   NT2      0.0000   0.00  180.00  0.00  0.0000
+IC     N    CNT   NT2   HT2A     0.0000   0.00  180.00  0.00  0.0000
+IC     HT2A CNT   *NT2  HT2B     0.0000   0.00  180.00  0.00  0.0000
+IC     N    CNT   NT3   HT3A     0.0000   0.00  180.00  0.00  0.0000
+IC     HT3A CNT   *NT3  HT3B     0.0000   0.00  180.00  0.00  0.0000     
+IC     NT3  NT2   *CNT  N        0.0000   0.00  180.00  0.00  0.0000
+IC     CA   CNT   *N    H        0.0000   0.00  180.00  0.00  0.0000
+DONO H    N
+DONO HT2A NT2
+DONO HT2B NT2
+DONO HT3A NT3
+DONO HT3B NT3
+
+PRES NFRM         0.00
+! This patch replaces the N-terminal with a formamide group
+! This patch will not work with PRO, HPRO, or GLY as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM HNT  HA     -0.00
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+GROU
+ATOM CNT  C       0.60
+ATOM ONT  O      -0.55
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND HNT  CNT       CNT   N      CNT  ONT     N   H
+ANGL CA  N  H     CA  N  CNT     H  N  CNT     N  CNT  ONT     N  CNT  HNT
+ANGL ONT CNT HNT
+DIHE HNT   CNT   N    CA
+DIHE ONT   CNT   N    CA
+DIHE HNT   CNT   N    H
+DIHE ONT   CNT   N    H
+DIHE CNT  N     CA   C
+DIHE CNT  N     CA   CB
+DIHE H  N     CA   C
+DIHE H  N     CA   CB
+! This may need to be inverted for new IMPH rules
+IMPH CNT  HNT   N    ONT
+IMPH N    CNT   CA   H
+ACCE ONT C  
+DONO H N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   N    HNT  *CNT  ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   HNT  CNT   N    CA    0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CNT  *N    H     0.0000    0.00  180.00    0.00   0.0000
+
+PRES NACT          0.00
+! This patch replaces the N-terminal with an acetamide group
+! This patch will not work with PRO as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM CT2  CH3E    0.00
+GROU
+ATOM CNT  C       0.60
+ATOM ONT  O      -0.55
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND CT2  CNT       CNT   N      CNT  ONT     N   H
+ANGL CA  N  H     CA  N  CNT     H  N  CNT     N  CNT  ONT     N  CNT  CT2
+ANGL ONT CNT CT2 
+DIHE CT2  CNT   N    H
+DIHE CT2  CNT   N    CA
+DIHE ONT  CNT   N    H
+DIHE ONT  CNT   N    CA
+DIHE CNT  N     CA   C
+DIHE CNT  N     CA   CB
+DIHE H  N     CA   C
+DIHE H  N     CA   CB
+! This may need to be inverted for new IMPH rules
+IMPH CNT  CT2   N    ONT
+IMPH N    CNT   CA   H
+ACCE ONT C  
+DONO H N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CT2  *CNT  ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CT2  CNT   N    CA    0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CNT  *N    H     0.0000    0.00  180.00    0.00   0.0000
+
+PRES NACP         -0.00
+! This patch replaces the N-terminal with an acetamide group
+! Only for PROLINE as first residue
+! Apply this patch ONLY after the Nter Patch PROP  has been applied
+GROU
+ ATOM CT2  CH3E    0.00
+ ATOM CNT  C       0.60
+ ATOM ONT  O      -0.55
+ ATOM N    NX     -0.25
+ ATOM CA   CH1E    0.10
+ ATOM CG   CH2E    0.10
+ ATOM CD   CH2E    0.00
+ DELE ATOM HT1
+ DELE ATOM HT2
+BOND  N CNT   CNT ONT   CNT CT2   
+ANGL  CA N CNT   N CNT ONT   N CNT CT2   ONT CNT CT2
+ANGL  CD N CNT 
+DIHE  C CA N CNT   
+DIHE  CB  CA N CNT   
+DIHE  CA N CNT ONT   
+DIHE  CA N CNT CT2   
+DIHE  CD N CNT ONT   
+DIHE  CD N CNT CT2   
+IMPH  CNT CT2 N ONT
+ACCE  ONT CNT
+IC    C CA N CNT          0.00  0.00  240.00  0.00  0.00
+IC    CA N CNT CT2        0.00  0.00  170.00  0.00  0.00
+IC    CT2 N *CNT ONT      0.00  0.00  180.00  0.00  0.00
+
+PRES  NPYG  0.00  ! Converts N-terminal glutamic acid to pyroglutamic acid
+ATOM  N   NP   -0.40
+ATOM  H   H     0.25
+ATOM  OE  O    -0.55
+ATOM  CD  C     0.60
+ATOM  CG  CH2E  0.00
+ATOM  CA  CH1E  0.10
+DELETE ATOM  HT1
+DELETE ATOM  HT2
+DELETE ATOM  HT3
+DELETE ATOM  OE1
+DELETE ATOM  OE2
+BOND    N  H
+BOND    N  CD
+BOND    CD  OE
+ANGLE    H  N  CA
+ANGLE    H  N  CD
+ANGLE    CA N  CD
+ANGLE   OE  CD N
+ANGLE   OE  CD CG
+ANGLE   CG  CD N
+DIHe    H    N   CA    C
+DIHe    H    N   CA    CB
+DIHe    CD    N   CA    C
+DIHe    CD    N   CA    CB
+DIHe    CG   CD   N   CA
+DIHe    CG   CD   N   H
+DIHe    CB   CG   CD   N
+IMPH  N    CA   CD   H
+!IMPH  CD   OE   N    CG
+! inverted for new IMPH rules
+IMPH  CD   N    CG   OE   
+IC  CD  CA  *N  H  0.0   0.0000   180.0   0.0000   0.0
+IC  OE  CG  *CD N   0.0   0.0000   180.0   0.0000   0.0
+IC  CD  N   CA  C   0.0   0.0000   -60.0   0.0000   0.0
+IC  N   CA  CB  CG   0.0 105.0000     0.0   0.0000   0.0
+IC      CA  CB  CG  CD          0.0 105.0000     0.0 105.0000   0.0
+IC      CB  CG  CD  N           0.0 105.0000     0.0   0.0000   0.0
+IC      CG  CD  N   CA          0.0   0.0000     0.0   0.0000   0.0
+DONO    H   N
+ACCE    OE
+
+PRES NMEC     -0.05
+! This patch replaces the N-terminal with a methylester group
+! This patch will not work with PRO or GLY as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+ATOM CNT  C       0.70
+ATOM ONT  O       -.55
+ATOM OT2  OS      -.40
+ATOM CT3  CH3E    0.25
+ATOM N    NP      -.40
+ATOM H    H       0.25
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND N   H      N    CNT    CNT  ONT     CNT  OT2    OT2  CT3     
+ANGL CA   N    H     CA   N   CNT     H    N    CNT     N    CNT  ONT
+ANGL N    CNT  OT2   OT2  CNT ONT     CNT  OT2  CT3      
+DIHE C   CA   N    H
+DIHE CB  CA   N    H
+DIHE C   CA   N    CNT
+DIHE CB  CA   N    CNT
+DIHE CA  N    CNT  OT2
+DIHE H   N    CNT  OT2
+DIHE CA   N    CNT  ONT
+DIHE H   N    CNT  ONT
+DIHE N   CNT  OT2  CT3          
+DIHE ONT CNT  OT2  CT3          
+IMPH CNT N    OT2  ONT     N    CA   CNT H 
+ACCE ONT CNT
+ACCE OT2  
+DONO H  N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   CA   N     CNT  OT2   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CNT   OT2  CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   OT2  N     *CNT ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  CA    *N   H     0.0000    0.00  180.00    0.00   0.0000
+
+PRES NETC         -0.05
+! This patch replaces the N-terminal with an ethylester group
+! This patch will not work with PRO or GLY as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM CNT  C       0.70
+ATOM ONT  O      -0.55
+ATOM OT2  OS      -.40
+GROU
+ATOM CT3  CH2E    0.25
+ATOM CT4  CH3E    0.00
+ATOM N    NP      -.40
+ATOM H    H       0.25
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND N   H      N    CNT    CNT  ONT     CNT  OT2    OT2  CT3     CT3  CT4
+ANGL CA   N    H     CA   N   CNT     H    N    CNT     N    CNT  ONT
+ANGL N    CNT  OT2   OT2  CNT ONT     CNT  OT2  CT3     OT2  CT3  CT4
+DIHE C   CA   N    H
+DIHE CB  CA   N    H
+DIHE C   CA   N    CNT
+DIHE CB  CA   N    CNT
+DIHE CA  N    CNT  OT2
+DIHE H   N    CNT  OT2
+DIHE H   N    CNT  ONT
+DIHE N   CNT  OT2  CT3          
+DIHE ONT CNT  OT2  CT3          
+DIHE CNT  OT2 CT3  CT4       
+IMPH CNT N    OT2  ONT     N    CA   CNT H 
+ACCE ONT CNT
+ACCE OT2  
+DONO H  N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   CA   N     CNT  OT2   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CNT   OT2  CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  OT2   CT3  CT4   0.0000    0.00  180.00    0.00   0.0000
+IC   OT2  N     *CNT ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  CA    *N   H     0.0000    0.00  180.00    0.00   0.0000
+
+PRES NBOC     -0.05
+! This patch replaces the N-terminal with a tert-butylester group
+! This patch will not work with PRO or GLY as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM CNT  C       0.70
+ATOM ONT  O      -0.55
+ATOM OT2  OS      -.40
+GROU
+ATOM CT3  CT      0.25
+ATOM CT4A CH3E    0.00
+ATOM CT4B CH3E    0.00
+ATOM CT4C CH3E    0.00
+ATOM N    NP      -.40
+ATOM H    H        .25
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND N   H      N    CNT    CNT  ONT     CNT  OT2    OT2  CT3     
+BOND CT3 CT4A   CT3  CT4B   CT3  CT4C
+ANGL CA   N    H     CA   N   CNT     H    N    CNT     N    CNT  ONT
+ANGL N    CNT  OT2   OT2  CNT ONT     CNT  OT2  CT3    OT2  CT3  CT4A
+ANGL OT2  CT3  CT4B  OT2  CT3 CT4C    CT4A CT3  CT4B   CT4B CT3  CT4C
+ANGL CT4A CT3  CT4C
+DIHE C   CA   N    H
+DIHE CB  CA   N    H
+DIHE C   CA   N    CNT
+DIHE CB  CA   N    CNT
+DIHE CA  N    CNT  OT2
+DIHE H   N    CNT  OT2
+DIHE H   N    CNT  ONT
+DIHE N   CNT  OT2  CT3          
+DIHE ONT CNT  OT2  CT3          
+DIHE CNT  OT2 CT3  CT4A       
+DIHE CNT  OT2 CT3  CT4B       
+DIHE CNT  OT2 CT3  CT4C       
+IMPH CNT N    OT2  ONT     N    CA   CNT H 
+ACCE ONT CNT
+ACCE OT2  
+DONO H  N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   CA   N     CNT  OT2   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CNT   OT2  CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  OT2   CT3  CT4A  0.0000    0.00  180.00    0.00   0.0000
+IC   CT4A OT2   *CT3 CT4B  0.0000    0.00  120.00    0.00   0.0000
+IC   CT4A OT2   *CT3 CT4C  0.0000    0.00  240.00    0.00   0.0000
+IC   OT2  N     *CNT ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  CA    *N   H     0.0000    0.00  180.00    0.00   0.0000
+
+PRES NPHC        -0.05
+! This patch replaces the N-terminal with a phenylester group
+! This patch will not work with PRO or GLY as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM CNT  C       0.70
+ATOM ONT  O      -0.55
+ATOM OT2  OS      -.40
+GROU
+ATOM CT3  C6R      .25
+ATOM CT4A C6RE    0.00
+ATOM CT4B C6RE    0.00
+ATOM CT5A C6RE    0.00
+ATOM CT5B C6RE    0.00
+ATOM CT6  C6RE    0.00
+ATOM N    NP      -.40
+ATOM H    H       0.25
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND N    H      N    CNT   CNT  ONT     CNT  OT2    OT2  CT3    CT3  CT4A
+BOND CT4A CT5A   CT5A CT6   CT6 CT5B     CT5B  CT4B   CT4B CT3    
+ANGL CA   N    H     CA   N   CNT     H    N    CNT     N    CNT  ONT
+ANGL N    CNT  OT2   OT2  CNT ONT     CNT  OT2  CT3    OT2  CT3  CT4A
+ANGL OT2  CT3  CT4B  CT4A CT3 CT4B    CT3  CT4A CT5A   CT4A CT5A CT6   
+ANGL CT5A CT6  CT5B  CT6 CT5B CT4B    CT5B CT4B CT3 
+DIHE C   CA   N    H
+DIHE CB  CA   N    H
+DIHE C   CA   N    CNT
+DIHE CB  CA   N    CNT
+DIHE CA  N    CNT  OT2
+DIHE H   N    CNT  OT2
+DIHE H   N    CNT  ONT
+DIHE N   CNT  OT2  CT3          
+DIHE ONT CNT  OT2  CT3          
+DIHE CNT  OT2 CT3  CT4A       
+DIHE CNT  OT2 CT3  CT4B       
+IMPH CNT N    OT2  ONT     N    CA   CNT H          CT3  CT4A CT4B OT2
+IMPH CT3 CT4A CT5A CT6     CT4A CT5A CT6 CT5B       CT5A CT6 CT5B CT4B
+IMPH CT6 CT5B CT4B CT3     CT5B CT4B CT3 CT4A       CT4B CT3 CT4A CT5A
+ACCE ONT CNT
+ACCE OT2  
+DONO H  N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   CA   N     CNT  OT2   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CNT   OT2  CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  OT2   CT3  CT4A  0.0000    0.00   90.00    0.00   0.0000
+IC   OT2  N     *CNT ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CT4B CT4A  *CT3 OT2   0.0000    0.00  180.00    0.00   0.0000
+IC   CT4B CT3   CT4A CT5A  0.0000    0.00    0.00    0.00   0.0000
+IC   CT5B CT4B  CT3  CT4A  0.0000    0.00    0.00    0.00   0.0000
+IC   CT6  CT5B  CT4B CT3   0.0000    0.00    0.00    0.00   0.0000
+IC   CNT  CA    *N   H     0.0000    0.00  180.00    0.00   0.0000
+
+PRES NCBZ        -0.05
+! This patch replaces the N-terminal with a carbobenzoxly group
+! This patch will not work with PRO or GLY as the first residue
+! Apply this patch ONLY after the NTER patch has been applied
+GROU
+ATOM CNT  C       0.70
+ATOM ONT  O      -0.55
+ATOM OT2  OS      -.40
+GROU
+ATOM CT3  CH2E     .25
+ATOM CT4  C6R     0.0
+ATOM CT5A C6RE    0.0
+ATOM CT6A C6RE    0.0
+ATOM CT7  C6RE    0.0
+ATOM CT6B C6RE    0.0
+ATOM CT5B C6RE    0.0
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+! change atom type for CA for GLY
+ATOM CA   CH1E     .10
+DELE ATOM HT1
+DELE ATOM HT2
+DELE ATOM HT3
+BOND N   H      N    CNT    CNT  ONT     CNT  OT2    OT2  CT3     CT3  CT4 
+BOND CT4 CT5A   CT5A CT6A   CT6A CT7     CT7  CT6B   CT6B  CT5B   CT5B  CT4
+ANGL CA   N    H     CA   N   CNT     H    N    CNT     N    CNT  ONT
+ANGL N    CNT  OT2   OT2  CNT ONT     CNT  OT2  CT3    OT2  CT3  CT4
+ANGL CT3  CT4  CT5B  CT3  CT4 CT5A    CT5B CT4  CT5A   CT4  CT5A CT6A   
+ANGL CT5A CT6A CT7   CT6A CT7 CT6B    CT7  CT6B CT5B   CT6B CT5B CT4 
+DIHE C   CA   N    H
+DIHE CB  CA   N    H
+DIHE C   CA   N    CNT
+DIHE CB  CA   N    CNT
+DIHE CA  N    CNT  OT2
+DIHE H   N    CNT  OT2
+DIHE H   N    CNT  ONT
+DIHE N   CNT  OT2  CT3          
+DIHE ONT CNT  OT2  CT3          
+DIHE CNT  OT2 CT3  CT4       
+DIHE OT2  CT3  CT4 CT5A       
+DIHE OT2  CT3  CT4 CT5B       
+IMPH CNT N    OT2  ONT     N    CA   CNT H 
+IMPH CT4 CT5A CT5B CT3     CT5A CT6A CT7 CT6B       CT6A CT7 CT6B CT5B
+IMPH CT7 CT6B CT5B CT4     CT6B CT5B CT4 CT5A       CT5B CT4 CT5A CT6A
+ACCE ONT CNT
+ACCE OT2  
+DONO H  N
+IC   C    CA    N    CNT   0.0000    0.00  180.00    0.00   0.0000
+IC   CA   N     CNT  OT2   0.0000    0.00  180.00    0.00   0.0000
+IC   N    CNT   OT2  CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   CNT  OT2   CT3  CT4   0.0000    0.00  180.00    0.00   0.0000
+IC   OT2  CT3   CT4  CT5A  0.0000    0.00   90.00    0.00   0.0000
+IC   OT2  N     *CNT ONT   0.0000    0.00  180.00    0.00   0.0000
+IC   CT5B CT5A  *CT4 CT3   0.0000    0.00  180.00    0.00   0.0000
+IC   CT5B CT4   CT5A CT6A  0.0000    0.00    0.00    0.00   0.0000
+IC   CT6B CT5B  CT4  CT5A  0.0000    0.00    0.00    0.00   0.0000
+IC   CT7  CT6B  CT5B CT4   0.0000    0.00    0.00    0.00   0.0000
+IC   CNT  CA    *N   H     0.0000    0.00  180.00    0.00   0.0000
+
+!
+! C-terminal patches  other than COO-
+!
+
+PRES  COOH    0.150     !   Protonated Carboxyl (COOH) C-terminus
+ATOM  OXT  OAC  -.61
+ATOM  C    C     .78
+ATOM  O    OT   -.67
+ATOM  HCT  H     .46
+ATOM  CA   CH1E  .19
+BOND   O  HCT
+THETA  C O HCT
+DIHE   CA C O HCT
+IC   CA  C  O HCT    0.0000  0.00  180.0  0.00   0.0000    
+DONO HCT  O
+
+PRES CALD       0.00
+! This patch replaces the C-terminal with an aldehyde group
+! Apply this patch ONLY after the CTER patch has been applied
+GROU
+ATOM C    C      0.23
+ATOM O    OA    -0.43
+ATOM HCT  HA     0.20
+DELE ATOM OXT
+BOND C O   C HCT
+ANGL CA C O   CA C HCT  O C HCT
+DIHE N CA C O
+DIHE CB CA C O
+!IMPH C CA O HCT
+! inverted for new IMPH rules
+IMPH C CA HCT O 
+ACCE O C
+IC   N CA C HCT        0.0 0.0   0.0 0.0 0.0
+IC   CA HCT *C O       0.0 0.0 180.0 0.0 0.0
+
+PRES CALC   0.00
+! This patch reduces the C terminal carboxyl to an alcohol
+GROU
+ATOM   C    CH2E   .25
+ATOM   OCT  OT    -.65
+ATOM   HOT  HO     .40
+DELETE ATOM O
+DELETE ATOM OXT
+BOND  C OCT   OCT HOT
+ANGL CA C OCT    C  OCT HOT
+DIHE  N  CA  C  OCT        CA  C  OCT  HOT
+DIHE  CB  CA  C  OCT
+ACCE  OCT
+IC    N  CA  C   OCT       0.0000   0.00  180.00  0.00   0.0000
+IC    CA C   OCT HOT       0.0000   0.00  180.00  0.00   0.0000
+
+PRES CAMD        0.000
+! Converts the C-terminus to an amide
+GROU
+ATOM  C    C     0.55
+ATOM  O    O     -.55
+ATOM  NCT  NP    -.60
+ATOM  HCT1  H      .30
+ATOM  HCT2  H      .30
+DELETE ATOM OXT
+BOND  C  O    C  NCT     NCT HCT1     NCT HCT2
+ANGL  CA C O     CA C   NCT
+ANGL  O  C  NCT    C  NCT HCT1    C NCT HCT2     HCT1 NCT HCT2
+DIHE  N   CA   C   NCT        
+DIHE  CB   CA   C   NCT        
+DIHE  N   CA   C   O        
+DIHE  CB   CA   C   O        
+DIHE  CA   C   NCT   HCT1
+DIHE  CA   C   NCT   HCT2
+DIHE  O   C   NCT   HCT1
+DIHE  O   C   NCT   HCT2
+IMPH  NCT C    HCT1 HCT2        C    CA  NCT   O
+ACCE  O C
+IC    N   CA   C   NCT       0.000  0.00  180.00   0.00  0.000
+IC    NCT CA  *C  O          0.000  0.00  180.00   0.00  0.000
+IC    CA  C    NCT HCT1       0.000  0.00  180.00   0.00  0.000
+IC    HCT1 C   *NCT HCT2       0.000  0.00  180.00   0.00  0.000
+
+PRES CMAM        0.00 ! Converts the C-terminus to an N methyl-amide 
+GROU 
+ATOM     C    C    .60
+ATOM     OXT  O   -.55
+ATOM     NCT  NP  -.40
+ATOM     HCT1  H    .25
+ATOM     CTB  CH3E .10
+DELETE ATOM O
+BOND  C OXT     C  NCT    NCT HCT1    NCT CTB
+ANGL  CA C OXT   CA C NCT    C NCT CTB     HCT1 NCT CTB   C  NCT HCT1
+DIHE  N   CA   C   NCT       
+DIHE  CB   CA   C   NCT       
+DIHE  N   CA   C   OXT       
+DIHE  CB   CA   C   OXT       
+DIHE  CA   C   NCT   CTB 
+DIHE  OXT   C   NCT   HCT1 
+!IMPH  NCT C HCT1 CTB       
+!inverted for new IMPH rules
+IMPH  NCT C CTB HCT1 
+IMPH  C    NCT CA    OXT
+ACCE  OXT C
+IC    N   CA   C   NCT         0.0000  0.00  180.0   0.00    0.0000
+IC    NCT CA  *C   OXT           0.0000  0.00  180.0   0.00    0.0000
+IC    CA  C    NCT HCT1         0.0000  0.00  180.0   0.00    0.0000
+IC    HCT1 C   *NCT CTB         0.0000  0.00  180.0   0.00    0.0000
+
+PRES CMES        0.000
+! This patch replaces the C-terminal with an methyl ester group
+! Apply this patch ONLY after the CTER patch has been applied
+GROU
+ATOM C    C      0.70
+ATOM OXT  O     -0.55
+ATOM OCT  OS    -0.40
+ATOM CTB  CH3E   0.25
+DELE ATOM O
+BOND C OXT   C OCT   OCT CTB
+ANGL CA C OXT   CA C OCT   OXT C OCT   C OCT CTB
+DIHE N CA C OXT
+DIHE N CA C OXT
+DIHE CB CA C OXT
+DIHE CB CA C OCT
+DIHE CA C OCT CTB
+IMPH C CA OCT OXT
+ACCE OXT C
+IC   CA C OCT CTB      0.0 0.0 180.0 0.0 0.0
+IC   N CA C OCT        0.0 0.0 180.0 0.0 0.0
+IC   CA OCT *C OXT       0.0 0.0 180.0 0.0 0.0
+
+PRES CETS        0.000
+! This patch replaces the C-terminal with an ethyl ester group
+! Apply this patch ONLY after the CTER patch has been applied
+GROU
+ATOM C    C       .70
+ATOM OXT  O     -0.55
+ATOM OCT  OS    -0.40
+ATOM CTB  CH2E   0.25
+ATOM CTG  CH3E   0.00
+DELE ATOM O
+BOND C OXT   C OCT   OCT CTB   CTB CTG
+ANGL CA C OXT   CA C OCT   OXT C OCT   C OCT CTB   OCT CTB CTG
+DIHE N CA C OXT
+DIHE N CA C OCT
+DIHE CB CA C OXT
+DIHE CB CA C OCT
+DIHE CA C OCT CTB   C OCT CTB CTG
+IMPH C CA OCT OXT
+ACCE OXT C
+IC   CA C OCT CTB      0.0 0.0 180.0 0.0 0.0
+IC   C OCT CTB CTG     0.0 0.0 180.0 0.0 0.0
+IC   N CA C OCT        0.0 0.0 180.0 0.0 0.0
+IC   CA OCT *C OXT       0.0 0.0 180.0 0.0 0.0
+
+PRES CTBS        0.000
+! This patch replaces the C-terminal with a t-butyl ester group
+! Apply this patch ONLY after the CTER patch has been applied
+GROU
+ATOM C    C      0.70
+ATOM OXT  O     -0.55
+ATOM OCT  OS    -0.40
+ATOM CTB  CT     0.25
+ATOM CTG1 CH3E   0.000
+ATOM CTG2 CH3E   0.000
+ATOM CTG3 CH3E   0.000
+DELE ATOM O
+BOND C OXT   C OCT   OCT CTB   CTB CTG1   CTB CTG2   CTB CTG3
+ANGL CA C OXT   CA C OCT   OXT C OCT   C OCT CTB   OCT CTB CTG1   OCT CTB CTG2
+ANGL OCT CTB CTG3   CTG1 CTB CTG2   CTG1 CTB CTG3   CTG2 CTB CTG3
+DIHE N CA C OXT
+DIHE N CA C OCT
+DIHE CB CA C OXT
+DIHE CB CA C OCT
+DIHE CA C OCT CTB   
+DIHE C OCT CTB  CTG1
+DIHE C OCT CTB  CTG2
+DIHE C OCT CTB  CTG3
+IMPH C CA OCT OXT
+ACCE OXT C
+ACCE OCT
+IC   N CA C OCT            0.0 0.0 180.0 0.0 0.0
+IC   CA OCT *C OXT           0.0 0.0 180.0 0.0 0.0
+IC   CA C OCT CTB          0.0 0.0 180.0 0.0 0.0
+IC   C OCT CTB CTG1        0.0 0.0 180.0 0.0 0.0
+IC   CTG1 OCT *CTB CTG2    0.0 0.0 120.0 0.0 0.0
+IC   CTG1 OCT *CTB CTG3    0.0 0.0 240.0 0.0 0.0
+
+PRES CPHS        0.00
+! This patch replaces the C-terminal with a phenyl ester group
+! Apply this patch ONLY after the CTER patch has been applied
+GROU
+ATOM C    C       .70
+ATOM OXT  O     -0.55
+ATOM OCT  OS    -0.40
+ATOM CTB  C6R    0.25
+ATOM CTG1 C6RE   0.00
+ATOM CTG2 C6RE   0.00
+ATOM CTD1 C6RE   0.00
+ATOM CTD2 C6RE   0.00
+ATOM CTE  C6RE   0.00
+DELE ATOM O
+BOND C OXT   C OCT   OCT CTB   CTB CTG1   CTB CTG2   CTG1 CTD1   CTG2 CTD2
+BOND CTD1 CTE   CTD2 CTE
+ANGL CA C OXT   CA C OCT   OXT C OCT   C OCT CTB   OCT CTB CTG1   OCT CTB CTG2
+ANGL CTB CTG1 CTD1   CTG1 CTD1 CTE   CTD1 CTE CTD2   CTE CTD2 CTG2
+ANGL CTD2 CTG2 CTB   CTG2 CTB CTG1
+DIHE N CA C OXT
+DIHE N CA C OCT
+DIHE CB CA C OXT
+DIHE CB CA C OCT
+DIHE CA C OCT CTB   
+DIHE C OCT CTB CTG1
+DIHE C OCT CTB CTG2
+IMPH C CA OCT OXT
+IMPH CTB CTG1 CTG2 OCT   
+IMPH CTB CTG1 CTD1 CTE   CTG1 CTD1 CTE CTD2   CTD1 CTE CTD2 CTG2
+IMPH CTE CTD2 CTG2 CTB   CTD2 CTG2 CTB CTG1   CTG2 CTB CTG1 CTD1
+ACCE OXT C
+ACCE OCT
+IC   CA C OCT CTB          0.0   0.0 180.0   0.0 0.0
+IC   C OCT CTB CTG1        0.0   0.0  90.0   0.0 0.0
+IC   N CA C OCT            0.0   0.0 180.0   0.0 0.0
+IC   CA OCT *C OXT           0.0   0.0 180.0   0.0 0.0
+IC   CTG2 CTG1 *CTB OCT    0.0   0.0 180.0   0.0 0.0
+IC   CTG2 CTB CTG1 CTD1    0.0   0.0   0.0   0.0 0.0
+IC   CTD2 CTG2 CTB CTG1    0.0   0.0   0.0   0.0 0.0
+IC   CTE CTD2 CTG2 CTB     0.0   0.0   0.0   0.0 0.0
+
+PRES CBZS        0.000
+! This patch replaces the C-terminal with a benzyl ester group
+! Apply this patch ONLY after the CTER patch has been applied
+GROU
+ATOM C    C      0.70
+ATOM OXT  O     -0.55
+ATOM OCT  OS    -0.40
+ATOM CTB  CH2E   0.25
+ATOM CTG  C6R    0.00
+ATOM CTD1 C6RE   0.00
+ATOM CTD2 C6RE   0.00
+ATOM CTE1 C6RE   0.00
+ATOM CTE2 C6RE   0.00
+ATOM CTZ  C6RE   0.00
+DELE ATOM O
+BOND C OXT   C OCT   OCT CTB   CTB CTG   CTG CTD1   CTG CTD2   CTD1 CTE1
+BOND CTD2 CTE2   CTE1 CTZ   CTE2 CTZ
+ANGL CA C OXT   CA C OCT   OXT C OCT   C OCT CTB   OCT CTB CTG   
+ANGL CTB CTG CTD1   CTB CTG CTD2
+ANGL CTG CTD1 CTE1   CTD1 CTE1 CTZ   CTE1 CTZ CTE2   CTZ CTE2 CTD2
+ANGL CTE2 CTD2 CTG   CTD2 CTG CTD1
+DIHE N CA C OXT
+DIHE N CA C OCT
+DIHE CB CA C OXT
+DIHE CB CA C OCT
+DIHE CA C OCT CTB   C OCT CTB CTG   
+DIHE OCT CTB CTG CTD1
+DIHE OCT CTB CTG CTD2
+IMPH C CA OCT OXT
+IMPH CTG CTD1 CTD2 CTB   
+IMPH CTG CTD1 CTE1 CTZ   CTD1 CTE1 CTZ CTE2   CTE1 CTZ CTE2 CTD2
+IMPH CTZ CTE2 CTD2 CTG   CTE2 CTD2 CTG CTD1   CTD2 CTG CTD1 CTE1
+ACCE OXT C
+ACCE OCT
+IC   CA C OCT CTB          0.0   0.0 180.0   0.0 0.0
+IC   C OCT CTB CTG         0.0   0.0 180.0   0.0 0.0
+IC   OCT CTB CTG CTD1      0.0   0.0 180.0   0.0 0.0
+IC   N CA C OCT            0.0   0.0 180.0   0.0 0.0
+IC   CA OCT *C OXT           0.0   0.0 180.0   0.0 0.0
+IC   CTD2 CTD1 *CTG CTB    0.0   0.0 180.0   0.0 0.0
+IC   CTD2 CTG CTD1 CTE1    0.0   0.0   0.0   0.0 0.0
+IC   CTE2 CTD2 CTG CTD1    0.0   0.0   0.0   0.0 0.0
+IC   CTZ CTE2 CTD2 CTG     0.0   0.0   0.0   0.0 0.0
+
+!
+! Other patches
+!
+PRES CIS      0.00 
+! converts trans peptide to cis 
+DELE  IC  -CA -C N CA
+IC        -CA -C N CA  0.00   0.000  0.00   0.000   0.00
+
+PRES CH2     -.35
+! Replaces the Carbonyl group in the backbone by CH2
+DELETE ATOM O
+ATOM   C   CH2E    0.000
+ATOM   +N  NT      -.35
+DELE  IMPH  +N C +CA +H
+DELETE IC C +CA *+N +H
+IC  C  +CA  *+N +H     0.000    0.000  120.00   0.00   0.000
+!IC  C  +CA  *+N +H     0.000    0.000  240.00   0.00   0.000
+
+PRES NPME    0.25
+! N-methyl (for peptides), not to be applied to the first residue
+GROUP 
+ATOM  CNME  CH3E   0.250
+DELETE ATOM H
+BOND N  CNME 
+ANGL  -C  N   CNME    CNME N CA   
+DIHE  -CA -C  N  CNME
+DIHE  -O  -C  N  CNME
+DIHE  CNME  N  CA  C
+DIHE  CNME  N  CA  CB
+IMPH  N -C  CA  CNME
+IC   -C  CA *N  CNME        0.0000   0.00   180.00   0.00    0.0000
+
+PRES CAME  0.10
+! Alpha methyl patch for all residues except glycine
+GROU
+ATOM CB2 CH3E   0.00
+ATOM CA   CT    0.10
+BOND CA  CB2
+ANGL   CB2  CA  CB    N  CA  CB2    C   CA  CB2
+DIHE   -C   N   CA   CB2
+DIHE   H    N   CA   CB2
+DIHE   CB2  CA  C    +N
+IC  N  C *CA CB2      0.0000  0.00  240.0   0.00   0.0000
+
+
+PRES NTOO          0.20
+! This patch replaces the peptide nitrogen in a residue with an ester oxygen
+! This patch will not work with a residue as the N-terminal
+! This patch will not work with GLY as the ester residue
+! This patch will not work in conjunction with any other patch on the
+!   ester residue (including CTER)
+! This patch requires a sequence of three residues, where the second residue
+!   is the ester residue
+GROU
+ ATOM  -CA  CH1E   0.20
+ ATOM  -C   C      0.70
+ ATOM  -O   OAC   -0.55
+GROU
+ ATOM  OP  OS    -0.40
+ ATOM  CA  CH1E   0.25
+ DELE  ATOM N
+ DELE  ATOM H
+BOND  -C OP   OP CA
+ANGL  -CA -C OP   -O -C OP   -C OP CA   OP CA C  OP CA CB   
+DIHE  -CA -C OP CA   
+DIHE  -O  -C OP CA   
+DIHE  -C OP CA C   
+DIHE  -C OP CA CB
+DIHE  -N -CA -C OP   
+DIHE  -CB -CA -C OP   
+DIHE  OP CA C +N
+DIHE  OP CA C O
+IMPH  -C -CA OP -O     CA  OP  C  CB
+ACCE  -O -C
+ACCE  OP
+IC    -N -CA -C OP         0.00  0.00  180.00  0.00  0.00
+IC    -CA -C OP CA         0.00  0.00  180.00  0.00  0.00
+IC    -C OP CA C           0.00  0.00  180.00  0.00  0.00
+IC    -CA OP *-C -O        0.00  0.00  180.00  0.00  0.00
+IC    OP CA C +N           0.00  0.00  180.00  0.00  0.00
+IC    OP C *CA CB          0.00  0.00  120.00  0.00  0.00
+
+PRES ZTOE  0.00
+! this converts the Z- dehydrophe  to E-  dehydrophe
+DIHE    N   CA   CB   CG
+IC      N   CA   CB   CG     0.0000   0.00   180.0   0.00   0.0000
+
+!
+! Linking patches
+!
+
+PRES  LINK        0.00
+! This patch will join two segments and form a peptide bond or
+! can be used to form a cyclic peptide
+! The patch should be applied as RES(N-term) - RES(C-term) 
+! It is assumed that default patching has already occurred
+! This patch may NOT be applied to GLY residues or any residue
+!   whose alpha-carbon atom type is not CH1E
+DELETE ATOM 2OXT
+DELETE ATOM 1HT1
+DELETE ATOM 1HT2 
+DELETE ATOM 1HT3
+ATOM  2C    C    0.60
+ATOM  2O    O   -0.55
+ATOM  1H    H    0.25
+ATOM  1N    NP  -0.40
+ATOM  1CA   CH1E 0.10
+BOND  2C 1N    2C  2O    1N  1H  
+THET  2CA 2C 1N    2C 1N 1CA  2CA 2C 2O
+THET  2C 1N 1H     1H 1N 1CA  2O 2C 1N
+DIHE  2N 2CA 2C 1N   
+DIHE  2N 2CA 2C 2O   
+DIHE  2CB 2CA 2C 1N   
+DIHE  2CB 2CA 2C 2O   
+DIHE  2CA 2C 1N 1H   
+DIHE  2CA 2C 1N 1CA   
+DIHE  2O  2C 1N 1H   
+DIHE  2O  2C 1N 1CA   
+DIHE  2C 1N 1CA 1CB
+DIHE  2C 1N 1CA 1C
+DIHE  1H 1N 1CA 1CB
+DIHE  1H 1N 1CA 1C
+IMPH  2C 2CA 1N 2O                  1N 2C 1CA 1H  
+IC    2N 2CA 2C 1N      0.00  0.00  180.00  0.00  0.00
+IC    2CA 2C 1N 1CA     0.00  0.00  180.00  0.00  0.00
+IC    2C 1N 1CA 1C      0.00  0.00  180.00  0.00  0.00
+IC    2CA 1N *2C 2O     0.00  0.00  180.00  0.00  0.00
+IC    2C 1CA *1N 1H     0.00  0.00  180.00  0.00  0.00
+
+PRES  LNK2        0.00
+! This patch will join two segments and form a peptide bond or
+! can be used to form a cyclic peptide ( reverse version of LINK)
+! The patch should be applied as RES(C-term) - RES(N-term) 
+! It is assumed that default patching has already occurred
+! This patch may NOT be applied to GLY residues or any residue
+!   whose alpha-carbon atom type is not CH1E
+DELETE ATOM 1OXT
+DELETE ATOM 2HT1
+DELETE ATOM 2HT2 
+DELETE ATOM 2HT3
+ATOM  1C    C    0.60
+ATOM  1O    O   -0.55
+ATOM  2H    H    0.25
+ATOM  2N    NP  -0.40
+ATOM  2CA   CH1E 0.10
+BOND  1C 2N   1C 1O   2N  2H 
+THET  1CA 1C 2N    1C 2N 2CA  1CA 1C 1O
+THET  1C 2N 2H     2H 2N 2CA  1O 1C 2N
+DIHE  1N 1CA 1C 2N   
+DIHE  1N 1CA 1C 1O   
+DIHE  1CB 1CA 1C 2N   
+DIHE  1CB 1CA 1C 1O   
+DIHE  1CA 1C 2N 2H   
+DIHE  1CA 1C 2N 2CA   
+DIHE  1O  1C 2N 2H   
+DIHE  1O  1C 2N 2CA   
+DIHE  1C 2N 2CA 2CB
+DIHE  1C 2N 2CA 2C
+DIHE  2H 2N 2CA 2CB
+DIHE  2H 2N 2CA 2C
+IMPH  1C 1CA 2N 1O              2N 1C 2CA 2H
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2H     0.00  0.00  180.00  0.00  0.00
+
+PRES  LNPT       0.00
+! This patch creates a peptide bond between the C-terminus of
+! the primary  segment and the N-terminus of its image
+! The primary sequence should be generated using first none last none
+! Appropriate patches should be applied to the remaining ends
+BOND  1C 2N   
+THET  1CA 1C 2N    1C 2N 2CA 
+THET  1C 2N 2H     1O 1C 2N
+DIHE  1N 1CA 1C 2N   1CA 1C 2N 2CA   1C 2N 2CA 2C
+IMPH  1C 1CA 2N 1O              2N 1C 2CA 2H
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2H     0.00  0.00  180.00  0.00  0.00
+
+
+PRES  LNP1        0.00
+! This is same as LINK but for case of PROLINE on the N terminus 
+! This patch will join two segments and form a peptide bond or
+! can be used to form a cyclic peptide for PROLINE at N-terminus
+! The patch should be applied as RES(N-term) - RES(C-term) 
+! It is assumed that default patching has already occurred
+! This patch may NOT be applied to GLY residues or any residue
+!   whose alpha-carbon atom type is not CH1E
+!DELETE ATOM 2O
+DELETE ATOM 2OXT
+DELETE ATOM 1HT1
+DELETE ATOM 1HT2 
+ATOM  2C    C    0.60
+ATOM  2O    O   -0.55
+ATOM  1N    NX  -0.25
+ATOM  1CA   CH1E 0.10
+ATOM  1CD   CH2E 0.10
+BOND  2C 1N    2C  2O     
+THET  2CA 2C 1N    2C 1N 1CA  2CA 2C 2O
+THET  2O  2C 1N
+DIHE  2N 2CA 2C 1N   
+DIHE  2N 2CA 2C 2O   
+DIHE  2CB 2CA 2C 1N   
+DIHE  2CB 2CA 2C 2O   
+DIHE  2CA 2C 1N 1CD   
+DIHE  2CA 2C 1N 1CA   
+DIHE  2O  2C 1N 1CD   
+DIHE  2O  2C 1N 1CA   
+DIHE  2C 1N 1CA 1CB
+DIHE  2C 1N 1CA 1C
+DIHE  1CD 1N 1CA 1CB
+DIHE  1CD 1N 1CA 1C
+IMPH  2C 2CA 1N 2O                   
+IC    2N 2CA 2C 1N      0.00  0.00  180.00  0.00  0.00
+IC    2CA 2C 1N 1CA     0.00  0.00  180.00  0.00  0.00
+IC    2C 1N 1CA 1C      0.00  0.00  180.00  0.00  0.00
+IC    2N 2CA 2C 2O      0.00  0.00    0.00  0.00  0.00
+IC    1N 2CA *2C 2O     0.00  0.00  180.00  0.00  0.00
+
+PRES  LNP2        0.00
+! Link patch for Proline at the N terminus
+! This patch will join two segments and form a peptide bond or
+! can be used to form a cyclic peptide ( reverse version of LINK)
+! The patch should be applied as RES(C-term) - RES(N-term) 
+! It is assumed that default patching has already occurred
+!DELETE ATOM 1O
+DELETE ATOM 1OXT
+DELETE ATOM 2HT1
+DELETE ATOM 2HT2 
+ATOM  1C    C    0.60
+ATOM  1O    O   -0.55
+ATOM  2N    NX  -0.25
+ATOM  2CA   CH1E 0.10
+ATOM  2CD   CH2E 0.10
+BOND  1C 2N   1C 1O   
+THET  1CA 1C 2N    1C 2N 2CA  1CA 1C 1O
+THET  1O 1C 2N
+DIHE  1N 1CA 1C 2N   
+DIHE  1N 1CA 1C 1O   
+DIHE  1CB 1CA 1C 2N   
+DIHE  1CB 1CA 1C 1O   
+DIHE  1CA 1C 2N 2CD   
+DIHE  1CA 1C 2N 2CA   
+DIHE  1O  1C 2N 2CD   
+DIHE  1O  1C 2N 2CA   
+DIHE  1C 2N 2CA 2CB
+DIHE  1C 2N 2CA 2C
+DIHE  2CD 2N 2CA 2CB
+DIHE  2CD 2N 2CA 2C
+IMPH  1C 1CA 2N 1O
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+
+PRES  LIMG       0.00
+! This patch creates a peptide bond between the C-terminus of
+! the primary  segment and the N-terminus of its image
+! The primary sequence should be generated using first none last none
+! Appropriate patches should be applied to the remaining ends
+BOND  1C 2N   
+THET  1CA 1C 2N    1C 2N 2CA 
+THET  1C 2N 2H     1O 1C 2N
+DIHE  1N 1CA 1C 2N   
+DIHE  1N 1CA 1C 1O   
+DIHE  1CB 1CA 1C 2N   
+DIHE  1CB 1CA 1C 1O   
+DIHE  1CA 1C 2N 2H   
+DIHE  1CA 1C 2N 2CA   
+DIHE  1O  1C 2N 2H   
+DIHE  1O  1C 2N 2CA   
+DIHE  1C 2N 2CA 2CB
+DIHE  1C 2N 2CA 2C
+DIHE  2H 2N 2CA 2CB
+DIHE  2H 2N 2CA 2C
+!DIHE  1N 1CA 1C 2N   1CA 1C 2N 2CA   1C 2N 2CA 2C
+IMPH  1C 1CA 2N 1O              2N 1C 2CA 2H
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2H     0.00  0.00  180.00  0.00  0.00
+
+PRES  DLNK       0.00
+! This patch will connect the carboxyl group of ASP with the N-terminal
+!   end of a peptide to form a cyclic peptide
+! The patch should be applied as RES(ASP) - RES(N-term)
+DELE  ATOM  2HT2
+DELE  ATOM  2HT3
+DELE  ATOM  1OD2
+ATOM  1CG   C    0.60
+ATOM  1OD1  O   -0.55
+ATOM  2HT1  H    0.25
+ATOM  2N    NP  -0.40
+ATOM  1CB   CH2E 0.00
+ATOM  2CA   CH1E 0.10
+BOND  1CG 2N   2N 2HT1
+THET  1CB 1CG 2N   1OD1 1CG 2N
+THET  1CG 2N 2HT1   1CG 2N  2CA   
+DIHE  1CB 1CG 2N  2CA   
+DIHE  1CB 1CG 2N  2HT1   
+DIHE  1OD1 1CG 2N  2CA   
+DIHE  1OD1 1CG 2N  2HT1   
+DIHE  1CG 2N  2CA 2C
+DIHE  1CG 2N  2CA 2CB
+IMPH  1CG 1CB 2N 1OD1  2N 1CG 2CA 2HT1
+IC    1CB 1CG 2N 2CA    0.00  0.00  180.00  0.00  0.00
+IC    1CG 2N 2CA 2C     0.00  0.00  180.00  0.00  0.00
+IC    1OD1 1CB *1CG 2N  0.00  0.00  180.00  0.00  0.00
+IC    1CG 2CA *2N 2HT1  0.00  0.00  180.00  0.00  0.00
+
+PRES  KLNK       0.00
+! This patch will connect the amino group of LYS with the C-terminal
+!   end of a peptide to form a cyclic peptide
+! The patch should be applied as RES(LYS) - RES(C-term)
+DELE  ATOM  2OXT
+DELE  ATOM  1HZ2
+DELE  ATOM  1HZ3
+ATOM  2O    O    -.55
+ATOM  2C    C     .60
+ATOM  1HZ1  H    0.25
+ATOM  1NZ   NP  -0.40
+ATOM  1CE   CH2E 0.10
+BOND  2C 1NZ   
+THET  2CA 2C 1NZ   2O 2C 1NZ
+THET  2C 1NZ 1HZ1  2C 1NZ 1CE  
+DIHE  2N 2CA 2C 1NZ       
+DIHE  2CA 2C 1NZ 1CE   
+DIHE  2CA 2C 1NZ 1HZ1   
+DIHE  2OCT1 2C 1NZ 1CE   
+DIHE  2OCT1 2C 1NZ 1HZ1   
+DIHE  2C 1NZ 1CE 1CD
+IMPH  2C 2CA 1NZ 2O    1NZ 2C 1CE 1HZ1
+IC    2N 2CA 2C 1NZ     0.00  0.00  180.00  0.00  0.00
+IC    2CA 2C 1NZ 1CE    0.00  0.00  180.00  0.00  0.00
+IC    2C 1NZ 1CE 1CD    0.00  0.00  180.00  0.00  0.00
+IC    1NZ 2CA *2C 2O 0.0   0.00  180.00  0.00  0.00
+IC    2C 1CE *1NZ 1HZ1  0.00  0.00  180.00  0.00  0.00
+
+PRES ILNK  0.0
+BOND 1C   2N
+THET 1C   2N   2CA            1CA  1C   2N
+THET 1O   1C   2N             1C   2N   2H
+DIHE 1C   2N   2CA  2C
+DIHE 1C   2N   2CA  2CB
+DIHE 1N   1CA  1C   2N        
+DIHE 1CA  1C   2N   2CA
+DIHE 1CA  1C   2N   2H
+DIHE 1CB  1C   2N   2CA
+DIHE 1CB  1C   2N   2H
+IMPH 2N   1C   2CA  2H        1C   1CA  2N   1O
+IC   1N   1CA  1C   2N     0.0000    0.00  180.00    0.00   0.0000
+IC   2N   1CA  *1C  1O     0.0000    0.00  180.00    0.00   0.0000
+IC   1CA  1C   2N   2CA    0.0000    0.00  180.00    0.00   0.0000
+IC   1C   2N   2CA  2C     0.0000    0.00  180.00    0.00   0.0000
+IC   1C   2CA  *2N  2H     0.0000    0.00  180.00    0.00   0.0000
+
+
+PRES JOAA 0.00  !join unpatched chains (first not GLY second not PRO or GLY)
+BOND 1C   2N 
+THET 1CA  1C   2N             1O   1C   2N
+THET 1C   2N   2H             1C   2N   2CA
+DIHE 1N   1CA  1C   2N   
+DIHE 1CB  1CA  1C   2N 
+DIHE 1CA  1C   2N   2CA   
+DIHE 1CA  1C   2N   2H
+DIHE 1O   1C   2N   2CA   
+DIHE 1O   1C   2N   2H
+DIHE 1C   2N   2CA  2C   
+DIHE 1C   2N   2CA  2CB
+IMPH 1C   1CA  2N   1O        2N   1C   2CA  2H
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2H     0.00  0.00  180.00  0.00  0.00
+
+PRES JOGA 0.00  !join unpatched chains (first GLY second not PRO or GLY)
+BOND 1C   2N
+THET 1CA  1C   2N             1O   1C   2N
+THET 1C   2N   2H             1C   2N   2CA
+DIHE 1N   1CA  1C   2N
+DIHE 1CA  1C   2N   2CA
+DIHE 1CA  1C   2N   2H
+DIHE 1O   1C   2N   2CA
+DIHE 1O   1C   2N   2H
+DIHE 1C   2N   2CA  2C
+DIHE 1C   2N   2CA  2CB
+IMPH 1C   1CA  2N   1O        2N   1C   2CA  2H
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2H     0.00  0.00  180.00  0.00  0.00
+ 
+PRES JOGG 0.00  !join unpatched chains (first GLY second GLY)
+BOND 1C   2N
+THET 1CA  1C   2N             1O   1C   2N
+THET 1C   2N   2H             1C   2N   2CA
+DIHE 1N   1CA  1C   2N
+DIHE 1CA  1C   2N   2CA
+DIHE 1CA  1C   2N   2H
+DIHE 1O   1C   2N   2CA
+DIHE 1O   1C   2N   2H
+DIHE 1C   2N   2CA  2C
+IMPH 1C   1CA  2N   1O        2N   1C   2CA  2H
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2H     0.00  0.00  180.00  0.00  0.00
+
+PRES JOAG 0.00  !join unpatched chains (first not GLY second GLY)
+BOND 1C   2N
+THET 1CA  1C   2N             1O   1C   2N
+THET 1C   2N   2H             1C   2N   2CA
+DIHE 1N   1CA  1C   2N
+DIHE 1CB  1CA  1C   2N
+DIHE 1CA  1C   2N   2CA
+DIHE 1CA  1C   2N   2H
+DIHE 1O   1C   2N   2CA
+DIHE 1O   1C   2N   2H
+DIHE 1C   2N   2CA  2C
+IMPH 1C   1CA  2N   1O        2N   1C   2CA  2H
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2H     0.00  0.00  180.00  0.00  0.00
+
+PRES JOAP 0.00  !join unpatched chains (first not GLY second PRO)
+BOND 1C   2N
+THET 1CA  1C   2N             1O   1C   2N
+THET 1C   2N   2CD            1C   2N   2CA
+DIHE 1N   1CA  1C   2N
+DIHE 1CB  1CA  1C   2N
+DIHE 1CA  1C   2N   2CA
+DIHE 1CA  1C   2N   2CD
+DIHE 1O   1C   2N   2CA
+DIHE 1O   1C   2N   2CD
+DIHE 1C   2N   2CA  2C
+DIHE 1C   2N   2CA  2CB
+IMPH 1C   1CA  2N   1O        2N   1C   2CA  2CD
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2CD    0.00  0.00  180.00  0.00  0.00
+
+PRES JOGP 0.00  !join unpatched chains (first GLY second PRO)
+BOND 1C   2N
+THET 1CA  1C   2N             1O   1C   2N
+THET 1C   2N   2CD            1C   2N   2CA
+DIHE 1N   1CA  1C   2N
+DIHE 1CA  1C   2N   2CA
+DIHE 1CA  1C   2N   2CD
+DIHE 1O   1C   2N   2CA
+DIHE 1O   1C   2N   2CD
+DIHE 1C   2N   2CA  2C
+DIHE 1C   2N   2CA  2CB
+IMPH 1C   1CA  2N   1O        2N   1C   2CA  2CD
+IC    1N 1CA 1C 2N      0.00  0.00  180.00  0.00  0.00
+IC    1CA 1C 2N 2CA     0.00  0.00  180.00  0.00  0.00
+IC    1C 2N 2CA 2C      0.00  0.00  180.00  0.00  0.00
+IC    1CA 2N *1C 1O     0.00  0.00  180.00  0.00  0.00
+IC    1C 2CA *2N 2CD    0.00  0.00  180.00  0.00  0.00
+
+RESI SES          0.00  !  Serine sidechain
+GROU
+ATOM OT   OT     -0.65
+ATOM CH3  CH3E    0.25
+ATOM HO   H       0.40
+BOND CH3  OT        OT   HO
+DONO  HO    OT
+ACCE  OT
+ 
+RESI ACD  0.000
+GROUP
+ATOM N1 NP -0.600
+ATOM C2 C  0.600
+ATOM C3 CH3E -0.050
+ATOM O4 O -0.550
+ATOM H1 H  0.300
+ATOM H2 H  0.300
+BOND N1 C2
+BOND N1 H1
+BOND N1 H2
+BOND C2 C3
+BOND C2 O4
+IMPH N1 H1 H2 C2
+IMPH C2 N1 O4 C3
+IC H1 N1  C2 C3   1.00 117.06 180.00 113.72   1.51
+IC H2 N1  C2 C3   1.00 121.32  -0.00 113.72   1.51
+IC H1 N1  C2 O4   1.00 117.06  -0.00 123.55   1.22
+IC C2 H1 *N1 H2   1.33 117.06 180.00 121.62   1.00
+IC N1 C3 *C2 O4   1.33 113.72 180.00 122.74   1.22
+ 
+RESI ACN  0.000
+GROUP
+ATOM C1 CH3E  0.070
+ATOM C2 CUY1  0.430
+ATOM N  N -0.500
+BOND C1 C2
+BOND C2 N
+ 
+RESI ACT          0.00  !  Acetone
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+ATOM CH1  CH3E   -0.025
+ATOM CH2  CH3E   -0.025
+BOND CH1  C         C    O          C    CH2
+IMPH C    O    CH2  CH1
+ACCE  O    C
+
+ 
+RESI BUT  0.000
+GROUP
+ATOM C CT  0.250
+ATOM C1 CH3E  0.000
+ATOM C2 CH3E  0.000
+ATOM C3 CH3E  0.000
+ATOM O OT -0.650
+ATOM H1 H  0.400
+BOND C C1
+BOND C C2
+BOND C C3
+BOND C O
+BOND O H1
+IC C1 C  O H1   1.56 107.09 180.00 109.47   1.09
+IC C2 C  O H1   1.56 107.65 -60.03 109.47   1.09
+IC C3 C  O H1   1.56 107.62  60.02 109.47   1.09
+ 
+RESI URE  0.000    !  Urea
+GROUP
+ATOM C  C  0.594
+ATOM O  O -0.556
+ATOM N1 N -0.607
+ATOM N2 N -0.607
+ATOM H1 H  0.294
+ATOM H2 H  0.294
+ATOM H3 H  0.294
+ATOM H4 H  0.294
+BOND C    O
+BOND N1   C  N1   H1  N1   H2
+BOND N2   C  N2   H3  N2   H4
+IMPH N1   H1  H2   C
+IMPH N2   H3  H4   C
+IMPH C    N1  N2   O
+ACCE O    C
+DONO H1   N1
+DONO H2   N1
+DONO H3   N2
+DONO H4   N2
+ 
+RESI PHN   0.000 !Phenol - quanta created
+ATOM C1   C6R     0.25
+ATOM C2   C6RE    0.00
+ATOM C3   C6RE    0.00
+ATOM C4   C6RE    0.00
+ATOM C5   C6RE    0.00
+ATOM C6   C6RE    0.00
+ATOM O    OT    -0.65
+ATOM HO   H       0.40
+BOND C1   C2
+BOND C2   C3
+BOND C3   C4
+BOND C4   C5
+BOND C5   C6
+BOND C6   C1
+BOND C1   O
+BOND O    HO
+
+ 
+RESI BEN  0.000
+GROUP
+ATOM CG   C6RE 0.000
+ATOM CD1  C6RE 0.000
+ATOM CE1  C6RE 0.000
+ATOM CZ   C6RE 0.000
+ATOM CE2  C6RE 0.000
+ATOM CD2  C6RE 0.000
+BOND CG   CD1       CG   CD2       CD1  CE1
+BOND CD2  CE2       CE1  CZ        CE2  CZ
+IMPH CG   CD1  CE1  CZ        CD1  CE1  CZ   CE2       CE1  CZ   CE2  CD2
+IMPH CZ   CE2  CD2  CG        CE2  CD2  CG   CD1       CD2  CG   CD1  CE1
+IC   CD1  CG   CD2  CE2    0.0000  120.00    0.00  120.00   0.0000
+IC   CD2  CG   CD1  CE1    0.0000  120.00    0.00  120.00   0.0000
+IC   CG   CD1  CE1  CZ     0.0000  120.00    0.00  120.00   0.0000
+
+ 
+RESI DME  0.000
+GROUP
+ATOM C1 CH3E  0.185
+ATOM O1 OT -0.370
+ATOM C2 CH3E  0.185
+BOND C1 O1
+BOND O1 C2
+ 
+RESI CHX  0.000
+GROUP
+ATOM C1 CH2E  0.000
+ATOM C2 CH2E  0.000
+ATOM C3 CH2E  0.000
+ATOM C4 CH2E  0.000
+ATOM C5 CH2E  0.000
+ATOM C6 CH2E  0.000
+BOND C1 C2
+BOND C1 C6
+BOND C2 C3
+BOND C3 C4
+BOND C4 C5
+BOND C5 C6
+IC C6 C1  C2 C3   1.53 111.15  55.63 111.16   1.53
+IC C1 C2  C3 C4   1.53 111.16 -55.63 111.15   1.53
+IC C2 C3  C4 C5   1.53 111.15  55.62 111.15   1.53
+IC C3 C4  C5 C6   1.53 111.15 -55.63 111.16   1.53
+IC C4 C5  C6 C1   1.53 111.16  55.63 111.15   1.53
+IC C5 C6  C1 C2   1.53 111.15 -55.62 111.15   1.53
+
+ 
+RESI BDY -0.000
+GROUP
+ATOM C1 C6R    0.085
+ATOM C2 C6RE -0.014
+ATOM C3 C6RE -0.014
+ATOM C4 C6RE -0.014
+ATOM C5 C6RE -0.014
+ATOM C6 C6RE -0.014
+ATOM C7 C  0.230
+ATOM H1 HA  0.185
+ATOM O1 OA -0.430
+BOND C1 C2
+BOND C1 C6
+BOND C2 C3
+BOND C3 C4
+BOND C4 C5
+BOND C5 C6
+BOND C1 C7
+BOND C7 H1
+BOND C7 O1
+IMPH C6 C1 C2 C3
+IMPH C2 C1 C6 C5
+IMPH C1 C2 C3 C4
+IMPH C2 C3 C4 C5
+IMPH C3 C4 C5 C6
+IMPH C4 C5 C6 C1
+IMPH C1 C2 C6 C7
+IMPH C7 C1 O1 H1
+IC C6 C1  C2 C3   1.41 120.68   0.00 119.73   1.41
+IC C7 C1  C2 C3   1.47 119.45 -180.00 119.73   1.41
+IC C2 C6 *C1 C7   1.41 120.68 180.00 119.87   1.47
+IC C1 C2  C3 C4   1.41 119.73  -0.00 119.20   1.41
+IC C2 C3  C4 C5   1.41 119.20  -0.00 121.46   1.41
+IC C3 C4  C5 C6   1.41 121.46   0.00 119.20   1.41
+IC C4 C5  C6 C1   1.41 119.20  -0.00 119.72   1.41
+IC C5 C6  C1 C2   1.41 119.72  -0.00 120.68   1.41
+IC C5 C6  C1 C7   1.41 119.72 180.00 119.87   1.47
+IC C2 C1  C7 O1   1.41 119.45  -0.03 124.23   1.21
+IC C6 C1  C7 O1   1.41 119.87 179.97 124.23   1.21
+IC C2 C1  C7 H1   1.41 119.45 179.97 114.45   1.09
+IC C1 H1 *C7 O1   1.47 114.45 180.00 121.32   1.21
+ 
+RESI AMN  0.000
+GROUP
+ATOM C1 CH3E  0.000
+ATOM N1 NT -0.300
+ATOM H1 H  0.150
+ATOM H2 H  0.150
+BOND C1 N1
+BOND N1 H1
+BOND N1 H2
+ 
+RESI ADY  0.000
+GROUP
+ATOM C1 CH3E  0.000
+ATOM C2 C  0.230
+ATOM O1 OA -0.430
+ATOM H1 HA  0.200
+BOND C1 C2
+BOND C2 O1
+BOND C2 H1
+IMPH C2 C1 O1 H1
+ 
+RESI ETH  0.000
+GROUP
+ATOM C1 CH3E  0.000
+ATOM C2 CH3E  0.000
+BOND C1 C2
+ 
+RESI THS          0.00  !  Threonine sidechain
+GROU
+ATOM CH   CH1E    0.25
+ATOM CH1  CH3E    0.00
+ATOM CH2  CH3E    0.00
+ATOM OT   OT     -0.65
+ATOM HO   H       0.40
+BOND CH1  CH        CH   OT         CH   CH2       OT   HO
+IMPH CH   OT   CH2  CH1
+DONO HO   OT
+ACCE OT
+
+RESI IPL  -0.000
+GROUP
+ATOM C1    ZC3    -0.002601
+ATOM C2    ZC3     0.208200
+ATOM C3    ZC3    -0.002601
+ATOM O4    ZOH    -0.598000
+ATOM H12   ZHO     0.395000
+BOND C1    C2                   ! dist	    1.5275
+BOND C2    C3                   ! dist	    1.5288
+BOND C2    O4                   ! dist	    1.4444
+BOND O4    H12                  ! dist	    1.0353
+ANGL C1    C2    C3            	! angle	  112.3515
+ANGL C1    C2    O4            	! angle	  110.8246
+ANGL C2    O4    H12           	! angle	  109.3692
+ANGL C3    C2    O4            	! angle	  110.8562
+DIHE C1    C2    O4    H12      ! dihe	  -62.7432
+DIHE C3    C2    O4    H12      ! dihe	   62.7289
+DONO H12   O4
+ACCE O4
+
+RESI EOL  0.000
+GROUP
+ATOM C2 CH2E  0.125
+ATOM C1 CH3E  0.125
+ATOM O OT -0.650
+ATOM H1 HO  0.400
+BOND C2 C1
+BOND C2 O
+BOND O H1
+IC C1 C2  O H1   1.53 110.50 -180.00 109.47   1.09
+
+RESI DFO  0.000
+GROUP
+ATOM C2 C  0.600
+ATOM N3 NP -0.400
+ATOM O4 O -0.550
+ATOM C3 CH3E  0.100
+ATOM C1 CH3E  0.100
+ATOM H1 HA  0.150
+BOND C2 N3
+BOND C2 O4
+BOND N3 C3
+BOND N3 C1
+BOND C2 H1
+IMPH C2 N3 O4 H1
+IMPH N3 C3 C1 C2
+IC O4 C2  N3 C3   1.23 124.96 180.00 119.83   1.46
+IC H1 C2  N3 C3   1.09 117.53  -0.03 119.83   1.46
+IC O4 C2  N3 C1   1.23 124.96  -0.00 118.52   1.46
+IC N3 O4 *C2 H1   1.36 124.96 -179.97 117.51   1.09
+IC C2 C3 *N3 C1   1.36 119.83 -180.00 121.65   1.46
+
+
+! peptide probes
+RESI PR1          1.0 ! Arginine guanidinium cation 
+GROU
+ATOM NE   NP     -0.30  !modified from -0.4
+ATOM HE   H       0.30
+ATOM CZ   C       0.50
+GROU
+ATOM NH1  NC     -0.45
+ATOM HH11 HC      0.35
+ATOM HH12 HC      0.35
+GROU
+ATOM NH2  NC     -0.45
+ATOM HH21 HC      0.35
+ATOM HH22 HC      0.35
+BOND NE   HE        NE   CZ        CZ   NH1       CZ   NH2       NH1  HH11
+BOND NH1  HH12      NH2  HH21      NH2  HH22
+IMPH CZ   NH1  NH2  NE        NH1  HH12 HH11 CZ        NH2  HH22 HH21 CZ
+DONO  HE NE
+DONO  HH11 NH1
+DONO  HH12 NH1
+DONO  HH21 NH2
+DONO  HH22 NH2
+IC   NH1  NE   *CZ  NH2    0.0000    0.00  180.00    0.00   0.0000
+IC   CD   CZ   *NE  HE     0.0000    0.00  180.00    0.00   0.0000
+IC   NE   CZ   NH1  HH11   0.0000    0.00  180.00    0.00   0.0000
+IC   HH11 CZ   *NH1 HH12   0.0000    0.00  180.00    0.00   0.0000
+IC   NE   CZ   NH2  HH21   0.0000    0.00  180.00    0.00   0.0000
+IC   HH21 CZ   *NH2 HH22   0.0000    0.00  180.00    0.00   0.0000
+
+RESI PD1         -1.00! Aspartic acid acetate anion
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   C       0.14
+ATOM OD1  OC     -0.57
+ATOM OD2  OC     -0.57
+BOND CB   CG        CG   OD1       CG   OD2
+IMPH CG   OD1  OD2  CB
+ACCE OD1  CG
+ACCE OD2  CG
+IC   OD1  CB   *CG  OD2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI PE1         -1.00  !  Glutamic acid propanoate anion
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   CH2E    0.00
+ATOM CD   C       0.14
+ATOM OE1  OC     -0.57
+ATOM OE2  OC     -0.57
+BOND CB   CG        CG   CD        CD   OE1       CD   OE2
+IMPH CD   OE1  OE2  CG
+ACCE OE1  CD
+ACCE OE2  CD
+IC   CB   CG   CD   OE1    0.0000    0.00  180.00    0.00   0.0000
+IC   OE1  CG   *CD  OE2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI PC1          0.00  !  Cysteine methanethiol
+GROU
+ATOM CB   CH2E    0.19
+ATOM SG   SH1E   -0.19
+BOND CB   SG
+
+RESI PH1          0.00  !  Histidine (uncharged with proton on nd1)
+GROU                    !  probe1
+ATOM CB   CH2E    0.00
+GROUP
+ATOM CG   C5R     0.10
+ATOM ND1  N5R    -0.40
+ATOM HD1  H       0.30
+GROU
+ATOM CD2  C5RE    0.10
+ATOM NE2  N5R    -0.40
+ATOM CE1  C5RE    0.30
+BOND CB   CG        CG   ND1       CG   CD2       ND1  HD1       ND1  CE1
+BOND CD2  NE2       CE1  NE2
+IMPH CG   ND1  CD2  CB        ND1  CG   CE1  HD1       CG   ND1  CE1  NE2
+IMPH ND1  CE1  NE2  CD2       CE1  NE2  CD2  CG        NE2  CD2  CG   ND1
+IMPH CD2  CG   ND1  CE1
+DONO  HD1   ND1
+ACCE  NE2
+IC   CD2  CB   *CG  ND1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD2  CG   ND1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   ND1  CG   CD2  NE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CE1  CG   *ND1 HD1    0.0000    0.00  180.00    0.00   0.0000
+
+RESI PH2          0.00  !  Histidine isomer  ( proton at ne2 )
+GROUP                   !  probe2
+ATOM CB   CH2E    0.00
+GROUP
+ATOM CG   C5R     0.10
+ATOM ND1  N5R    -0.40
+ATOM CE1  C5RE    0.30
+GROU
+ATOM CD2  C5RE    0.10
+ATOM NE2  N5R    -0.40
+ATOM HE2  H       0.30
+BOND CB   CG        CG   ND1       CG   CD2       ND1  CE1       CD2  NE2
+BOND CE1  NE2       NE2  HE2
+IMPH CG  ND1 CD2 CB        NE2 CE1 CD2 HE2       CG  ND1 CE1 NE2
+IMPH ND1 CE1 NE2 CD2       CE1 NE2 CD2 CG        NE2 CD2 CG  ND1
+IMPH CD2  CG   ND1  CE1
+DONO  HE2   NE2
+ACCE  ND1
+IC   CD2  CB   *CG  ND1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD2  CG   ND1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   ND1  CG   CD2  NE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CE1  CD2  *NE2 HE2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI PH3          1.00  !  Protonated HIS
+GROU
+ATOM CB   CH2E    0.10
+ATOM CG   C5R     0.15
+ATOM CD2  C5RE    0.20
+GROU
+ATOM ND1  N5R    -0.30
+ATOM HD1  H       0.35
+GROU
+ATOM CE1  C5RE    0.45
+GROU
+ATOM NE2  N5R    -0.30
+ATOM HE2  H       0.35
+BOND CB   CG        CG   ND1       CG   CD2       ND1  HD1       ND1  CE1
+BOND CD2  NE2       CE1  NE2       NE2  HE2
+IMPH CG   ND1  CD2  CB        ND1  CG   CE1  HD1       CG   ND1  CE1  NE2
+IMPH ND1  CE1  NE2  CD2       CE1  NE2  CD2  CG        NE2  CD2  CG   ND1
+IMPH CD2  CG   ND1  CE1       NE2  CD2  CE1  HE2
+DONO  HD1   ND1
+DONO  HE2   NE2
+IC   CD2  CB   *CG  ND1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD2  CG   ND1  CE1    0.0000    0.00    0.00    0.00   0.0000
+IC   ND1  CG   CD2  NE2    0.0000    0.00    0.00    0.00   0.0000
+IC   CE1  CG   *ND1 HD1    0.0000    0.00  180.00    0.00   0.0000
+IC   CE1  CD2  *NE2 HE2    0.0000    0.00  180.00    0.00   0.0000
+
+RESI PI1          0.00  !  Isoleucine butane
+GROU
+ATOM CB   CH1E    0.00
+ATOM CG2  CH3E    0.00
+GROU
+ATOM CG1  CH2E    0.00
+ATOM CD  CH3E    0.00  
+BOND CB   CG1       CB   CG2       CG1  CD
+
+RESI PI2          0.00  !  Isoleucine ethane
+GROU
+ATOM CG1  CH2E    0.00
+ATOM CD  CH3E    0.00
+BOND CG1  CD
+
+
+RESI PL1          0.00  !  Leucine isobutane
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH1E    0.00
+ATOM CD1  CH3E    0.00
+ATOM CD2  CH3E    0.00
+BOND CB   CG        CG   CD1       CG   CD2
+IMPH CG   CD2  CD1  CB
+IC   CD1  CB   *CG  CD2    0.0000    0.00  120.00    0.00   0.0000
+
+RESI PK1          1.00  !  Lysine ethylamine
+GROU
+ATOM CD   CH2E    0.00
+GROU
+ATOM CE   CH2E    0.25
+ATOM NZ   NT     -0.30
+ATOM HZ1  HC      0.35
+ATOM HZ2  HC      0.35
+ATOM HZ3  HC      0.35
+BOND CD   CE        CE   NZ        NZ   HZ1       NZ   HZ2       NZ   HZ3
+DONO  HZ1   NZ
+DONO  HZ2   NZ
+DONO  HZ3   NZ
+IC   CD   CE   NZ   HZ1    0.0000    0.00  180.00    0.00   0.0000
+IC   HZ1  CE   *NZ  HZ2    0.0000    0.00  120.00    0.00   0.0000
+IC   HZ2  CE   *NZ  HZ3    0.0000    0.00  120.00    0.00   0.0000
+
+RESI PM1          0.00  !  Methionine dimethylsulfide
+GROU
+ATOM CG   CH2E    0.06
+ATOM SD   SE     -0.12
+ATOM CE   CH3E    0.06
+BOND CG   SD        SD   CE
+
+RESI PP1          0.00  !  Proline pyrrolidine
+GROU
+ATOM N    NX     -0.25
+ATOM CD   CH2E    0.10
+ATOM CA   CH1E    0.15  !  modified from 0.10
+GROU
+ATOM CB   CH2E    0.00
+ATOM CG   CH2E    0.00
+BOND N    CA        N    CD        CA   CB        CB   CG        CG   CD
+IC   N    CA   CB   CG     0.0000    0.00    0.00  108.00   0.0000
+
+RESI PW1          0.00  !  Tryptophan indole
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   C5R    -0.03
+ATOM CD2  CR56    0.10
+ATOM CE2  CR56   -0.04
+ATOM CE3  C6RE   -0.03
+GROU
+ATOM CD1  C5RE    0.06
+ATOM NE1  N5R    -0.36
+ATOM HE1  H       0.30
+GROU
+ATOM CZ2  C6RE    0.00
+ATOM CZ3  C6RE    0.00
+ATOM CH2  C6RE    0.00
+GROU
+BOND CB   CG        CG   CD1       CG   CD2       CD1  NE1       CD2  CE2
+BOND NE1  HE1       NE1  CE2       CD2  CE3       CE2  CZ2       CE3  CZ3
+BOND CZ2  CH2       CZ3  CH2
+IMPH CG   CD1  CD2  CB        NE1  CD1  CE2  HE1       CD2  CE2  CZ2  CH2
+IMPH CE2  CZ2  CH2  CZ3       CZ2  CH2  CZ3  CE3       CH2  CZ3  CE3  CD2
+IMPH CZ3  CE3  CD2  CE2       CE3  CD2  CE2  CZ2       CG   CD1  NE1  CE2
+IMPH CD1  NE1  CE2  CD2       NE1  CE2  CD2  CG        CE2  CD2  CG   CD1
+IMPH CD2  CG   CD1  NE1       CD2  CG   CE3  CE2       CE2  NE1  CZ2  CD2
+DONO  HE1   NE1
+IC   CD2  CB   *CG  CD1    0.0000    0.00  180.00    0.00   0.0000
+IC   CD1  CG   CD2  CE2    0.0000    0.00   0.00     0.00   0.0000
+IC   CD2  CG   CD1  NE1    0.0000    0.00   0.00     0.00   0.0000
+IC   CE2  CD1  *NE1 HE1    0.0000    0.00  180.00    0.00   0.0000
+IC   CE2  CG   *CD2 CE3    0.0000    0.00  180.00    0.00   0.0000
+IC   CE2  CD2  CE3  CZ3    0.0000    0.00    0.00    0.00   0.0000
+IC   CE3  CD2  CE2  CZ2    0.0000    0.00    0.00    0.00   0.0000
+IC   CD2  CE2  CZ2  CH2    0.0000    0.00    0.00    0.00   0.0000
+
+RESI PV1          0.00  !  Valine propane
+GROU
+ATOM CB   CH1E    0.00
+ATOM CG1  CH3E    0.00
+ATOM CG2  CH3E    0.00
+BOND CB   CG1       CB   CG2
+ 
+
+! more primary amines
+ 
+RESI R23  0.000  ! propylamine
+GROUP
+ATOM N NT -0.300
+ATOM C CH2E  0.000
+ATOM C3 CH2E  0.000
+ATOM C4 CH3E  0.000
+ATOM H1 H  0.150
+ATOM H2 H  0.150
+BOND N C
+BOND N H1
+BOND N H2
+BOND C C3
+BOND C3 C4
+
+RESI SAU  0.000  ! isopropylamine
+GROUP
+ATOM N1 NT -0.300
+ATOM C1 CH1E  0.000
+ATOM C2 CH3E  0.000
+ATOM C3 CH3E  0.000
+ATOM H1 H  0.150
+ATOM H2 H  0.150
+BOND N1 C1
+BOND C1 C2
+BOND C1 C3
+BOND N1 H1
+BOND N1 H2
+IMPH C1 C3 N1 C2
+
+RESI SBF  0.000  ! t-butylamine
+GROUP
+ATOM N1 NT -0.300
+ATOM C1 CT  0.069
+ATOM C2 CH3E -0.023
+ATOM C3 CH3E -0.023
+ATOM C4 CH3E -0.023
+ATOM H1 H  0.150
+ATOM H2 H  0.150
+BOND N1 C1
+BOND C1 C2
+BOND C1 C3
+BOND C1 C4
+BOND N1 H1
+BOND N1 H2
+
+RESI GTP         -4.00
+ATOM PG   PO4     1.110   
+ATOM O1G  O      -0.550   
+ATOM O2G  O      -0.550   
+ATOM O3G  O      -0.550   
+ATOM O3B  OS     -0.670   
+ATOM PB   PO4     1.110   
+ATOM O1B  O      -0.550   
+ATOM O2B  O      -0.550   
+ATOM O3A  OS     -0.670   
+ATOM PA   PO4     1.110   
+ATOM O1A  O      -0.550   
+ATOM O2A  O      -0.550   
+ATOM O5'  OS     -0.670   
+ATOM C5'  CH2E    0.229   
+ATOM C4'  CH1E    0.259   
+ATOM O4'  OE     -0.370   
+ATOM C3'  CH1E    0.409   
+ATOM O3'  OT     -0.650   
+ATOM C2'  CH1E    0.408   
+ATOM O2'  OT     -0.650   
+ATOM C1'  CH1E    0.359   
+ATOM N9   N5R    -0.540   
+ATOM C8   C5R     0.159   
+ATOM N7   N5R    -0.540   
+ATOM C5   CR56   -0.100   
+ATOM C6   C6R     0.409   
+ATOM O6   O      -0.550   
+ATOM N1   N6R    -0.770   
+ATOM C2   C6R     1.028   
+ATOM N2   NP     -0.400   
+ATOM N3   N6R    -0.710   
+ATOM C4   CR56    0.550   
+BOND PG   O1G 
+BOND PG   O2G
+BOND PG   O3G
+BOND PG   O3B
+BOND O3B  PB
+BOND PB   O1B
+BOND PB   O2B
+BOND PB   O3A
+BOND O3A  PA
+BOND PA   O1A
+BOND PA   O2A
+BOND PA   O5'
+BOND O5'  C5'
+BOND C5'  C4'
+BOND C4'  O4'
+BOND C4'  C3'
+BOND O4'  C1'
+BOND C3'  O3'
+BOND C3'  C2'
+BOND C2'  O2'
+BOND C2'  C1'
+BOND C1'  N9
+BOND N9   C8
+BOND N9   C4
+BOND C8   N7
+BOND N7   C5
+BOND C5   C6
+BOND C5   C4
+BOND C6   O6
+BOND C6   N1
+BOND N1   C2
+BOND C2   N2
+BOND C2   N3
+BOND N3   C4
+
+RESI GNP         -4.00
+ATOM PG   PO4     1.110   
+ATOM O1G  O      -0.550   
+ATOM O2G  O      -0.550   
+ATOM O3G  O      -0.550   
+ATOM N3B  OS     -0.670   
+ATOM PB   PO4     1.110   
+ATOM O1B  O      -0.550   
+ATOM O2B  O      -0.550   
+ATOM O3A  OS     -0.670   
+ATOM PA   PO4     1.110   
+ATOM O1A  O      -0.550   
+ATOM O2A  O      -0.550   
+ATOM O5'  OS     -0.670   
+ATOM C5'  CH2E    0.229   
+ATOM C4'  CH1E    0.259   
+ATOM O4'  OE     -0.370   
+ATOM C3'  CH1E    0.409   
+ATOM O3'  OT     -0.650   
+ATOM C2'  CH1E    0.408   
+ATOM O2'  OT     -0.650   
+ATOM C1'  CH1E    0.359   
+ATOM N9   N5R    -0.540   
+ATOM C8   C5R     0.159   
+ATOM N7   N5R    -0.540   
+ATOM C5   CR56   -0.100   
+ATOM C6   C6R     0.409   
+ATOM O6   O      -0.550   
+ATOM N1   N6R    -0.770   
+ATOM C2   C6R     1.028   
+ATOM N2   NP     -0.400   
+ATOM N3   N6R    -0.710   
+ATOM C4   CR56    0.550   
+BOND PG   O1G 
+BOND PG   O2G
+BOND PG   O3G
+BOND PG   N3B
+BOND N3B  PB
+BOND PB   O1B
+BOND PB   O2B
+BOND PB   O3A
+BOND O3A  PA
+BOND PA   O1A
+BOND PA   O2A
+BOND PA   O5'
+BOND O5'  C5'
+BOND C5'  C4'
+BOND C4'  O4'
+BOND C4'  C3'
+BOND O4'  C1'
+BOND C3'  O3'
+BOND C3'  C2'
+BOND C2'  O2'
+BOND C2'  C1'
+BOND C1'  N9
+BOND N9   C8
+BOND N9   C4
+BOND C8   N7
+BOND N7   C5
+BOND C5   C6
+BOND C5   C4
+BOND C6   O6
+BOND C6   N1
+BOND N1   C2
+BOND C2   N2
+BOND C2   N3
+BOND N3   C4
+
+RESI MG           2.00 
+ATOM MG   MMG      2.00    
+
+RESI MSE          0.00  !  Methionine
+GROU
+ATOM N    NP     -0.40
+ATOM H    H       0.25
+ATOM CA   CH1E    0.10
+GROU
+ATOM CB   CH2E    0.00
+GROU
+ATOM CG   CH2E    0.06
+ATOM SE   SE     -0.12
+ATOM CE   CH3E    0.06
+GROU
+ATOM C    C       0.60
+ATOM O    O      -0.55
+BOND N    CA        CA   C         C    +N        C    O         N    H
+BOND CA   CB        CB   CG        CG   SE        SE   CE
+IMPH N    -C   CA   H         C    CA   +N   O         CA   N    C    CB
+DONO  H     N
+ACCE  O     C
+IC   -C   CA   *N   H      0.0000    0.00  180.00    0.00   0.0000
+IC   -C   N    CA   C      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    +N     0.0000    0.00  180.00    0.00   0.0000
+IC   +N   CA   *C   O      0.0000    0.00  180.00    0.00   0.0000
+IC   N    CA   C    O      0.0000    0.00  180.00    0.00   0.0000 !DB fix
+IC   CA   C    +N   +CA    0.0000    0.00  180.00    0.00   0.0000
+IC   N    C    *CA  CB     0.0000    0.00  120.00    0.00   0.0000
+IC   N    CA   CB   CG     0.0000    0.00  180.00    0.00   0.0000
+IC   CA   CB   CG   SE     0.0000    0.00  180.00    0.00   0.0000
+IC   CB   CG   SE   CE     0.0000    0.00  180.00    0.00   0.0000
+
+
+RESI RIM -0.0000
+ATOM	CA	CH3E	0.0282
+ATOM	CB	CH1E	0.2265
+ATOM	NC    	NT    -0.902500
+ATOM    CD	CT	 -0.084300
+ATOM	CE1	CH2E	0.0114
+ATOM	CE2	CH2E    0.0246
+ATOM	CE3	CH2E	0.0118	
+ATOM	CF1	CH1E	-0.0135
+ATOM	CF2	CH1E	-0.0146
+ATOM	CF3	CH1E	-0.0136	
+ATOM 	CG1	CH2E	0.0122
+ATOM	CG2	CH2E	0.0131
+ATOM	CG3	CH2E	0.0106
+ATOM	 HNC1  	H       0.347600
+ATOM	 HNC2  	H       0.342500
+
+BOND CA    CB           	! dist	    1.5357
+BOND CB    NC           	! dist	    1.4890  
+BOND CB    CD           	! dist	    1.5517  
+BOND NC    HNC1         	! dist	    0.9800  
+BOND NC    HNC2         	! dist	    0.9805  
+BOND CD    CE1          	! dist	    1.5384  
+BOND CD    CE2          	! dist	    1.5411  
+BOND CD    CE3          	! dist	    1.5347  
+BOND CE1   CF1          	! dist	    1.5330  
+BOND CE2   CF2          	! dist	    1.5300  
+BOND CE3   CF3          	! dist	    1.5285  
+BOND CF1   CG1          	! dist	    1.5245  
+BOND CF1   CG3          	! dist	    1.5226  
+BOND CF2   CG1          	! dist	    1.5230  
+BOND CF2   CG2          	! dist	    1.5212  
+BOND CF3   CG2          	! dist	    1.5214  
+BOND CF3   CG3          	! dist	    1.5224  
+
+ANGL CA    CB    NC            	! angle	  109.0421  
+ANGL CA    CB    CD            	! angle	  111.9613  
+ANGL CB    NC    HNC1          	! angle	  119.8944  
+ANGL CB    NC    HNC2          	! angle	  119.9485  
+ANGL CB    CD    CE1           	! angle	  110.5312  
+ANGL CB    CD    CE2           	! angle	  111.1951  
+ANGL CB    CD    CE3           	! angle	  107.8194  
+ANGL NC    CB    CD            	! angle	  109.2896  
+ANGL CD    CE1   CF1           	! angle	  109.3525  
+ANGL CD    CE2   CF2           	! angle	  109.4758  
+ANGL CD    CE3   CF3           	! angle	  110.0076  
+ANGL CE1   CD    CE2           	! angle	  109.2707  
+ANGL CE1   CD    CE3           	! angle	  108.8290  
+ANGL CE1   CF1   CG1           	! angle	  109.6727  
+ANGL CE1   CF1   CG3           	! angle	  109.2739  
+ANGL CE2   CD    CE3           	! angle	  109.1442  
+ANGL CE2   CF2   CG1           	! angle	  108.8928  
+ANGL CE2   CF2   CG2           	! angle	  109.8070  
+ANGL CE3   CF3   CG2           	! angle	  109.0296  
+ANGL CE3   CF3   CG3           	! angle	  109.4002  
+ANGL CF1   CG1   CF2           	! angle	  110.0602  
+ANGL CF1   CG3   CF3           	! angle	  109.9444  
+ANGL CF2   CG2   CF3           	! angle	  109.9644  
+ANGL CG1   CF1   CG3           	! angle	  109.2341  
+ANGL CG1   CF2   CG2           	! angle	  109.5282  
+ANGL CG2   CF3   CG3           	! angle	  109.5724  
+ANGL HNC1  NC    HNC2          	! angle	  120.0219  
+
+DIHE CA    CB    NC    HNC1 	! dihe	 -170.6664  
+DIHE CD    CB    NC    HNC1 	! dihe	   66.6526  
+DIHE CA    CB    NC    HNC2 	! dihe	    5.1081  
+DIHE CD    CB    NC    HNC2 	! dihe	 -117.5730  
+DIHE CA    CB    CD    CE1  	! dihe	  -81.9256  
+DIHE NC    CB    CD    CE1  	! dihe	   38.9947  
+DIHE CA    CB    CD    CE2  	! dihe	   39.6222  
+DIHE NC    CB    CD    CE2  	! dihe	  160.5425  
+DIHE CA    CB    CD    CE3  	! dihe	  159.2333  
+DIHE NC    CB    CD    CE3  	! dihe	  -79.8464  
+DIHE CB    CD    CE1   CF1  	! dihe	 -178.1503  
+DIHE CE2   CD    CE1   CF1  	! dihe	   59.1716  
+DIHE CE3   CD    CE1   CF1  	! dihe	  -59.9242  
+DIHE CB    CD    CE2   CF2  	! dihe	  177.5472  
+DIHE CE1   CD    CE2   CF2  	! dihe	  -60.1723  
+DIHE CE3   CD    CE2   CF2  	! dihe	   58.7279  
+DIHE CB    CD    CE3   CF3  	! dihe	  179.5736  
+DIHE CE1   CD    CE3   CF3  	! dihe	   59.6511  
+DIHE CE2   CD    CE3   CF3  	! dihe	  -59.5238  
+DIHE CD    CE1   CF1   CG1  	! dihe	  -59.2156  
+DIHE CD    CE1   CF1   CG3  	! dihe	   60.4962  
+DIHE CD    CE2   CF2   CG1  	! dihe	   60.5986  
+DIHE CD    CE2   CF2   CG2  	! dihe	  -59.3207  
+DIHE CD    CE3   CF3   CG2  	! dihe	   60.1981  
+DIHE CD    CE3   CF3   CG3  	! dihe	  -59.6139  
+DIHE CE1   CF1   CG1   CF2  	! dihe	   60.3093  
+DIHE CG3   CF1   CG1   CF2  	! dihe	  -59.4268  
+DIHE CE1   CF1   CG3   CF3  	! dihe	  -60.4774  
+DIHE CG1   CF1   CG3   CF3  	! dihe	   59.5044  
+DIHE CE2   CF2   CG1   CF1  	! dihe	  -60.7628  
+DIHE CG2   CF2   CG1   CF1  	! dihe	   59.3291  
+DIHE CE2   CF2   CG2   CF3  	! dihe	   60.3707  
+DIHE CG1   CF2   CG2   CF3  	! dihe	  -59.1609  
+DIHE CE3   CF3   CG2   CF2  	! dihe	  -60.3711  
+DIHE CG3   CF3   CG2   CF2  	! dihe	   59.3344  
+DIHE CE3   CF3   CG3   CF1  	! dihe	   59.8788  
+DIHE CG2   CF3   CG3   CF1  	! dihe	  -59.5993  
+
+
+
+
+RESI HEC   0.00000
+GROU
+ATOM FE   FE      1.66
+ATOM NA   NP     -0.25
+ATOM NB   NP     -0.25
+ATOM NC   NP     -0.25
+ATOM ND   NP     -0.25
+GROU
+ATOM C1A  C       0.06
+ATOM CHA  CR1E    0.07
+ATOM C4D  C       0.05
+GROU
+ATOM C1B  C       0.06
+ATOM CHB  CR1E    0.07
+ATOM C4A  C       0.05
+GROU
+ATOM C1C  C       0.06
+ATOM CHC  CR1E    0.07
+ATOM C4B  C       0.05
+GROU
+ATOM C1D  C       0.06
+ATOM CHD  CR1E    0.07
+ATOM C4C  C       0.05
+GROU
+ATOM C2A  C      -0.01
+ATOM CAA  CH2E    0.05
+GROU
+ATOM C3A  C       0.03
+ATOM CMA  CH3E   -0.03
+GROU
+ATOM CBA  CH2E   -0.07
+ATOM CGA  C       0.33
+ATOM O1A  OC     -0.47
+ATOM O2A  OC     -0.47
+GROU
+ATOM C2B  C       0.03
+ATOM CMB  CH3E   -0.03
+GROU
+ATOM C3B  C      -0.02
+ATOM CAB  CR1E    0.06
+ATOM CBB  CH2E   -0.07
+GROU
+ATOM C2C  C       0.03
+ATOM CMC  CH3E   -0.03
+GROU
+ATOM C3C  C      -0.02
+ATOM CAC  CR1E    0.06
+ATOM CBC  CH2E   -0.07
+GROU
+ATOM C2D  C       0.03
+ATOM CMD  CH3E   -0.03
+GROU
+ATOM C3D  C      -0.03
+ATOM CAD  CH2E    0.03
+GROU
+ATOM CBD  CH2E   -0.07
+ATOM CGD  C       0.33
+ATOM O1D  OC     -0.47
+ATOM O2D  OC     -0.47
+BOND FE   NA        FE   NB        FE   NC        FE   ND        NA   C1A
+BOND C1A  C2A       C2A  C3A       C3A  C4A       NA   C4A       C2A  CAA
+BOND CAA  CBA       CBA  CGA       CGA  O1A       CGA  O2A       C3A  CMA
+BOND CHB  C4A       CHB  C1B       NB   C1B       C1B  C2B       C2B  C3B
+BOND C3B  C4B       NB   C4B       C2B  CMB       C3B  CAB       CAB  CBB
+BOND CHC  C4B       CHC  C1C       NC   C1C       C1C  C2C       C2C  C3C
+BOND C3C  C4C       NC   C4C       C2C  CMC       C3C  CAC       CAC  CBC
+BOND CHD  C4C       CHD  C1D       ND   C1D       C1D  C2D       C2D  C3D
+BOND C3D  C4D       ND   C4D       C2D  CMD       C3D  CAD       CAD  CBD
+BOND CBD  CGD       CGD  O1D       CGD  O2D       CHA  C4D       CHA  C1A
+DIHE NA   C4A  CHB  C1B       C4A  CHB  C1B  NB        NB   C4B  CHC  C1C
+DIHE C4B  CHC  C1C  NC        NC   C4C  CHD  C1D       C4C  CHD  C1D  ND
+DIHE ND   C4D  CHA  C1A       C4D  CHA  C1A  NA        C1A  C2A  CAA  CBA
+DIHE C2A  CAA  CBA  CGA       CAA  CBA  CGA  O1A       C2B  C3B  CAB  CBB
+DIHE C2C  C3C  CAC  CBC       C2D  C3D  CAD  CBD       C3D  CAD  CBD  CGD
+DIHE CAD  CBD  CGD  O1D
+IMPH FE   C1A  C4A  NA        FE   C1B  C4B  NB        FE   C1C  C4C  NC
+IMPH FE   C1D  C4D  ND        CHA  NA   C2A  C1A       CHB  NA   C3A  C4A
+IMPH CHB  NB   C2B  C1B       CHC  NB   C3B  C4B       CHC  NC   C2C  C1C
+IMPH CHD  NC   C3C  C4C       CHD  ND   C2D  C1D       CHA  ND   C3D  C4D
+IMPH C2A  C1A  C3A  CAA       C3A  C2A  C4A  CMA       C2B  C1B  C3B  CMB
+IMPH C3B  C2B  C4B  CAB       C2C  C1C  C3C  CMC       C3C  C2C  C4C  CAC
+IMPH C2D  C1D  C3D  CMD       C3D  C2D  C4D  CAD       CBA  O1A  O2A  CGA
+IMPH CBD  O1D  O2D  CGD
+ACCE NA
+ACCE O1A CGA
+ACCE O2A CGA
+ACCE NB
+ACCE NC
+ACCE ND
+ACCE O1D CGD
+ACCE O2D CGD
+PATC  FIRS NONE LAST NONE
+
+
+
+RESI HEM   0.00000
+GROU
+ATOM FE   FE      1.66
+ATOM NA   NP     -0.25
+ATOM NB   NP     -0.25
+ATOM NC   NP     -0.25
+ATOM ND   NP     -0.25
+GROU
+ATOM C1A  C       0.06
+ATOM CHA  CR1E    0.07
+ATOM C4D  C       0.05
+GROU
+ATOM C1B  C       0.06
+ATOM CHB  CR1E    0.07
+ATOM C4A  C       0.05
+GROU
+ATOM C1C  C       0.06
+ATOM CHC  CR1E    0.07
+ATOM C4B  C       0.05
+GROU
+ATOM C1D  C       0.06
+ATOM CHD  CR1E    0.07
+ATOM C4C  C       0.05
+GROU
+ATOM C2A  C      -0.01
+ATOM CAA  CH2E    0.05
+GROU
+ATOM C3A  C       0.03
+ATOM CMA  CH3E   -0.03
+GROU
+ATOM CBA  CH2E   -0.07
+ATOM CGA  C       0.33
+ATOM O1A  OC     -0.47
+ATOM O2A  OC     -0.47
+GROU
+ATOM C2B  C       0.03
+ATOM CMB  CH3E   -0.03
+GROU
+ATOM C3B  C      -0.02
+ATOM CAB  CR1E    0.06
+ATOM CBB  CH2E   -0.07
+GROU
+ATOM C2C  C       0.03
+ATOM CMC  CH3E   -0.03
+GROU
+ATOM C3C  C      -0.02
+ATOM CAC  CR1E    0.06
+ATOM CBC  CH2E   -0.07
+GROU
+ATOM C2D  C       0.03
+ATOM CMD  CH3E   -0.03
+GROU
+ATOM C3D  C      -0.03
+ATOM CAD  CH2E    0.03
+GROU
+ATOM CBD  CH2E   -0.07
+ATOM CGD  C       0.33
+ATOM O1D  OC     -0.47
+ATOM O2D  OC     -0.47
+BOND FE   NA        FE   NB        FE   NC        FE   ND        NA   C1A
+BOND C1A  C2A       C2A  C3A       C3A  C4A       NA   C4A       C2A  CAA
+BOND CAA  CBA       CBA  CGA       CGA  O1A       CGA  O2A       C3A  CMA
+BOND CHB  C4A       CHB  C1B       NB   C1B       C1B  C2B       C2B  C3B
+BOND C3B  C4B       NB   C4B       C2B  CMB       C3B  CAB       CAB  CBB
+BOND CHC  C4B       CHC  C1C       NC   C1C       C1C  C2C       C2C  C3C
+BOND C3C  C4C       NC   C4C       C2C  CMC       C3C  CAC       CAC  CBC
+BOND CHD  C4C       CHD  C1D       ND   C1D       C1D  C2D       C2D  C3D
+BOND C3D  C4D       ND   C4D       C2D  CMD       C3D  CAD       CAD  CBD
+BOND CBD  CGD       CGD  O1D       CGD  O2D       CHA  C4D       CHA  C1A
+DIHE NA   C4A  CHB  C1B       C4A  CHB  C1B  NB        NB   C4B  CHC  C1C
+DIHE C4B  CHC  C1C  NC        NC   C4C  CHD  C1D       C4C  CHD  C1D  ND
+DIHE ND   C4D  CHA  C1A       C4D  CHA  C1A  NA        C1A  C2A  CAA  CBA
+DIHE C2A  CAA  CBA  CGA       CAA  CBA  CGA  O1A       C2B  C3B  CAB  CBB
+DIHE C2C  C3C  CAC  CBC       C2D  C3D  CAD  CBD       C3D  CAD  CBD  CGD
+DIHE CAD  CBD  CGD  O1D
+IMPH FE   C1A  C4A  NA        FE   C1B  C4B  NB        FE   C1C  C4C  NC
+IMPH FE   C1D  C4D  ND        CHA  NA   C2A  C1A       CHB  NA   C3A  C4A
+IMPH CHB  NB   C2B  C1B       CHC  NB   C3B  C4B       CHC  NC   C2C  C1C
+IMPH CHD  NC   C3C  C4C       CHD  ND   C2D  C1D       CHA  ND   C3D  C4D
+IMPH C2A  C1A  C3A  CAA       C3A  C2A  C4A  CMA       C2B  C1B  C3B  CMB
+IMPH C3B  C2B  C4B  CAB       C2C  C1C  C3C  CMC       C3C  C2C  C4C  CAC
+IMPH C2D  C1D  C3D  CMD       C3D  C2D  C4D  CAD       CBA  O1A  O2A  CGA
+IMPH CBD  O1D  O2D  CGD
+ACCE NA
+ACCE O1A CGA
+ACCE O2A CGA
+ACCE NB
+ACCE NC
+ACCE ND
+ACCE O1D CGD
+ACCE O2D CGD
+PATC  FIRS NONE LAST NONE
+ 
+
+RESI AMD  0.000
+GROUP
+ATOM C1    CH1E    0.426653
+ATOM C2    CH2E   -0.297766
+ATOM C3    CH1E    0.426653
+ATOM C4    CH2E    -0.29776
+ATOM C5    CH1E    0.426653
+ATOM C6    CH2E   -0.297766
+ATOM C7    CH2E    -0.32135
+ATOM C8    CT      0.976703
+ATOM N1    NT     -1.129448
+ATOM C9    CH2E    -0.32135
+ATOM C10   CH2E    -0.32135
+ATOM H12   H       0.365069
+ATOM H13   H       0.365069
+
+BOND C1    C2           	! dist	    1.5429
+BOND C1    C6           	! dist	    1.5226
+BOND C1    C9           	! dist	    1.5863
+BOND C2    C3           	! dist	    1.5976
+BOND C3    C4           	! dist	    1.5647
+BOND C3    C10          	! dist	    1.5940
+BOND C4    C5           	! dist	    1.5545
+BOND C5    C6           	! dist	    1.5888
+BOND C5    C7           	! dist	    1.6067
+BOND C7    C8           	! dist	    1.5533
+BOND C8    N1           	! dist	    1.5390
+BOND C8    C9           	! dist	    1.5993
+BOND C8    C10          	! dist	    1.5305
+BOND N1    H12          	! dist	    1.1197
+BOND N1    H13          	! dist	    1.1196
+
+ANGL C1    C2    C3            	! angle	  111.1112
+ANGL C1    C6    C5            	! angle	  107.6620
+ANGL C1    C9    C8            	! angle	  115.6590
+ANGL C2    C1    C6            	! angle	  104.8547
+ANGL C2    C1    C9            	! angle	  107.1044
+ANGL C2    C3    C4            	! angle	  107.6548
+ANGL C2    C3    C10           	! angle	  118.3317
+ANGL C3    C4    C5            	! angle	  105.3411
+ANGL C3    C10   C8            	! angle	  105.1404
+ANGL C4    C3    C10           	! angle	  107.5762
+ANGL C4    C5    C6            	! angle	  109.6014
+ANGL C4    C5    C7            	! angle	  104.7225
+ANGL C5    C7    C8            	! angle	  111.1617
+ANGL C6    C1    C9            	! angle	  110.9050
+ANGL C6    C5    C7            	! angle	  116.9895
+ANGL C7    C8    N1            	! angle	  116.2277
+ANGL C7    C8    C9            	! angle	  103.2819
+ANGL C7    C8    C10           	! angle	  103.0871
+ANGL C8    N1    H12           	! angle	  109.4641
+ANGL C8    N1    H13           	! angle	  109.4802
+ANGL N1    C8    C9            	! angle	  112.3829
+ANGL N1    C8    C10           	! angle	  104.4884
+ANGL C9    C8    C10           	! angle	  117.5128
+ANGL H12   N1    H13           	! angle	  109.4383
+
+DIHE C6    C1    C2    C3   	! dihe	   64.4041
+DIHE C9    C1    C2    C3   	! dihe	  -53.4913
+DIHE C2    C1    C6    C5   	! dihe	  -64.6066
+DIHE C9    C1    C6    C5   	! dihe	   50.6729
+DIHE C2    C1    C9    C8   	! dihe	   51.6097
+DIHE C6    C1    C9    C8   	! dihe	  -62.2610
+DIHE C1    C2    C3    C4   	! dihe	  -63.4537
+DIHE C1    C2    C3    C10  	! dihe	   58.6617
+DIHE C2    C3    C4    C5   	! dihe	   60.0614
+DIHE C10   C3    C4    C5   	! dihe	  -68.4916
+DIHE C2    C3    C10   C8   	! dihe	  -50.3109
+DIHE C4    C3    C10   C8   	! dihe	   71.8442
+DIHE C3    C4    C5    C6   	! dihe	  -63.8688
+DIHE C3    C4    C5    C7   	! dihe	   62.4069
+DIHE C4    C5    C6    C1   	! dihe	   68.1069
+DIHE C7    C5    C6    C1   	! dihe	  -50.8471
+DIHE C4    C5    C7    C8   	! dihe	  -65.4654
+DIHE C6    C5    C7    C8   	! dihe	   56.0738
+DIHE C5    C7    C8    N1   	! dihe	 -178.6381
+DIHE C5    C7    C8    C9   	! dihe	  -55.1021
+DIHE C5    C7    C8    C10  	! dihe	   67.7297
+DIHE C7    C8    N1    H12  	! dihe	  169.3417
+DIHE C9    C8    N1    H12  	! dihe	   50.6650
+DIHE C10   C8    N1    H12  	! dihe	  -77.8273
+DIHE C7    C8    N1    H13  	! dihe	  -70.6975
+DIHE C9    C8    N1    H13  	! dihe	  170.6258
+DIHE C10   C8    N1    H13  	! dihe	   42.1335
+DIHE C7    C8    C9    C1   	! dihe	   61.6076
+DIHE N1    C8    C9    C1   	! dihe	 -172.3561
+DIHE C10   C8    C9    C1   	! dihe	  -51.0530
+DIHE C7    C8    C10   C3   	! dihe	  -67.6373
+DIHE N1    C8    C10   C3   	! dihe	  170.4451
+DIHE C9    C8    C10   C3   	! dihe	   45.1323
+
+RESI TES   0.000
+GROUP
+ATOM C1    ZC3     0.018900
+ATOM C2    ZC3     0.091500
+ATOM C3    ZC2     0.081500
+ATOM O4    ZOH    -0.509300
+ATOM C5    ZC2    -0.152800
+ATOM C6    ZC3     0.047200
+ATOM C7    ZC3     0.015700
+ATOM C8    ZC3     0.007000
+ATOM C9    ZC3     0.008600
+ATOM C10   ZC3    -0.003200
+ATOM C11   ZC3    -0.037200
+ATOM C21   ZC3     0.026301
+ATOM C12   ZC3     0.008100
+ATOM C13   ZC3     0.029000
+ATOM C14   ZC3    -0.083400
+ATOM C15   ZC3    -0.015800
+ATOM C16   ZC3     0.015700
+ATOM C17   ZC3    -0.017100
+ATOM C18   ZC3     0.221200
+ATOM O19   ZOH    -0.590300
+ATOM C20   ZC3     0.025399
+ATOM H26   ZHO     0.414400
+ATOM H45   ZHO     0.398700
+
+BOND C1    C2                   ! dist      1.5410
+BOND C1    C11                  ! dist      1.5545
+BOND C2    C3                   ! dist      1.5060
+BOND C3    O4                   ! dist      1.4381
+BOND C3    C5                   ! dist      1.3397
+BOND O4    H26                  ! dist      1.0587
+BOND C5    C6                   ! dist      1.5084
+BOND C6    C7                   ! dist      1.5368
+BOND C6    C11                  ! dist      1.5612
+BOND C7    C8                   ! dist      1.5315
+BOND C8    C9                   ! dist      1.5386
+BOND C9    C10                  ! dist      1.5642
+BOND C9    C15                  ! dist      1.5428
+BOND C10   C11                  ! dist      1.5689
+BOND C10   C12                  ! dist      1.5534
+BOND C11   C21                  ! dist      1.5513
+BOND C12   C13                  ! dist      1.5407
+BOND C13   C14                  ! dist      1.5435
+BOND C14   C15                  ! dist      1.5404
+BOND C14   C18                  ! dist      1.5417
+BOND C14   C20                  ! dist      1.5537
+BOND C15   C16                  ! dist      1.5268
+BOND C16   C17                  ! dist      1.5330
+BOND C17   C18                  ! dist      1.5386
+BOND C18   O19                  ! dist      1.4471
+BOND O19   H45                  ! dist      1.0359
+
+ANGL C1    C2    C3             ! angle   115.8239
+ANGL C1    C11   C6             ! angle   105.5498
+ANGL C1    C11   C10            ! angle   111.4426
+ANGL C1    C11   C21            ! angle   108.5652
+ANGL C2    C1    C11            ! angle   114.4814
+ANGL C2    C3    O4             ! angle   117.1275
+ANGL C2    C3    C5             ! angle   121.9361
+ANGL C3    O4    H26            ! angle   115.8804
+ANGL C3    C5    C6             ! angle   121.6726
+ANGL O4    C3    C5             ! angle   120.8209
+ANGL C5    C6    C7             ! angle   112.7408
+ANGL C5    C6    C11            ! angle   113.6173
+ANGL C6    C7    C8             ! angle   110.8817
+ANGL C6    C11   C10            ! angle   107.9305
+ANGL C6    C11   C21            ! angle   111.9075
+ANGL C7    C6    C11            ! angle   113.3889
+ANGL C7    C8    C9             ! angle   112.5817
+ANGL C8    C9    C10            ! angle   111.3927
+ANGL C8    C9    C15            ! angle   111.8174
+ANGL C9    C10   C11            ! angle   112.9347
+ANGL C9    C10   C12            ! angle   112.5245
+ANGL C9    C15   C14            ! angle   113.4773
+ANGL C9    C15   C16            ! angle   120.8512
+ANGL C10   C9    C15            ! angle   109.5017
+ANGL C10   C11   C21            ! angle   111.3217
+ANGL C10   C12   C13            ! angle   114.0944
+ANGL C11   C10   C12            ! angle   115.5928
+ANGL C12   C13   C14            ! angle   112.2630
+ANGL C13   C14   C15            ! angle   107.5921
+ANGL C13   C14   C18            ! angle   114.9634
+ANGL C13   C14   C20            ! angle   109.7620
+ANGL C14   C15   C16            ! angle   104.4985
+ANGL C14   C18   C17            ! angle   105.1825
+ANGL C14   C18   O19            ! angle   115.1319
+ANGL C15   C14   C18            ! angle    99.5004
+ANGL C15   C14   C20            ! angle   114.6995
+ANGL C15   C16   C17            ! angle   104.2787
+ANGL C16   C17   C18            ! angle   106.3234
+ANGL C17   C18   O19            ! angle   114.5651
+ANGL C18   C14   C20            ! angle   110.1186
+ANGL C18   O19   H45            ! angle   110.8079
+
+DIHE C11   C1    C2    C3       ! dihe    -31.8902
+DIHE C2    C1    C11   C6       ! dihe     54.4186
+DIHE C2    C1    C11   C10      ! dihe    171.3300
+DIHE C2    C1    C11   C21      ! dihe    -65.7139
+DIHE C1    C2    C3    O4       ! dihe   -178.2809
+DIHE C1    C2    C3    C5       ! dihe      5.5974
+DIHE C2    C3    O4    H26      ! dihe   -178.3276
+DIHE C5    C3    O4    H26      ! dihe     -2.1602
+DIHE C2    C3    C5    C6       ! dihe     -6.3207
+DIHE O4    C3    C5    C6       ! dihe    177.6989
+DIHE C3    C5    C6    C7       ! dihe    163.5824
+DIHE C3    C5    C6    C11      ! dihe     32.8105
+DIHE C5    C6    C7    C8       ! dihe    172.0867
+DIHE C11   C6    C7    C8       ! dihe    -57.0265
+DIHE C5    C6    C11   C1       ! dihe    -54.3114
+DIHE C7    C6    C11   C1       ! dihe    175.2386
+DIHE C5    C6    C11   C10      ! dihe   -173.5777
+DIHE C7    C6    C11   C10      ! dihe     55.9723
+DIHE C5    C6    C11   C21      ! dihe     63.5999
+DIHE C7    C6    C11   C21      ! dihe    -66.8501
+DIHE C6    C7    C8    C9       ! dihe     54.3008
+DIHE C7    C8    C9    C10      ! dihe    -52.8154
+DIHE C7    C8    C9    C15      ! dihe   -175.7054
+DIHE C8    C9    C10   C11      ! dihe     53.5733
+DIHE C15   C9    C10   C11      ! dihe    177.7802
+DIHE C8    C9    C10   C12      ! dihe   -173.3273
+DIHE C15   C9    C10   C12      ! dihe    -49.1205
+DIHE C8    C9    C15   C14      ! dihe   -177.8079
+DIHE C10   C9    C15   C14      ! dihe     58.2339
+DIHE C8    C9    C15   C16      ! dihe    -52.5411
+DIHE C10   C9    C15   C16      ! dihe   -176.4994
+DIHE C9    C10   C11   C1       ! dihe   -169.3153
+DIHE C12   C10   C11   C1       ! dihe     59.0886
+DIHE C9    C10   C11   C6       ! dihe    -53.8604
+DIHE C12   C10   C11   C6       ! dihe    174.5435
+DIHE C9    C10   C11   C21      ! dihe     69.3194
+DIHE C12   C10   C11   C21      ! dihe    -62.2767
+DIHE C9    C10   C12   C13      ! dihe     47.4404
+DIHE C11   C10   C12   C13      ! dihe    179.2295
+DIHE C10   C12   C13   C14      ! dihe    -51.6211
+DIHE C12   C13   C14   C15      ! dihe     56.3996
+DIHE C12   C13   C14   C18      ! dihe    166.1912
+DIHE C12   C13   C14   C20      ! dihe    -69.0303
+DIHE C13   C14   C15   C9       ! dihe    -61.5270
+DIHE C18   C14   C15   C9       ! dihe    178.3430
+DIHE C20   C14   C15   C9       ! dihe     60.9019
+DIHE C13   C14   C15   C16      ! dihe    164.8587
+DIHE C18   C14   C15   C16      ! dihe     44.7288
+DIHE C20   C14   C15   C16      ! dihe    -72.7124
+DIHE C13   C14   C18   C17      ! dihe   -153.4583
+DIHE C15   C14   C18   C17      ! dihe    -38.8806
+DIHE C20   C14   C18   C17      ! dihe     81.9501
+DIHE C13   C14   C18   O19      ! dihe     79.4490
+DIHE C15   C14   C18   O19      ! dihe   -165.9733
+DIHE C20   C14   C18   O19      ! dihe    -45.1426
+DIHE C9    C15   C16   C17      ! dihe   -162.9158
+DIHE C14   C15   C16   C17      ! dihe    -33.5866
+DIHE C15   C16   C17   C18      ! dihe      8.5478
+DIHE C16   C17   C18   C14      ! dihe     19.4248
+DIHE C16   C17   C18   O19      ! dihe    146.8625
+DIHE C14   C18   O19   H45      ! dihe     77.8714
+DIHE C17   C18   O19   H45      ! dihe    -44.3031
+
+IMPH C5    C2    C3    O4
+
+END 

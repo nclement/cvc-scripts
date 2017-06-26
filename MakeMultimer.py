@@ -42,6 +42,7 @@ Options:
 -c <n>, --renamechains=<n>: Give every <n>th copy of a chain a new name
 -r <n>, --renumberresidues=<n>: Add <n> as offset to the residue numbers
       of successive copies of chains sharing the same name
+-n <n>, --num_mat=<n>: number of biomarkers to process (default: all records)
 '''
 
 def tableFormat(titleList, dataLists, rowJoiner='  '):
@@ -424,16 +425,19 @@ class PdbReplicator(object):
 
         bm_marker = 'BIOMOLECULE:'
 
+        num_mat = 0
+        max_mat = options["num_mat"]
         for line in bm_lines:
             if line.startswith(bm_marker): # start new group ?
                                            # somehow parsing this again seems redundant.
                                            # need to figure it out some more.
                 in_group = True
-                if group:
+                num_mat = num_mat + 1
+                if group and (max_mat == -1 or num_mat <= max_mat):
                     biomolecules.append(
                         BioMolecule(group, self.originalchains, self.options))
                     group = []
-            if in_group and line.strip():
+            if in_group and line.strip() and (max_mat == -1 or num_mat <= max_mat):
                 group.append(line)
 
         if group:
@@ -511,17 +515,19 @@ if __name__ == '__main__':
         nowater = False,
         nohetatm = False,
         renamechains = 0,
-        renumberresidues = 0
+        renumberresidues = 0,
+        num_mat = -1
     )
 
     try:
-        keyopts, args = getopt.getopt(sys.argv[1:], "hbwec:r:",
+        keyopts, args = getopt.getopt(sys.argv[1:], "hbwec:r:n:",
          ["help",
           "backbone",
           "nowater",
           "nohetatm",
           "renamechains=",
-          "renumberresidues="
+          "renumberresidues=",
+          "num_mat="
           ])
 
     except getopt.GetoptError:
@@ -548,6 +554,11 @@ if __name__ == '__main__':
                 options['renumberresidues'] = int(value)
             except ValueError:
                 sys.exit("option '--renumberresidues' must be number >= 0")
+        elif option in ('-n', '--num_mat'):
+            try:
+                options['num_mat'] = int(value)
+            except ValueError:
+                sys.exit("option '--num_mat' must be number >= 0")
 
     # print options, args
     if not args:
