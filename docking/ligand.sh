@@ -1,5 +1,6 @@
 DOCKING_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 SCRIPTS_DIR=${DOCKING_SCRIPTS_DIR}/../
+HBOND_DIR=$SCRIPTS_DIR/hbond
 source ${SCRIPTS_DIR}/Makefile.def
 
 #MolSurf=/work/01872/nclement/MolSurf/release/bin/MolSurf
@@ -10,12 +11,27 @@ FIXPQR=${SCRIPTS_DIR}/fix_pqr.pl
 LIGAND=$1
 QUALITY=${2:-256}
 
-	j=$(echo "$LIGAND" | sed s/\.pdb$/.pqr/g)
-	k=$(echo "$LIGAND" | sed s/\.pdb$/.f2d/g)
-	l=$(echo "$LIGAND" | sed s/\.pdb$/.raw/g)
-	m=$(echo "$LIGAND" | sed s/\.pdb$/.txt/g)
-	n=$(echo "$LIGAND" | sed s/\.pdb$/.rawn/g)
-	o=$(echo "$LIGAND" | sed s/\.pdb$/.quad/g)
+	j=$(echo "$LIGAND" | sed s/\.pdb$/.pqr/)
+	k=$(echo "$LIGAND" | sed s/\.pdb$/.f2d/)
+	l=$(echo "$LIGAND" | sed s/\.pdb$/.raw/)
+	m=$(echo "$LIGAND" | sed s/\.pdb$/.txt/)
+	n=$(echo "$LIGAND" | sed s/\.pdb$/.rawn/)
+	o=$(echo "$LIGAND" | sed s/\.pdb$/.quad/)
+
+# If we're going to be using hbond filter, need to do some other stuff.
+if [ $USE_HBOND ]; then
+  # Will create new files called *_pnon.{pdb,psf}
+  PMIN=${LIGAND%.pdb}_pnon.pdb
+  PMIN_PSF=${PMIN%.pdb}.psf
+  PMIN_MOL2=${PMIN%.pdb}.mol2
+  NO_TEST=true $HBOND_DIR/runHbondSingle.sh $LIGAND
+  # Change the inputs to be the outputs of hbond.
+  mv $PMIN $LIGAND
+  mv $PMIN_PSF ${LIGAND%.pdb}.psf
+  mv $PMIN_MOL2 ${LIGAND%.pdb}.mol2
+else
+  echo "Not using hbond filter [$USE_HBOND]"
+fi
 
 if [ ! -f $j ]; then
 	echo "generating pqr $LIGAND to $j"

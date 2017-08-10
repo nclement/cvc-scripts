@@ -4,7 +4,8 @@
 #
 # https://svn.ices.utexas.edu/repos/cvc/trunk/MolSurf/
 # /work/01872/nclement/MolSurf/release/bin/MolSurf
-MolSurf=/work/01872/nclement/MolSurf/release/bin/MolSurf
+MOLSURF_BIN=/work/01872/nclement/MolSurf/release/bin/
+MolSurf=$MOLSURF_BIN/MolSurf
 # https://svn.ices.utexas.edu/repos/cvc/trunk/MolEnergy/
 # /work/01872/nclement/MolEnergy/release/bin/MolEnergy
 MolEnergy=/work/01872/nclement/MolEnergy/release/bin/MolEnergy
@@ -13,7 +14,8 @@ GPUEnergy=/work/01872/nclement/OPARef
 # https://svn.ices.utexas.edu/repos/cvc/branches/TexMol-Qt4/
 TEXMOL_QT4=/work/01872/nclement/TexMol-Qt4/release/bin/TexMol
 # https://svn.ices.utexas.edu/repos/cvc/trunk/F2Dock-refactored/
-F2DOCK_REFACTORED=/work/01872/nclement/cvc_fresh/F2Dock-refactored/Release/bin/F2Dock
+F2DOCK_REFACTORED_BIN=/work/01872/nclement/F2Dock-refactored/release/bin/
+F2DOCK_REFACTORED=${F2DOCK_REFACTORED_BIN}/F2Dock
 # A previous version of F2Dock
 F2DOCK_PREV=/work/01872/nclement/F2Dock_prev/src/runF2Dock.sh
 # https://svn.ices.utexas.edu/repos/cvc/branches/F3Dock/
@@ -49,3 +51,10 @@ MGL_DIR=/work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6
 #
 # Download from http://dunbrack.fccc.edu/scwrl4/SCWRL4.php
 SCWRL4=/work/01872/nclement/software/Scwrl4/Scwrl4
+#
+# Download from https://openbabel.org/docs/dev/Installation/install.html
+OBABEL=/opt/apps/openbabel/2.3.2/bin/babel
+#
+# Download from https://www.charmm.org/charmm/
+#CHARMM=/org/centers/cvc/software/c7/builds/charmm/charmm
+CHARMM=/work/01872/nclement/software/charmm/exec/gnu/charmm

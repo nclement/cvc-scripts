@@ -5,7 +5,7 @@
 #
 # This is done as follows:
 #  - Find all residues of A within X\AA of B
-#  - Align A with A'
+#  - Align A with A' along contact RMSD atoms
 #  - Compute RMSD over all Ca atoms
 
 protA=$1  # Original protein

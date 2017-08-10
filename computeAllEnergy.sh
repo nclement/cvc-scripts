@@ -15,6 +15,20 @@ PDB=`basename $PDB_full`
 SIZE=$2
 PB=$3
 
+# Can define JUST_GB if you want to finish if you've already computed
+# enough information for the GB energy.
+if [ -n ${JUST_GB+x} ]; then
+  if [ -f OUT/${PDB}-disp.out ]; then
+    if grep -q "G_disp" OUT/${PDB}-disp.out ; then
+      echo "Already finished with protein $PDB";
+      exit 1
+    else
+      # Otherwise, remove the pqr and start over from scratch
+      rm PQR/${PDB}.pqr
+    fi
+  fi
+fi
+
 mkdir -p OUT
 mkdir -p INP
 mkdir -p PQR

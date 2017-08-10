@@ -1,34 +1,45 @@
+#! /bin/bash
+
 HBOND_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 SCRIPTS_DIR="$HBOND_SCRIPTS_DIR/../"
 source $SCRIPTS_DIR/Makefile.def
 
 PDB=$1
-CHAINS=${2:-?}
 
-	echo "Processing ${PDB}..."
-  lc_PDB=$(echo $PDB | perl -ne 'print lc')
-  if [ $lc_PDB != $PDB ]; then 
-    echo "WARNING: PDB file should be lower case!!!"
-    cp $PDB $lc_PDB
-    PDB=$lc_PDB
-  fi
+# If you just want to generate the input files and not generate the hydrogen
+# bonds, you can do so by setting NO_TEST, like:
+#
+#   NO_TEST=true runHbondSingle.sh myprot.pdb
+#
 
-	CPDB=$(echo "${PDB}" | sed s/\.pdb$/_cmin.pdb/g)
-	PSF=$(echo "${PDB}" | sed s/\.pdb$/_cmin.psf/g)
-	MOL=$(echo "${PDB}" | sed s/\.pdb$/_cmin.mol2/g)
-	BASE=$(echo "${PDB}" | sed s/\.pdb$//g)
-	HBOND=$(echo "${PDB}" | sed s/\.pdb$/.hbond/g)
-	OUT=$(echo "${PDB}" | sed s/\.pdb$/.out/g)
+echo "Processing ${PDB}..."
 
-	echo "perl ./pdbprep.pl ${PDB}"
-	perl $HBOND_SCRIPTS_DIR/pdbprep.pl ${PDB} 
+# Make sure these stay the same:
+RTF=$HBOND_SCRIPTS_DIR/prms/pdbamino.rtf
+PRM=${HBOND_SCRIPTS_DIR}/prms/parm.prm
+ATM_PRM=${HBOND_SCRIPTS_DIR}/prms/atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec
 
-	echo "perl ./pdbchm.pl ${BASE} $CHAINS"
-	perl $HBOND_SCRIPTS_DIR/pdbchm.pl ${BASE} $CHAINS --rtf=${HBOND_SCRIPTS_DIR}/pdbamino.rtf --prm=${HBOND_SCRIPTS_DIR}/parm.prm --charmm=${CHARMM}
+BASE=$(echo $PDB | sed s/\.pdb$//)
+PNON=$(echo "${PDB}" | sed s/\.pdb$/_pnon.pdb/)
+PSF=$(echo "${PDB}" | sed s/\.pdb$/_pnon.psf/)
+MOL2=$(echo "${PDB}" | sed s/\.pdb$/_pnon.mol2/)
+HBOND=$(echo "${PDB}" | sed s/\.pdb$/_pnon.hbond/)
+OUT=$(echo "${PDB}" | sed s/\.pdb$/_pnon.out/)
 
-	echo "obabel -ipdb ${CPDB} -omol2 -O ${MOL}"
-	$OBABEL -ipdb ${CPDB} -omol2 -O ${MOL} > /dev/null
+# Creates ${BASE}_pnon.pdb
+echo $HBOND_SCRIPTS_DIR/protein_prep/prepare.py $PDB
+$HBOND_SCRIPTS_DIR/protein_prep/prepare.py $PDB
 
-	#echo "testHbond ${CPDB} ${PSF} parm.prm pdbamino.rtf empty.pdb atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec ${MOL} > ${OUT}"
-	echo ${F2DOCK_REFACTORED_BIN}/testHbond ${CPDB} ${HBOND} ${PSF} ${HBOND_SCRIPTS_DIR}/parm.prm ${HBOND_SCRIPTS_DIR}/pdbamino.rtf ${HBOND_SCRIPTS_DIR}/empty.pdb ${HBOND_SCRIPTS_DIR}/atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec ${MOL} \> ${OUT}
-	${F2DOCK_REFACTORED_BIN}/testHbond ${CPDB} ${HBOND} ${PSF} ${HBOND_SCRIPTS_DIR}/parm.prm ${HBOND_SCRIPTS_DIR}/pdbamino.rtf ${HBOND_SCRIPTS_DIR}/empty.pdb ${HBOND_SCRIPTS_DIR}/atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec ${MOL}
+# Creates $PSF
+echo $HBOND_SCRIPTS_DIR/create_psf/create_psf ${PNON} ${RTF} ${PSF}
+$HBOND_SCRIPTS_DIR/create_psf/create_psf ${PNON} ${RTF} ${PSF}
+
+# Creates .mol2
+echo $OBABEL ${PNON} $MOL2 \&\> ${OUT}.obabel
+$OBABEL ${PNON} $MOL2 &> ${OUT}.obabel
+	
+# If this hasn't been set, run the test.
+if [ -z ${NO_TEST+x} ]; then
+  echo ${F2DOCK_REFACTORED_BIN}/testHbond ${PNON} ${HBOND} ${PSF} ${PRM} ${RTF} ${HBOND_SCRIPTS_DIR}/empty.pdb ${ATM_PRM} ${MOL2} \> ${OUT}
+  ${F2DOCK_REFACTORED_BIN}/testHbond ${PNON} ${HBOND} ${PSF} ${PRM} ${RTF} ${HBOND_SCRIPTS_DIR}/empty.pdb ${ATM_PRM} ${MOL2} > ${OUT}
+fi

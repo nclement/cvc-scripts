@@ -1,0 +1,6 @@
+[submodule "hbond/create_psf"]
+	path = hbond/create_psf
+	url = https://github.com/Acpharis/create_psf
+[submodule "hbond/pdb_utils"]
+	path = hbond/pdb_utils
+	url = https://github.com/Acpharis/pdb_utils
