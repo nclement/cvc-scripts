@@ -1,8 +1,9 @@
 
 DOCKING_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
-source $DOCKING_SCRIPTS_DIR/../Makefile.def
+SCRIPTS_DIR=$DOCKING_SCRIPTS_DIR/../
+source $SCRIPTS_DIR/Makefile.def
 
-HBOND_SCRIPTS_DIR=$DOCKING_SCRIPTS_DIR/../hbond
+HBOND_SCRIPTS_DIR=$SCRIPTS_DIR/hbond
 
 LIGAND=${DOCKING_SCRIPTS_DIR}/ligand.sh
 RECEPTOR=${DOCKING_SCRIPTS_DIR}/receptor.sh
@@ -37,6 +38,13 @@ RMSD_ATOMS=$4 # Optional, for adding RMSD. Should be ligand (moving) RMSD atoms
 #      do:
 #        HBOND_FILTER=true dock_both.sh LIGAND RECEPTOR OUT RMSD_ATOMS
 #      Values are 'true' or 'false' (or not defined)
+#   RMSD_ATOMS_GEN
+#      If the input receptor and ligand are in the correct conformation,
+#      the RMSD atoms can be generated directly. If this flag is set, the
+#      RMSD_ATOMS file will be overwritten with the correct information.
+#   NUM_THREADS
+#      If the number of threads is different from that in the gen-param-file.sh
+#      script, it can be changed here. 
 
 # Quit if the outfile already exists
 has=`grep -c "END PEAKS" ${OUT}`
@@ -63,6 +71,14 @@ fi
 export USE_HBOND=$HBOND_FILTER
 $LIGAND $LIG
 bash -x $RECEPTOR $REC
+# Then do the RMSD atoms if requested.
+if ! [ -z ${RMSD_ATOMS_GEN+x} ]; then
+  LIG_RMSD=${LIG%.pdb}.pqr
+  echo $PYMOL -qrc $SCRIPTS_DIR/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $RECEPTOR \
+    \| grep -v "^PyMOL" \> $RMSD_ATOMS
+  $PYMOL -qrc $SCRIPTS_DIR/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $RECEPTOR \
+    | grep -v "^PyMOL" > $RMSD_ATOMS
+fi
 
 echo $GEN_PARAM $LIG $REC $TYPE $OUT \> ${OUT%.txt}.inp
 $GEN_PARAM $LIG $REC $TYPE $OUT > ${OUT%.txt}.inp
@@ -103,6 +119,11 @@ applyHbondFilter false
 hBondFilterWeight 0
 hbondWeight 0
 EOF
+fi
+
+# If the user set NUM_THREADS, set it here.
+if ! [ -z ${NUM_THREADS+x} ]; then
+  sed -i "s/numThreads .*/numThreads ${NUM_THREADS}/" ${OUT%.txt}.inp
 fi
 
 # Finally, once everything has been set up, run F2Dock.

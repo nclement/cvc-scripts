@@ -23,7 +23,13 @@ for (reverse @lines) {
   # Old version of F2Dock
   if (@elems == 54) {
     print join(" ",@elems[40 .. 51]), "\n";
-  } else {
+  } elsif (@elems == 29) {
     print join(" ",@elems[15 .. 26]), "\n";
+  } elsif (@elems == 31) {
+    # Hbond version
+    print join(" ",@elems[17 .. 28]), "\n";
+  } else {
+    print STDERR "ERROR: Could not determine format! (too many columns)\n";
+    exit(-1);
   }
 }
