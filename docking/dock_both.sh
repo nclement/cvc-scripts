@@ -65,7 +65,7 @@ if ! [ -z ${USE_PREV+x} ]; then
 fi
 
 if [ -z ${HBOND_FILTER+x} ]; then
-  HBOND_FILTER=true
+  HBOND_FILTER=false # Not applied by default.
 fi
 
 export USE_HBOND=$HBOND_FILTER
@@ -74,9 +74,9 @@ bash -x $RECEPTOR $REC
 # Then do the RMSD atoms if requested.
 if ! [ -z ${RMSD_ATOMS_GEN+x} ]; then
   LIG_RMSD=${LIG%.pdb}.pqr
-  echo $PYMOL -qrc $SCRIPTS_DIR/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $RECEPTOR \
+  echo $PYMOL -qrc $SCRIPTS_DIR/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $REC \
     \| grep -v "^PyMOL" \> $RMSD_ATOMS
-  $PYMOL -qrc $SCRIPTS_DIR/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $RECEPTOR \
+  $PYMOL -qrc $SCRIPTS_DIR/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $REC \
     | grep -v "^PyMOL" > $RMSD_ATOMS
 fi
 
@@ -107,11 +107,12 @@ aprmFile ${HBOND_SCRIPTS_DIR}/prms/atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec
 prmFile ${HBOND_SCRIPTS_DIR}/prms/parm.prm
 rtfFile ${HBOND_SCRIPTS_DIR}/prms/pdbamino.rtf
 applyHbondFilter true
-hBondFilterWeight 1
-hbondWeight 1
+hBondFilterWeight 1.5
+hbondWeight 1.2
 EOF
+
 else
-cat <<EOF >> ${OUT%.txt}.inp
+  cat <<EOF >> ${OUT%.txt}.inp
 #
 # hbond filter information
 #

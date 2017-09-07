@@ -26,4 +26,4 @@ fi
 
 echo "Running with $HR hours"
 
-SUBMISSION=$SUB_SCRIPT sbatch --export=SUBMISSION -J $JOB_NAME -o $OUT_NAME.o%j /work/01872/nclement/scripts/slurm/empty_job_${HR}h.sh
+SUBMISSION=$SUB_SCRIPT sbatch --export=SUBMISSION -J $JOB_NAME -o $OUT_NAME.o%j -N 1 -n 1 /work/01872/nclement/scripts/slurm/empty_job_${HR}h.sh
