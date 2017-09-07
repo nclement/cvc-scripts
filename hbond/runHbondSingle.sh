@@ -35,8 +35,8 @@ echo $HBOND_SCRIPTS_DIR/create_psf/create_psf ${PNON} ${RTF} ${PSF}
 $HBOND_SCRIPTS_DIR/create_psf/create_psf ${PNON} ${RTF} ${PSF}
 
 # Creates .mol2
-echo $OBABEL ${PNON} $MOL2 \&\> ${OUT}.obabel
-$OBABEL ${PNON} $MOL2 &> ${OUT}.obabel
+echo $OBABEL ${PNON} -O $MOL2 \&\> ${OUT}.obabel
+$OBABEL ${PNON} -O $MOL2 &> ${OUT}.obabel
 	
 # If this hasn't been set, run the test.
 if [ -z ${NO_TEST+x} ]; then
