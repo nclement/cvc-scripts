@@ -59,7 +59,7 @@ ln=$(( $(grep -n REMARK $OUT_MIN | tail -n 1 | cut -f 1 -d ':') + 1))
 sed -i "${ln}iHBOND $OUT.hbond" $OUT_MIN
 sed -i "1i$N_A $N_B" $OUT-tog${PREPARE_EXT}.hbond
 cp $OUT_MIN $OUT.pdb
-cp $OUT-tog${PREPARE_EXT}.hbond $OUT-tog.hbond
+cp $OUT-tog${PREPARE_EXT}.hbond $OUT.hbond
 cp $OUT-tog${PREPARE_EXT}.mol2 $OUT-tog.mol2
 
 # Get the number of atoms on the interface.
@@ -78,12 +78,13 @@ echo Interface counts 5AA: $($GET_NUM_INTERACT $OUT-tog${PREPARE_EXT}_chainsA.pd
 # Then an additional interaction file will be created, as follows:
 # ATOM_NUM_A ATOM_NUM_B RES_NUM_
 
-## if [ -z ${NO_CLEANUP-x} ]; then
-##   # Cleanup
-##   rm $OUT_TOG
-##   rm ${PDBA%.pdb}-int.txt ${PDBB%.pdb}-int.txt
-##   rm $OUT-tog*
-## else
-##   echo "Not cleaning up (because NO_CLEANUP set)"
-## fi
-## 
+if [ ! -z ${NO_CLEANUP-x} ]; then
+  # Cleanup
+  rm $OUT_TOG
+  rm ${PDBA%.pdb}-int.txt ${PDBB%.pdb}-int.txt
+  rm ${OUT}_int.txt
+  rm $OUT-tog*
+else
+  echo "Not cleaning up (because NO_CLEANUP set)"
+fi
+
