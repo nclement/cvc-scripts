@@ -60,7 +60,7 @@ sed -i "${ln}iHBOND $OUT.hbond" $OUT_MIN
 sed -i "1i$N_A $N_B" $OUT-tog${PREPARE_EXT}.hbond
 cp $OUT_MIN $OUT.pdb
 cp $OUT-tog${PREPARE_EXT}.hbond $OUT.hbond
-cp $OUT-tog${PREPARE_EXT}.mol2 $OUT-tog.mol2
+cp $OUT-tog${PREPARE_EXT}.mol2 $OUT.mol2
 
 # Get the number of atoms on the interface.
 echo Interface counts 2AA: $($GET_NUM_INTERACT $OUT-tog${PREPARE_EXT}_chainsA.pdb $OUT-tog${PREPARE_EXT}_chainsB.pdb 2 0)

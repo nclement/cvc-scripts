@@ -63,6 +63,7 @@ if (!$no_header) {
   print "Dbackbone Abackbone ";
   print "AHbondCount AneighborCount ";
   print "bondType bondType2 ";
+  print "hbe_type hbw_type ";
   print "energy distance theta psi psi2 interface\n";
 }
 
@@ -86,10 +87,12 @@ while(<$HBIN>) {
   # Ignore comments.
   next if /^#/;
   # D_ATOMI D_RESI D_TYPE A_ATOMI A_RESI A_TYPE HBE_TYPE HB_WEIGHT_TYPE ENERGY
-  /(\d+) +\d+ +\S+ +(\d+) +\d+ +\S+ +\d+ +\d+ +(\S+)/;
+  /(\d+) +\d+ +\S+ +(\d+) +\d+ +\S+ +(\d+) +(\d+) +(\S+)/;
   my $donor = $1;
-  my $acctr = $2; # acceptor
-  my $engy = $3;   # energy
+  my $acctr = $2;  # acceptor
+  my $hbe_type = $3; # hbond energy type
+  my $hbw_type = $4; # hbond weight type
+  my $engy = $5;   # energy
 
   my $from = $donor <= $atoms_a ? "A" : "B";
   my $to = $acctr <= $atoms_a ? "A" : "B";
@@ -150,13 +153,13 @@ while(<$HBIN>) {
     my $bond = $bonds{$acctr}{$AB};
     my $bond2 = $AB2 == -1 ? "NA" : $bonds{$acctr}{$AB2};
 
-    push @HBonds, [ $D, $donor, $acctr, $AB, $AB2, $engy, $interface, $bond, $bond2 ];
+    push @HBonds, [ $D, $donor, $acctr, $AB, $AB2, $engy, $interface, $bond, $bond2, $hbe_type, $hbw_type ];
 
   }
 }
 
 for (@HBonds) {
-  (my $D, my $H, my $acctr, my $AB, my $AB2, my $energy, my $interface, my $bond, my $bond2) = @{$_};
+  (my $D, my $H, my $acctr, my $AB, my $AB2, my $energy, my $interface, my $bond, my $bond2, my $hbe_type, my $hbw_type) = @{$_};
     # Now, print the statistics.
     print "$name $D $H $acctr $AB $AB2 ";
     # Atom name
@@ -176,6 +179,7 @@ for (@HBonds) {
     # Number of bonds for acceptor.
     print "$HbAcctr{$acctr} ", scalar keys $bonds{$acctr}, " ";
     print "$bond $bond2 ";
+    print "$hbe_type $hbw_type ";
     #      energy         distance                                        theta                  psi
     printf "%.5f %.5f %.5f %.5f ",  $energy , &dist($H, $acctr), &angle($D, $H, $acctr), &angle($H, $acctr, $AB);
     #printf "%.5f %.5f %.5f %.5f ",  $energy , &dist($H, $acctr), &angle($acctr, $H, $D), &angle($AB, $acctr, $H);
