@@ -116,10 +116,20 @@ else
 #
 # hbond filter information
 #
-applyHbondFilter false
-hBondFilterWeight 0
-hbondWeight 0
+staticMoleculePDB ${REC}
+movingMoleculePDB ${LIG}
+staticMoleculePSF ${REC%.pdb}.psf
+movingMoleculePSF ${LIG%.pdb}.psf
+staticMoleculeMol2 ${REC%.pdb}.mol2
+movingMoleculeMol2 ${LIG%.pdb}.mol2
+aprmFile ${HBOND_SCRIPTS_DIR}/prms/atoms.0.0.6.prm.ms.3cap+0.5ace.Hr0rec
+prmFile ${HBOND_SCRIPTS_DIR}/prms/parm.prm
+rtfFile ${HBOND_SCRIPTS_DIR}/prms/pdbamino.rtf
+applyHbondFilter true
+hBondFilterWeight 0.0
+hbondWeight 0.0
 EOF
+
 fi
 
 # If the user set NUM_THREADS, set it here.

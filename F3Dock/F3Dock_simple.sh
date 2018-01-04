@@ -62,7 +62,7 @@ GET_RMSD=$SCRIPTS/docking/getRMSDAtoms.sh
 SAMPLE_RAMACHANDRAN="$F3DOCK_DIR/sampleProtein_Rama"
 SINGLES="$SCRIPTS/runSingles_parallel.sh"
 
-one_time=$(date +%s.%N
+one_time=$(date +%s.%N)
 echo "############################"
 echo "# 0. Generating rmsd atoms #"
 echo "############################"
@@ -153,13 +153,13 @@ ls ${LIG_SHORT}_samp*.scfix.pdb > ligands_premin.txt
 ls ${REC_SHORT}_samp*.scfix.pdb > recepts_premin.txt
 
 if [ $stage -le 4 ]; then
-  $AMBERMIN_PAR ligands_premin.txt 1 500 # Just do 1 proc for now.
-  $AMBERMIN_PAR recepts_premin.txt 1 500
-#   # Get each of the files in here and minimize (briefly)
-#   for file in `cat ligands_premin.txt recepts_premin.txt`; do
-#     # Only run for 500 iterations.
-#     $AMBERMIN $file 500
-#   done
+  $AMBERMIN_PAR ligands_premin.txt $NPROC 500 # Just do 1 proc for now.
+  $AMBERMIN_PAR recepts_premin.txt $NPROC 500
+#    # Get each of the files in here and minimize (briefly)
+#    for file in `cat ligands_premin.txt recepts_premin.txt`; do
+#      # Only run for 500 iterations.
+#      $AMBERMIN $file 500
+#    done
 fi
 
 for file in `cat ligands_premin.txt`; do
@@ -279,7 +279,8 @@ if [ $stage -le 6 ]; then
     cp $OUTDIR/coarse/dock_${i}_rmsd_atoms.txt .
 
     # Include the rmsd atoms just for testing purposes.
-    USE_PREV=1 $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
+    #USE_PREV=1 $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
+    TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
     $DOCK_SCORE dock_$i.txt | sed "s/^/$i /" > dock_${i}_score.txt
   done
 fi

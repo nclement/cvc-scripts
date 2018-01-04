@@ -41,10 +41,11 @@ $PYMOL -qrc $SCRIPTS/get_contact_ca_rmsd_atoms.py -- $LIGAND_GOLD $RECEPTOR_GOLD
     former=$(grep -m 1 "ATOM \\+$atomnum " $LIGAND_GOLD | sed 's/^.\{11\}\(.\{15\}\).*/\1/')
     # This is a terrible hack
     if ! grep -q "ATOM.*$former" $LIGAND_TEST; then
+      echo >&2 "ERROR: Could not find residue!!! looking for [$former]"
       # Strip off the residue name.
       former=$(echo $former | sed 's/^\(.\{6\}\).../\1.../')
     fi
     current=$(grep -m 1 "ATOM.*$former" $LIGAND_TEST | sed 's/^ATOM \+\([^ ]\+\).*/\1/')
-    #echo $atomnum $former becomes [$current] $location
+    echo >&2 $atomnum $former becomes [$current] $location
     echo $current $location
   done )
