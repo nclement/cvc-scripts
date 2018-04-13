@@ -45,6 +45,15 @@ echo " number of samples: $NUM_SAMPS"
 
 # Debug tool
 #stage=2
+# stages are:
+#   0: Generate RMSD atoms
+#   1: Recursive chain decomposition
+#   2: Ramachandran sampling
+#   3: Adding side chains
+#   4: Brief energy minimization
+#   5: Align proteins to receptor
+#   6: F2Dock (coarse)
+#   7: F2Dock (fine)
 
 SCRIPTS="$(dirname -- "$(readlink -f -- "$0")")"
 SCRIPTS=$SCRIPTS/..
@@ -90,7 +99,7 @@ fi
 
 two_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 1 is $(($two_time - $one_time)) #"
+echo "# Time for step 1 is `date -u -d @$(($two_time - $one_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
