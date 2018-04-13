@@ -40,7 +40,7 @@ test-existence: Makefile.def
 	@# Check and see which ones are in existence.
 	@echo
 	@echo "Checking Environment variables set in Makefile.def..."
-	@test -f ${MolSurf} || echo "  Error: MolSurf does not exist. Please install and update Makefile.def"
+	@test -f ${MolSurf} || echo "  Error: MolSurf does not exist [${MolSurf}]. Please install and update Makefile.def"
 	@test -f ${MolEnergy} || echo "  Error: MolEnergy does not exist. Please install and update Makefile.def"
 	@test -f ${TEXMOL_QT4} || echo "  Error: TexMol does not exist. Please install and update Makefile.def"
 	@test -f ${F2DOCK_REFACTORED} || echo "  Error: F2Dock does not exist. Please install and update Makefile.def"

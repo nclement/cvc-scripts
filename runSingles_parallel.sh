@@ -7,7 +7,7 @@ export COMPUTE_SCRIPT=${SCRIPTS_DIR}/computeAllEnergy.sh
 export PDBLIST=$1
 export SIZE=$2
 NPROC=$3
-PB=$4
+PB=$4 #Optional, will also compute PB energy if anything is supplied here.
 
 if [[ "$#" -eq "4" ]]; then
 	# Will run PB energy as well

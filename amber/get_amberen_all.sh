@@ -14,17 +14,21 @@
 
 pdbregex=$1
 
+AMBER_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
+
 for fullfile in $pdbregex; do 
   file=`basename $fullfile`
   # Copy it here
-  cp $fullfile $file
+  if [[ ! $fullfile -ef $file ]]; then
+    cp $fullfile $file
+  fi
   echo "XX Running $file"; 
   # Get rid of het atoms
   sed -i -e "/^HETATM/d" $file
   # This will make sure it doesn't fail.
-  /work/01872/nclement/scripts/amber/runAmber_single.sh $file;
+  $AMBER_SCRIPTS_DIR/runAmber_single.sh $file
   # Get the energy from this file.
-  echo $file $( $WORK/scripts/amber/getAmberEnergy.sh $file )
+  echo $file $( $AMBER_SCRIPTS_DIR/getAmberEnergy.sh $file )
   # Then delete the original file.
   rm $file
 done

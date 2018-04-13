@@ -81,6 +81,11 @@ def cd1_to_cd(in_pdb, out_pdb):
 
 
 def libmol_norm(in_pdb, out_pdb):
+    # Need the following translations to be made.
+    translate = dict(HIP='HSP',
+                     HID='HSD',
+                     HIE='HSD')
+
     resis = dict(ALA=['N', 'H', 'CA', 'CB', 'C', 'O'],
                  ARG=['N', 'H', 'CA', 'CB', 'CG', 'CD', 'NE', 'HE', 'CZ', 'NH1', 'HH11', 'HH12', 'NH2', 'HH21', 'HH22', 'C', 'O'],
                  ARN=['N', 'H', 'CA', 'CB', 'CG', 'CD', 'NE', 'HE', 'CZ', 'NH1', 'HH11', 'HH12', 'NH2', 'HH21', 'C', 'O'],
@@ -93,9 +98,9 @@ def libmol_norm(in_pdb, out_pdb):
                  GLH=['N', 'H', 'CA', 'CB', 'CG', 'CD', 'OE1', 'OE2', 'HE2', 'C', 'O'],
                  GLY=['N', 'H', 'CA', 'C', 'O'],
                  HIS=['N', 'H', 'CA', 'CB', 'CG', 'ND1', 'HD1', 'CD2', 'NE2', 'CE1', 'C', 'O'],
-                 HID=['N', 'H', 'CA', 'CB', 'CG', 'ND1', 'HD1', 'CD2', 'NE2', 'CE1', 'C', 'O'],
-                 HIP=['N', 'H', 'CA', 'CB', 'CG', 'CD2', 'ND1', 'HD1', 'CE1', 'NE2', 'HE2', 'C', 'O'],
-                 HIE=['N', 'H', 'CA', 'CB', 'CG', 'ND1', 'CE1', 'CD2', 'NE2', 'HE2', 'C', 'O'],
+                 HSD=['N', 'H', 'CA', 'CB', 'CG', 'ND1', 'HE2', 'CD2', 'NE2', 'CE1', 'C', 'O'],
+                 HSP=['N', 'H', 'CA', 'CB', 'CG', 'CD2', 'ND1', 'HD1', 'CE1', 'NE2', 'HE2', 'C', 'O'],
+                 HSE=['N', 'H', 'CA', 'CB', 'CG', 'ND1', 'CE1', 'CD2', 'NE2', 'HE2', 'C', 'O'],
                  #ILE=['N', 'H', 'CA', 'CB', 'CG2', 'CG1', 'CD', 'C', 'O'],
                  ILE=['N', 'H', 'CA', 'CB', 'CG2', 'CG1', 'CD1', 'C', 'O'],
                  LEU=['N', 'H', 'CA', 'CB', 'CG', 'CD1', 'CD2', 'C', 'O'],
@@ -120,6 +125,11 @@ def libmol_norm(in_pdb, out_pdb):
                 residue_alt =  line[26]
                 residue_id = str(residue_num) + residue_alt
                 residue_name =  line[17:21].strip()
+                # Sometimes, a different name is used for the same
+                # residue. We'll make sure this is what we want here.
+                if residue_name not in resis:
+                    if residue_name in translate:
+                        residue_name = translate[residue_name]
                 atom_name = line[12:16].strip()
                 atoms.append({'chain_id': chain_id, 'residue_num': residue_num, 'residue_alt': residue_alt, 'residue_id': residue_id, 'residue_name': residue_name, 'atom_name': atom_name, 'line': line })
 
@@ -145,8 +155,8 @@ def libmol_norm(in_pdb, out_pdb):
             for resi_atom in residue_atoms:
                 for pdb_atom in residue:
                     if pdb_atom['atom_name'] == resi_atom:
-                        atom = "%5g" %atom_i
-                        out_f.write(pdb_atom['line'][0:6] + atom + pdb_atom['line'][11:])
+                        atom_idx = "%5g" %atom_i
+                        out_f.write(pdb_atom['line'][0:6] + atom_idx + pdb_atom['line'][11:17] + residue_name + pdb_atom['line'][20:])
                         atom_i += 1
                         break
 
@@ -171,6 +181,7 @@ def pdbpqr(base_dir, pdb, chains):
     err_log      = pdb_prefix+"_err_log"
     out_log      = pdb_prefix+"_output_log"
     with open(err_log, 'a') as err_out, open(out_log, 'a') as out_f:
+        print "calling: " +base_dir+'/pdb2pqr-1.9.0/pdb2pqr.py', '--nodebump', '--noopt', '--mol_charmm_pdb', '--chain', '--ff=LIBMOL', '--ffout=LIBMOL', genout, pqr
         subprocess.call([base_dir+'/pdb2pqr-1.9.0/pdb2pqr.py', '--nodebump', '--noopt', '--mol_charmm_pdb', '--chain', '--ff=LIBMOL', '--ffout=LIBMOL', genout, pqr], stdout=out_f, stderr=err_out)
     #cd1_to_cd(outmol, outmol2)
     #libmol_norm(outmol2, nonminout)

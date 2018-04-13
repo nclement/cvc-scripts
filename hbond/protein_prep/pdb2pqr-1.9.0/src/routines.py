@@ -893,7 +893,7 @@ class Routines:
                     try: seenmap[atomname] += 1
                     except KeyError: seenmap[atomname] = 1
                     if seenmap[atomname] > nummissing:
-                        text = "Too few atoms present to reconstruct or cap residue %s in structure!\n" % (residue)
+                        text = "Too few atoms present (%d,%d) to reconstruct or cap residue %s in structure!\n" % (seenmap[atomname],nummissing, residue)
                         text += "This error is generally caused by missing backbone atoms in this protein;\n"
                         text += "you must use an external program to complete gaps in the protein backbone."
                         raise PDBInputError(text)

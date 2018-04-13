@@ -29,14 +29,6 @@ load $protA, pA
 alter all, segi=""
 # select all CA atoms in receptor that have any atom within $X of any atom in ligand
 select contact, (pR & (all within $X of pL)) & name ca
-  # selects residues from pA that have names and resi atoms match pR
-#my_dict = { 'pR' : [] }
-#cmd.iterate("(contact & pR)","pR.append((resi,resn,chain))",space=my_dict)
-#print my_dict['pR']
-#my_dict = { 'pA' : [] }
-#cmd.iterate("(pA like contact)","pA.append((resi,resn,chain))",space=my_dict)
-#print my_dict['pA']
-#align contact and pR, pA like contact
 # Avoids mismatches in residue numbering, etc.
 align pA like contact, contact and pR
 save $output, pA

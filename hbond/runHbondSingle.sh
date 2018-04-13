@@ -27,6 +27,8 @@ HBOND=$(echo "${PDB}" | sed s/\.pdb$/_pnon.hbond/)
 OUT=$(echo "${PDB}" | sed s/\.pdb$/_pnon.out/)
 
 # Creates ${BASE}_pnon.pdb
+# Needs python2.7
+module load python/2.7.12
 echo $HBOND_SCRIPTS_DIR/protein_prep/prepare.py $PDB
 $HBOND_SCRIPTS_DIR/protein_prep/prepare.py $PDB
 

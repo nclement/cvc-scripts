@@ -1,3 +1,2 @@
-module load intel/13.0.2.146
-module load mvapich2/1.9a2
+module load fftw3
 module load amber

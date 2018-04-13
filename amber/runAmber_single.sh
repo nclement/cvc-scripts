@@ -11,6 +11,7 @@ module load amber
 
 PDB=$1
 NCYC=${2:-1000} # If you want to specify the number of cycles, do so here.
+
 VAC=${PDB}_vac
 PDB_SHORT=`echo $PDB | sed 's/.pdb$//'`
 
@@ -38,4 +39,5 @@ echo sander -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.cr
 #ibrun pmemd.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
 sander -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
 # Extract the new file.
-ambpdb -p AMBER/${VAC}.top < AMBER/${VAC}.min.crd > AMBER/${PDB_SHORT}_ambermin.pdb
+# For some reason, we need to use -c instead of reading from stdin.
+ambpdb -p AMBER/${VAC}.top -c AMBER/${VAC}.min.crd > AMBER/${PDB_SHORT}_ambermin.pdb

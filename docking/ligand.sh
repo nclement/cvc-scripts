@@ -24,7 +24,9 @@ if [ $USE_HBOND ]; then
   PMIN=${LIGAND%.pdb}_pnon.pdb
   PMIN_PSF=${PMIN%.pdb}.psf
   PMIN_MOL2=${PMIN%.pdb}.mol2
-  NO_TEST=true $HBOND_DIR/runHbondSingle.sh $LIGAND
+  if [ ! -f $PMIN ] || [ ! -f $PMIN_PSF ] || [ ! -f $PMIN_MOL2 ]; then
+    NO_TEST=true $HBOND_DIR/runHbondSingle.sh $LIGAND
+  fi
   # Change the inputs to be the outputs of hbond.
   mv $PMIN $LIGAND
   mv $PMIN_PSF ${LIGAND%.pdb}.psf
