@@ -61,6 +61,6 @@ echo "numRerank $numRerank"
 echo "#"
 echo "# Misc"
 echo "#"
-echo "numThreads 48"
+echo "numThreads 32"
 # end gen-script.sh
 
