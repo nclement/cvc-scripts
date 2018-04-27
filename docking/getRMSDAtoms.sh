@@ -56,7 +56,7 @@ EOM
 )
 
 if [ $? -eq 0 ]; then
-  echo "$res"
+  #echo "$res"
   printf '%s\n' "$res" | grep -v "^PyMOL" | grep -e " count_atoms" -e "^[^ ]" | sed 's/ count_atoms: \(.*\) atoms/\1/'
 else
   echo "Error: Did not work!"
