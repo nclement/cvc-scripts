@@ -29,6 +29,7 @@ echo "  SIZE: $SIZE"
 
 WORKDIR=$(readlink -f -- "$OUTFILE")_$(basename $LIG)_$(basename $REC)
 echo "Now using [$WORKDIR] as the working directory."
+rm -rf $WORKDIR
 mkdir -p $WORKDIR
 
 # Need to get the full path on output
@@ -51,12 +52,18 @@ LIG_PRE=${LIG::${#LIG}-4}
 rm ${LIG_PRE}_conf_*
 $POST_SCRIPTS_DIR/conformationGenerator $LIG $tmpXforms 0 $(($NUM-1));
 # Add the receptor to all of them.
-for file in ${LIG_PRE}_conf_*.pdb; do cat $REC >> $file; done;
+for file in ${LIG_PRE}_conf_*.pdb; do 
+  cat $REC >> $file;
+  # Don't like END in the middle.
+  sed -i "s/^END/TER/" $file 
+  # Also don't like blank lines
+  sed -i '/^$/d' $file
+done;
 
 ls ${LIG::${#LIG}-4}_conf_*.pdb > $tmpSingles;
 
 # Get the energy for all the files.
-$SCRIPTS_DIR/runSingles_parallel.sh $tmpSingles $SIZE $NPROC;
+$SCRIPTS_DIR/runSingles_parallel.sh $tmpSingles $SIZE $NPROC
 $SCRIPTS_DIR/getTotalEnergy.sh $tmpSingles > $OUTFILE
 
 

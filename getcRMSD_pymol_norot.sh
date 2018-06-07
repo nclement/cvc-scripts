@@ -41,9 +41,9 @@ select contact_lig, ((gold & chain l) & (all within $X of (gold and chain r))) &
 
 # Do the actual alignment of receptors, with no outlier rejection.
 #align (testp like contact_rec_10) & name ca, gold & contact_rec_10, cycles=0
-align (testp like contact_rec) & name ca, gold & contact_rec, cycles=0
+align testp & chain r & name ca, gold & contact_rec, cycles=0
 # Get the ligand alignments.
-align (testp like contact_lig) & chain l & n. ca, gold & contact_lig, cycles=0, transform=0, object="aln"
+align testp & chain l & n. ca, gold & contact_lig, cycles=0, transform=0, object="aln"
 #align orig_pL, testp & chain l & aln, object="aln_l"
 # Now get the RMSD we care about.
 rms_cur testp & aln, gold & aln, matchmaker=-1
