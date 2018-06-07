@@ -7,8 +7,8 @@ source $SCRIPTS_DIR/Makefile.def
 CRMSD=$SCRIPTS_DIR/getcRMSD_pymol_norot.sh
 
 ################################################################################
-# Often, we'd like to know the energy of the top k docked conformations. This  #
-# takes a few steps to complete. Do them all here at once.                     #
+# F2Dock doesn't do a good job of computing the cRMSD for its matches. We'll   #
+# do it all at once with Pymol here.                                           #
 ################################################################################
 
 REC_GOLD=$1   # Receptor Gold
@@ -21,6 +21,21 @@ NPROC=${6:-16} # Number of cores to use.
 # Get the running rec+lig from the F2Dock outfile.
 REC=$(grep "_1.7.f2d" $F2OUT | sed 's/.* = \(.*\)_1.7.f2d/\1.pdb/' ); \
 LIG=$(grep "moving.*f2d" $F2OUT | sed 's/.* = \(.*\).f2d/\1.pdb/' ); \
+
+file_exists_or_die() {
+  if [ ! -f $1 ]; then
+    echo
+    echo "File [$1] doesn't exist!"
+    echo "Exiting gracefully."
+    echo
+    exit
+  fi
+}
+file_exists_or_die $REC
+file_exists_or_die $REC_GOLD
+file_exists_or_die $LIG
+file_exists_or_die $LIG_GOLD
+file_exists_or_die $F2OUT
 
 echo "Running with:"
 echo "  REC: $REC GOLD: $REC_GOLD"
