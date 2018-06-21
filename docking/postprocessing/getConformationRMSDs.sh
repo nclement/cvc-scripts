@@ -4,7 +4,7 @@ POST_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 SCRIPTS_DIR=$POST_SCRIPTS_DIR/../../
 source $SCRIPTS_DIR/Makefile.def
 
-CRMSD=$SCRIPTS_DIR/getcRMSD_pymol_norot.sh
+CRMSD=$SCRIPTS_DIR/getcRMSD_pymol_full.sh
 
 ################################################################################
 # F2Dock doesn't do a good job of computing the cRMSD for its matches. We'll   #
