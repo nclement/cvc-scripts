@@ -53,6 +53,10 @@ rm ${LIG_PRE}_conf_*
 $POST_SCRIPTS_DIR/conformationGenerator $LIG $tmpXforms 0 $(($NUM-1));
 # Add the receptor to all of them.
 for file in ${LIG_PRE}_conf_*.pdb; do 
+  # Try and add a TER at the end of this one if we need to.
+  if ! grep -q TER $file; then
+    echo "TER" >> $file;
+  fi
   cat $REC >> $file;
   # Don't like END in the middle.
   sed -i "s/^END/TER/" $file 

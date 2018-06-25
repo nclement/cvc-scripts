@@ -15,7 +15,8 @@ prot=$1  # Protein
 samp=$2  # Sampled protein
 chainsL=$3
 chainsR=$4
-X=${5:-5}
+# Vreven et al 2015 (zlab5) suggests to use 10\AA as the limit
+X=${5:-10}
 #align_X=10
 #align_X=5
 
@@ -24,21 +25,24 @@ SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 source $SCRIPTS_DIR/Makefile.def
 #PYMOL=/work/01872/nclement/software/pymol/pymol
 
-rms=$($PYMOL -qc -p << EOF
-print('chains are R:[$chainsR] and L:[$chainsL]')
-load $prot,  gold
-load $samp, testp
-alter all, segi=""
-select contact_rec, ((gold & chain $chainsR) & (all within $X of (gold and chain $chainsL))) & name ca 
-select contact_lig, ((gold & chain $chainsL) & (all within $X of (gold and chain $chainsR))) & name ca
-select contact_both, contact_rec + contact_lig
-# Do the actual alignment with no outlier rejection.
-align testp, gold & contact_all, cycles=0
-EOF
-)
+rms=$($PYMOL -qc $SCRIPTS_DIR/getcRMSD_pymol_full_tog.py -- $prot $samp $chainsL $chainsR $X)
+
+## rms=$($PYMOL -qc -p << EOF
+## print('chains are R:[$chainsR] and L:[$chainsL]')
+## load $prot,  gold
+## load $samp, testp
+## alter all, segi=""
+## select contact_rec, ((gold & chain $chainsR) & (all within $X of (gold and chain $chainsL))) & name ca 
+## select contact_lig, ((gold & chain $chainsL) & (all within $X of (gold and chain $chainsR))) & name ca
+## select contact_both, contact_rec + contact_lig
+## # Do the actual alignment with no outlier rejection.
+## align testp, gold & contact_both, cycles=0
+## EOF
+## )
 #echo -n "$rms"
 if [ $? -eq 0 ]; then
-  echo $rms | grep "RMS =" | sed 's/.*=\s\+//' | sed 's/ .*//'
+  echo $rms
+  #echo $rms | grep "RMS =" | sed 's/.*=\s\+//' | sed 's/ .*//'
   #echo $rms | grep "RMS =" | sed 's/.*=\s\+//'
 else
   echo "Didn't work. Check the output. Here's what Pymol said:"
