@@ -43,7 +43,26 @@ cmd.select('contact_rec', '((gold & chain %s) & (all within %d of (gold and chai
 cmd.select('contact_lig', '((gold & chain %s) & (all within %d of (gold and chain %s))) & n. ca' % (
         chainsL, X, chainsR))
 cmd.select('contact_all', 'contact_rec + contact_lig')
+contact_len = len(cmd.get_model('contact_all').atom)
 # Do the actual alignment with no outlier rejection.
 aln = cmd.super('testp', 'gold & contact_all', cycles=0)
-printVerbose("RMSD: %f, aligned after: %d aligned before: %d" % (aln[0], aln[1], aln[4]))
-print aln[0]
+method = 'super'
+if aln[1] != contact_len:
+  aln = cmd.align('testp', 'gold & contact_all', cycles=0, quiet=1)
+  method = 'align'
+if aln[1] != contact_len:
+  aln = cmd.cealign('testp', 'gold & contact_all')
+  aln = (aln['RMSD'], aln['alignment_length'], 'NA', 'NA', aln['alignment_length'])
+  method = 'cealign'
+if aln[1] != contact_len:
+  fit_rms = cmd.fit('testp & n. ca', 'gold & contact_all', matchmaker=2, cycles=0, object='fit_aln')
+  fit_atoms = int(len(cmd.get_model('fit_aln').atom)) / 2
+  aln = (fit_rms, fit_atoms, 'NA', 'NA', fit_atoms)
+  method='fit'
+# Failed!
+if aln[1] != contact_len:
+  rms = cmd.rms('testp', 'gold & contact_all', cycles=0)
+  printVerbose("RMS     RMSD: %f" % rms)
+  print "RMS = NA NA"
+else:
+  print "RMS =", aln[0], method

@@ -41,7 +41,8 @@ rms=$($PYMOL -qc $SCRIPTS_DIR/getcRMSD_pymol_full_tog.py -- $prot $samp $chainsL
 ## )
 #echo -n "$rms"
 if [ $? -eq 0 ]; then
-  echo $rms
+  #echo $rms
+  echo $rms | grep "RMS =" | sed 's/.*=\s\+//'
   #echo $rms | grep "RMS =" | sed 's/.*=\s\+//' | sed 's/ .*//'
   #echo $rms | grep "RMS =" | sed 's/.*=\s\+//'
 else

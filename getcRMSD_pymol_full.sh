@@ -25,8 +25,8 @@ source $SCRIPTS_DIR/Makefile.def
 rms=$($PYMOL -cq $SCRIPTS_DIR/getcRMSD_pymol_full.py -- $protR $protRp $protL $protLp $X)
 #echo -n "$rms"
 if [ $? -eq 0 ]; then
-  echo $rms
-  #echo $rms | grep "RMS =" | sed 's/.*=\s\+//' | sed 's/ .*//'
+  #echo $rms
+  echo $rms | grep "RMS =" | sed 's/.*=\s\+//'
 else
   echo "Didn't work. Check the output. Here's what Pymol said:"
   echo -n "$rms"
