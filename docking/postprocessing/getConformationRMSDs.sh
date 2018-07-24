@@ -74,7 +74,11 @@ $POST_SCRIPTS_DIR/conformationGenerator $LIG $tmpXforms 0 $(($NUM-1));
 ls ${LIG::${#LIG}-4}_conf_*.pdb > $tmpSingles;
 
 export CRMSD REC_GOLD REC LIG_GOLD
-xargs -a $tmpSingles -P$NPROC -Ipdb sh -c 'echo pdb $($CRMSD $REC_GOLD $REC $LIG_GOLD pdb)' | tee $OUTFILE
+#xargs -a $tmpSingles -P$NPROC -Ipdb sh -c 'echo pdb $($CRMSD $REC_GOLD $REC $LIG_GOLD pdb)' | tee $OUTFILE
+$PYMOL -qc $CRMSD -- \
+    -R $REC_GOLD -L $LIG_GOLD \
+    -r $REC -l $LIG \
+    --lig_confs=${LIG::${#LIG}-4}_conf_*.pdb -P $NPROC > $OUTFILE
 
 # Clean up
 #rm -rf $WORKDIR
