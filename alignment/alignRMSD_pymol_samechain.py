@@ -293,6 +293,9 @@ def addCommonArgs(parser):
                       help='Max distance between contact atoms')
   parser.add_argument('-N', dest='nproc', default=1, type=int,
       help='Number of processor cores to use')
+  parser.add_argument('--input_fn', dest='input_fn', default=None,
+      help='Use if inputs to --*_confs are actually a filename, not a Regex',
+      action='store_true')
 
 def get_parser():
   """Set up arguments.
@@ -318,7 +321,13 @@ def get_parser():
 
   return parser
 
-def getRegexFiles(regex):
+def getRegexFiles(regex, from_fn):
+  # Can specify a single file, in which case we should read it and return the
+  # list of everything in the file.
+  if from_fn:
+    with open(regex) as f:
+      return f.read().splitlines()
+
   import glob
   return glob.glob(regex)
 
@@ -339,12 +348,12 @@ class SeparateMols:
     cmd.load(args.test_l, 'pLp')
 
     if args.prot_confs:
-      self._lig_confs = getRegexFiles(args.prot_confs)
+      self._lig_confs = getRegexFiles(args.prot_confs, args.input_fn)
       self._rec_confs = [_REC_TOGETHER] * len(self._lig_confs)
     else:
-      self._lig_confs = getRegexFiles(args.lig_confs)
+      self._lig_confs = getRegexFiles(args.lig_confs, args.input_fn)
       if args.rec_confs:
-        self._rec_confs = getRegexFiles(args.rec_confs)
+        self._rec_confs = getRegexFiles(args.rec_confs, args.input_fn)
       else:
         self._rec_confs = ['pRp.pdb'] * len(self._lig_confs)
 
@@ -393,7 +402,7 @@ class TogetherMols:
     self._test_rec_chains = args.test_rec_chains
     self._test_lig_chains = args.test_lig_chains
 
-    self._test_confs = getRegexFiles(args.test_confs)
+    self._test_confs = getRegexFiles(args.test_confs, args.input_fn)
 
   def GetLigandModels(self):
     return self._test_confs
