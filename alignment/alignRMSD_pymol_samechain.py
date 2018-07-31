@@ -16,15 +16,15 @@ The following steps will be used:
   distance to the aligned residue (determined in Step 2) and report this as the
   contact RMSD.
 """
+from __future__ import print_function
 
 from Bio import pairwise2
-from Bio.SubsMat import MatrixInfo as matlist
 from Bio.SeqUtils import seq1
+from Bio.SubsMat import MatrixInfo as matlist
 from contextlib import contextmanager
 from multiprocessing import Pool
 from math import log
 import sys, os
-
 
 ## if len(sys.argv) < 4:
 ##   print("usage getcRMSD_pymol_full.py <GOLD_R> <TEST_R> <GOLD_L> <TEST_L> [LIMIT=10]")
@@ -40,6 +40,10 @@ import sys, os
 
 _VERBOSE=0
 _REC_TOGETHER="__tog"
+
+def eprint(*args, **kwargs):
+  if _VERBOSE:
+    print(*args, file=sys.stderr, **kwargs)
 
 def getAlignmentList(str):
   alns = []
@@ -70,12 +74,10 @@ def gap_function(x, y):  # x is gap position in seq, y is gap length
   return - (2 + y/4.0 + log(y)/2.0)
 blosum_matrix = matlist.blosum62
 def getBestAlignment(seq1, seq2):
-  if _VERBOSE:
-    print 'Doing the alignment...'
+  eprint('Doing the alignment...')
   alns = pairwise2.align.globaldc(seq1, seq2, blosum_matrix,
       gap_function, gap_function, one_alignment_only=True)
-  if _VERBOSE:
-    print 'Finished!'
+  eprint('Finished!')
   return alns[0]
 
 def getContactRes(sel1, sel2, X):
@@ -156,14 +158,12 @@ class PyMolAligner:
     self._seqR_test = getSequence(protRp)
     self._seqL_test = getSequence(protLp)
 
-    if _VERBOSE:
-      print 'R_gold is', self._seqR_gold
-      print 'R_test is', self._seqR_test
+    eprint('R_gold is', self._seqR_gold)
+    eprint('R_test is', self._seqR_test)
     self._R_aln = getBestAlignment(self._seqR_gold, self._seqR_test)
     self._L_aln = getBestAlignment(self._seqL_gold, self._seqL_test)
-    if _VERBOSE:
-      print 'R_aln is', self._R_aln
-      print 'L_aln is', self._L_aln
+    eprint('R_aln is', self._R_aln)
+    eprint('L_aln is', self._L_aln)
 
     # Need to get contact residues for gold, then corresponding res from test.
     self._cont_R = getContactRes(protR, protL, X)
@@ -182,22 +182,24 @@ class PyMolAligner:
 
     self._cont_Rp = testContactRes(aln_list_R, self._cont_R_idx, self._full_Rp)
     self._cont_Lp = testContactRes(aln_list_L, self._cont_L_idx, self._full_Lp)
-    if _VERBOSE:
-      print 'R cont (len:%d) is ' % len(self._cont_R), self._cont_R
-      print 'L cont (len:%d) is ' % len(self._cont_L), self._cont_L
-      print 'Rp cont (len:%d) is ' % len(self._cont_Rp), self._cont_Rp
-      print 'Lp cont (len:%d) is ' % len(self._cont_Lp), self._cont_Lp
+    eprint('R cont (len:%d) is' % len(self._cont_R), self._cont_R)
+    eprint('L cont (len:%d) is' % len(self._cont_L), self._cont_L)
+    eprint('Rp cont (len:%d) is' % len(self._cont_Rp), self._cont_Rp)
+    eprint('Lp cont (len:%d) is' % len(self._cont_Lp), self._cont_Lp)
 
   def RMSDTog(self, prot):
     simp_R = SimplifySelection(self._protR, self._cont_R)
     simp_Rp = SimplifySelection(prot, self._cont_Rp)
     simp_L = SimplifySelection(self._protL, self._cont_L)
     simp_Lp = SimplifySelection(prot, self._cont_Lp)
-    if _VERBOSE:
-      print '%s: %d vs %d' %(simp_R, cmd.count_atoms(simp_R), len(self._cont_R))
-      print '%s: %d vs %d' %(simp_Rp, cmd.count_atoms(simp_Rp), len(self._cont_Rp))
-      print '%s: %d vs %d' %(simp_L, cmd.count_atoms(simp_L), len(self._cont_L))
-      print '%s: %d vs %d' %(simp_Lp, cmd.count_atoms(simp_Lp), len(self._cont_Lp))
+    eprint('%s: %d vs %d' % (simp_R, cmd.count_atoms(simp_R),
+      len(self._cont_R)))
+    eprint('%s: %d vs %d' % (simp_Rp, cmd.count_atoms(simp_Rp),
+        len(self._cont_Rp)))
+    eprint('%s: %d vs %d' % (simp_L, cmd.count_atoms(simp_L),
+      len(self._cont_L)))
+    eprint('%s: %d vs %d' % (simp_Lp, cmd.count_atoms(simp_Lp),
+        len(self._cont_Lp)))
     assert cmd.count_atoms(simp_R) == len(self._cont_R)
     assert cmd.count_atoms(simp_Rp) == len(self._cont_Rp)
     assert cmd.count_atoms(simp_L) == len(self._cont_L)
@@ -209,11 +211,15 @@ class PyMolAligner:
     simp_Rp = SimplifySelection(rec, self._cont_Rp)
     simp_L = SimplifySelection(self._protL, self._cont_L)
     simp_Lp = SimplifySelection(lig, self._cont_Lp)
-    if _VERBOSE:
-      print '%s: %d vs %d' %(simp_R, cmd.count_atoms(simp_R), len(self._cont_R))
-      print '%s: %d vs %d' %(simp_Rp, cmd.count_atoms(simp_Rp), len(self._cont_Rp))
-      print '%s: %d vs %d' %(simp_L, cmd.count_atoms(simp_L), len(self._cont_L))
-      print '%s: %d vs %d' %(simp_Lp, cmd.count_atoms(simp_Lp), len(self._cont_Lp))
+    eprint('%s is bad' % simp_L)
+    eprint('%s: %d vs %d' % (simp_R, cmd.count_atoms(simp_R),
+      len(self._cont_R)))
+    eprint('%s: %d vs %d' % (simp_Rp, cmd.count_atoms(simp_Rp),
+      len(self._cont_Rp)))
+    eprint('%s: %d vs %d' % (simp_L, cmd.count_atoms(simp_L),
+      len(self._cont_L)))
+    eprint('%s: %d vs %d' % (simp_Lp, cmd.count_atoms(simp_Lp),
+      len(self._cont_Lp)))
     assert cmd.count_atoms(simp_R) == len(self._cont_R)
     assert cmd.count_atoms(simp_Rp) == len(self._cont_Rp)
     assert cmd.count_atoms(simp_L) == len(self._cont_L)
@@ -235,8 +241,7 @@ class PyMolAligner:
 ## 
 ##     #for x in aln_strs:
 ##     #  print x, cmd.count_atoms(x.replace(',','+'))
-##     if _VERBOSE:
-##       print 'num alns is', len(aln_strs)
+##     eprint('num alns is %d' % len(aln_strs))
 ##       for x in sorted(aln_strs):
 ##         print ' ', x, cmd.count_atoms(x.replace(',','+'))
 ##       print 'num atoms is', cmd.count_atoms('+'.join(aln_strs))
@@ -396,7 +401,7 @@ class TogetherMols:
     assert cmd.count_atoms('pRp') > 0
     assert cmd.count_atoms('pLp') > 0
     for obj in cmd.get_names():
-      print 'obj is', obj
+      eprint('obj is %s' % obj)
     self._gold_rec_chains = args.gold_rec_chains
     self._gold_lig_chains = args.gold_lig_chains
     self._test_rec_chains = args.test_rec_chains
@@ -418,10 +423,10 @@ class TogetherMols:
     rec_name = prot_name + '_R'
     lig_name = prot_name + '_L'
 
-    cmd.select('%s & chain %s' %(prot_name, self._test_rec_chains), rec_name)
-    cmd.select('%s & chain %s' %(prot_name, self._test_lig_chains), lig_name)
+    cmd.select(rec_name, '%s & chain %s' %(prot_name, self._test_rec_chains))
+    cmd.select(lig_name, '%s & chain %s' %(prot_name, self._test_lig_chains))
 
-    rms = x[0].RMSDSep(lig_name, rec_name)
+    rms = x[0].RMSDSep(rec_name, lig_name)
     return (prot_name, rms)
 
 def RunMols(args, separated):
@@ -439,9 +444,8 @@ def RunMols(args, separated):
 
   lig_files = runner.GetLigandModels()
   rec_files = runner.GetReceptorModels()
-  if _VERBOSE:
-    print 'ligs are', lig_files
-    print 'recs are', rec_files
+  eprint('ligs are', lig_files)
+  eprint('recs are', rec_files)
   assert len(lig_files) == len(rec_files)
 
   if not _VERBOSE:
@@ -453,7 +457,7 @@ def RunMols(args, separated):
     range(len(lig_files))])
 
   for i in range(len(lig_files)):
-    print '%s %f' % all_rms[i]
+    print('%s %f' % all_rms[i])
 
 def main():
   args = get_parser().parse_args()
