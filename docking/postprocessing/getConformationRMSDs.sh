@@ -4,7 +4,8 @@ POST_SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 SCRIPTS_DIR=$POST_SCRIPTS_DIR/../../
 source $SCRIPTS_DIR/Makefile.def
 
-CRMSD=$SCRIPTS_DIR/getcRMSD_pymol_full.sh
+#CRMSD=$SCRIPTS_DIR/getcRMSD_pymol_full.sh
+CRMSD=$SCRIPTS_DIR/alignment/alignRMSD_pymol_samechain.py
 
 ################################################################################
 # F2Dock doesn't do a good job of computing the cRMSD for its matches. We'll   #
@@ -73,12 +74,12 @@ $POST_SCRIPTS_DIR/conformationGenerator $LIG $tmpXforms 0 $(($NUM-1));
 
 ls ${LIG::${#LIG}-4}_conf_*.pdb > $tmpSingles;
 
-export CRMSD REC_GOLD REC LIG_GOLD
-#xargs -a $tmpSingles -P$NPROC -Ipdb sh -c 'echo pdb $($CRMSD $REC_GOLD $REC $LIG_GOLD pdb)' | tee $OUTFILE
-$PYMOL -qc $CRMSD -- \
+$PYMOL -qc $CRMSD -- split_pdb \
     -R $REC_GOLD -L $LIG_GOLD \
     -r $REC -l $LIG \
-    --lig_confs=${LIG::${#LIG}-4}_conf_*.pdb -P $NPROC > $OUTFILE
+    --lig_confs=${LIG_PRE}_conf_*.pdb -N $NPROC > $OUTFILE
+#export CRMSD REC_GOLD REC LIG_GOLD
+#xargs -a $tmpSingles -P$NPROC -Ipdb sh -c 'echo pdb $($CRMSD $REC_GOLD $REC $LIG_GOLD pdb)' | tee $OUTFILE
 
 # Clean up
 #rm -rf $WORKDIR
