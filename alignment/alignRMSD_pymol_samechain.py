@@ -108,22 +108,36 @@ def getContactResIndx(contact, full):
   return contact_idx
 
 def SimplifySelection(prot, cont):
+  # Multiple chains requires two parentheses.
+  multi_chain = False
+  if len(set([x[0] for x in cont])) > 1:
+    multi_chain = True
+
   str = '%s & n. ca & ' % prot
+  if multi_chain:
+    str += '('
   chain = None
   prev_resi = -2
-  printed_prev = False
+  printed_resi = False
   for x in cont:
     this_chain = x[0]
     this_resi = int(x[2])
+    # Initial chain not set.
     if not chain:
       str += '(chain %s & resi ' % this_chain
+    # Found a new chain to process.
     elif chain != this_chain:
-      str += ') & (chain %s & resi ' % this_chain
+      str += ') + (chain %s & resi ' % this_chain
+      prev_resi = -2
+      printed_resi = False
 
+    # Found something non-sequential.
     if this_resi > prev_resi + 1:
+      # Actually, haven't seen anything before (in this chain).
       if prev_resi == -2:
         str += '%s' % this_resi
       elif not printed_resi:
+        # Haven't printed the terminal residue in this sequence.
         str += '-%s+%s' % (prev_resi, this_resi)
       else:
         str += '+%s' % this_resi
@@ -137,6 +151,8 @@ def SimplifySelection(prot, cont):
   if not printed_resi:
     str += '-%s' % prev_resi
 
+  if multi_chain:
+    str += ')'
   return str + ')'
 
 class PyMolAligner:
@@ -211,7 +227,6 @@ class PyMolAligner:
     simp_Rp = SimplifySelection(rec, self._cont_Rp)
     simp_L = SimplifySelection(self._protL, self._cont_L)
     simp_Lp = SimplifySelection(lig, self._cont_Lp)
-    eprint('%s is bad' % simp_L)
     eprint('%s: %d vs %d' % (simp_R, cmd.count_atoms(simp_R),
       len(self._cont_R)))
     eprint('%s: %d vs %d' % (simp_Rp, cmd.count_atoms(simp_Rp),
@@ -451,6 +466,10 @@ def RunMols(args, separated):
   if not _VERBOSE:
     # Get rid of unwanted output.
     cmd.feedback('disable', 'executive', 'results')
+
+  # Test with a single one because Pool hides traceback.
+  if _VERBOSE:
+    RunSingle((runner, alnr, lig_files[0], rec_files[0]))
 
   p = Pool(args.nproc)
   all_rms = p.map(RunSingle, [(runner, alnr, lig_files[i], rec_files[i]) for i in
