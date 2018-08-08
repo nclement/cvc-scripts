@@ -15,6 +15,26 @@ The following steps will be used:
   3. For each contact residue (determined in Step 1 above), compute the
   distance to the aligned residue (determined in Step 2) and report this as the
   contact RMSD.
+
+
+There are a few known issues:
+  1. The alignment treats the entire protein as a single chain (i.e. single
+  sequence). If there are more than one chain, the alignment might be wrong.
+  This might be an issue, but we'll ignore it for now.
+  Some fixes:
+    a. Perform an alignment between each chain, and use DP to find the
+       optimal chain-chain alignment. Instead, we're expecting the chains
+       to come in the same order, as this solution would require extensive
+       rewriting (consider each chain separately).
+
+  2. We're only considering the top alignment. It's possible this will cause
+  contact residues in the gold sequence to align with gaps in the test
+  sequence. What should we do in this scenario? It was decided that we'd just
+  ignore these residues, which might not be the best answer. Some fixes:
+    a. Consider more than one alignment, see if there is something where
+       everything fits.
+    b. Perform only a local alignment, which might remove some of the gaps at
+       the end.
 """
 from __future__ import print_function
 
@@ -45,20 +65,53 @@ def eprint(*args, **kwargs):
   if _VERBOSE:
     print(*args, file=sys.stderr, **kwargs)
 
-def getAlignmentList(str):
+def getAlignmentList(str1, str2):
+  """Get the alignment mapping from str1 (gold) => str2 (test). At the end,
+  len(alns) == len(goldp)
+  """
   alns = []
-  match_idx = 0
-  for c in str:
-    if c != '-':
-      alns.append(match_idx)
-      match_idx += 1
-    else:
+  idx1 = 0
+  idx2 = 0
+  for i in range(len(str1)):
+    c1 = str1[i]
+    c2 = str2[i]
+
+    if c2 == '-':
+      # Aligned with a gap in test; place a -1
       alns.append(-1)
+      idx1 += 1
+    elif c1 == '-':
+      # Aligned with a gap in gold; just skip.
+      idx2 += 1
+      continue
+    else:
+      # Good on both top and bottom.
+      alns.append(idx2)
+      idx1 += 1
+      idx2 += 1
+  return alns
 
 def testContactRes(aln_list, contact_idx, full_seq):
+  """From the alignment list, aln_list, get the contact residue indices for
+  the test seq (similar to getContactResIndx for gold).
+
+  Arguments:
+    aln_list: alignment list from getAlignmentList
+    contact_idx: contact residue indices for gold
+    full_seq: the tuple (from getFullRes) representing the full sequence
+       for this test protein.
+  
+  """
   test_cont = []
   for x in contact_idx:
-    test_cont.append(full_seq[x])
+    # This means it aligns to nothing--will cause the number of atoms in
+    # test and gold to be different (bad for RMS).
+    assert(aln_list[x] != -1)
+
+    eprint(' - test appending x=%d, len %d,%d'
+        %(x, len(full_seq), len(aln_list)))
+    eprint('   which is', aln_list[x], full_seq[aln_list[x]])
+    test_cont.append(full_seq[aln_list[x]])
   return test_cont
 
 def getSequence(selection):
@@ -92,6 +145,21 @@ def getFullRes(sel):
   cmd.iterate('%s & n. ca' % sel, 'full.append((chain, resn, resi, index))',
       space=sp)
   return sp['full']
+
+def fixContact(contact, contact_idx, aln_list):
+  # Remove things that align with nothing in the other sequence.
+  no_align = []
+  for i, x in enumerate(contact_idx):
+    if aln_list[x] == -1:
+      no_align.append(i)
+  for i, x in enumerate(no_align):
+    # Each thing we delete will reduce the position by 1.
+    eprint('Deleting contact at position %d=%d' % (x, contact_idx[x-i]))
+    del contact[x-i]
+    del contact_idx[x-i]
+
+  return (contact, contact_idx)
+
 
 def getContactResIndx(contact, full):
   contact_idx = [-1]*len(contact)
@@ -181,21 +249,32 @@ class PyMolAligner:
     eprint('R_aln is', self._R_aln)
     eprint('L_aln is', self._L_aln)
 
-    # Need to get contact residues for gold, then corresponding res from test.
-    self._cont_R = getContactRes(protR, protL, X)
-    self._cont_L = getContactRes(protL, protR, X)
-
     self._full_R = getFullRes(protR)
     self._full_L = getFullRes(protL)
     self._full_Rp = getFullRes(protRp)
     self._full_Lp = getFullRes(protLp)
+    
+    aln_list_R = getAlignmentList(self._R_aln[0], self._R_aln[1])
+    aln_list_L = getAlignmentList(self._L_aln[0], self._L_aln[1])
+
+    # Need to get contact residues for gold, then corresponding res from test.
+    self._cont_R = getContactRes(protR, protL, X)
+    self._cont_L = getContactRes(protL, protR, X)
 
     self._cont_R_idx = getContactResIndx(self._cont_R, self._full_R)
     self._cont_L_idx = getContactResIndx(self._cont_L, self._full_L)
 
-    aln_list_R = getAlignmentList(self._R_aln[0])
-    aln_list_L = getAlignmentList(self._L_aln[0])
+    # If there are gaps in the alignment, should skip these (otherwise the
+    # RMS calculation will be incorrect).
+    (self._cont_R, self._cont_R_idx) = fixContact(
+        self._cont_R, self._cont_R_idx, aln_list_R)
+    (self._cont_L, self._cont_L_idx) = fixContact(
+        self._cont_L, self._cont_L_idx, aln_list_L)
 
+    eprint('Contact is', self._cont_R)
+    eprint('Contact_idx is', self._cont_R_idx)
+    eprint('aln is', aln_list_R)
+    eprint('full is', self._full_Rp)
     self._cont_Rp = testContactRes(aln_list_R, self._cont_R_idx, self._full_Rp)
     self._cont_Lp = testContactRes(aln_list_L, self._cont_L_idx, self._full_Lp)
     eprint('R cont (len:%d) is' % len(self._cont_R), self._cont_R)
