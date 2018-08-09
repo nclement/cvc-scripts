@@ -44,7 +44,7 @@ from Bio.SubsMat import MatrixInfo as matlist
 from contextlib import contextmanager
 from multiprocessing import Pool
 from math import log
-import sys, os
+import os, sys, inspect
 
 ## if len(sys.argv) < 4:
 ##   print("usage getcRMSD_pymol_full.py <GOLD_R> <TEST_R> <GOLD_L> <TEST_L> [LIMIT=10]")
@@ -60,6 +60,15 @@ import sys, os
 
 _VERBOSE=0
 _REC_TOGETHER="__tog"
+
+def eassert(*asrt, **kwargs):
+    line_num = ''.join([str(inspect.stack()[1][1]),
+          ":", str(inspect.stack()[1][2]), ":", str(inspect.stack()[1][3])])
+    if not asrt[0]:
+      msg = 'failure at line [' + str(line_num) + ']'
+      if len(asrt) > 1:
+        msg += ' : ' + asrt[1]
+        raise AssertionError(msg)
 
 def eprint(*args, **kwargs):
   if _VERBOSE:
@@ -106,7 +115,8 @@ def testContactRes(aln_list, contact_idx, full_seq):
   for x in contact_idx:
     # This means it aligns to nothing--will cause the number of atoms in
     # test and gold to be different (bad for RMS).
-    assert(aln_list[x] != -1)
+    eassert(aln_list[x] != -1,
+        'shouldn\'t align to nothing! at pos %d:%d' %(x, aln_list[x]))
 
     eprint(' - test appending x=%d, len %d,%d'
         %(x, len(full_seq), len(aln_list)))
@@ -195,6 +205,8 @@ def SimplifySelection(prot, cont):
       str += '(chain %s & resi ' % this_chain
     # Found a new chain to process.
     elif chain != this_chain:
+      if not printed_resi:
+        str += '-%s' % prev_resi
       str += ') + (chain %s & resi ' % this_chain
       prev_resi = -2
       printed_resi = False
@@ -271,10 +283,14 @@ class PyMolAligner:
     (self._cont_L, self._cont_L_idx) = fixContact(
         self._cont_L, self._cont_L_idx, aln_list_L)
 
-    eprint('Contact is', self._cont_R)
-    eprint('Contact_idx is', self._cont_R_idx)
-    eprint('aln is', aln_list_R)
-    eprint('full is', self._full_Rp)
+    eprint('R Contact is', self._cont_R)
+    eprint('R Contact_idx is', self._cont_R_idx)
+    eprint('R aln is', aln_list_R)
+    eprint('R full is', self._full_Rp)
+    eprint('L Contact is', self._cont_L)
+    eprint('L Contact_idx is', self._cont_L_idx)
+    eprint('L aln is', aln_list_L)
+    eprint('L full is', self._full_Lp)
     self._cont_Rp = testContactRes(aln_list_R, self._cont_R_idx, self._full_Rp)
     self._cont_Lp = testContactRes(aln_list_L, self._cont_L_idx, self._full_Lp)
     eprint('R cont (len:%d) is' % len(self._cont_R), self._cont_R)
@@ -295,10 +311,14 @@ class PyMolAligner:
       len(self._cont_L)))
     eprint('%s: %d vs %d' % (simp_Lp, cmd.count_atoms(simp_Lp),
         len(self._cont_Lp)))
-    assert cmd.count_atoms(simp_R) == len(self._cont_R)
-    assert cmd.count_atoms(simp_Rp) == len(self._cont_Rp)
-    assert cmd.count_atoms(simp_L) == len(self._cont_L)
-    assert cmd.count_atoms(simp_Lp) == len(self._cont_Lp)
+    eassert(cmd.count_atoms(simp_R) == len(self._cont_R),
+        'number of atoms in contact selection bad for gold:R')
+    eassert(cmd.count_atoms(simp_Rp) == len(self._cont_Rp),
+        'number of atoms in contact selection bad for test:R')
+    eassert(cmd.count_atoms(simp_L) == len(self._cont_L),
+        'number of atoms in contact selection bad for gold:L')
+    eassert(cmd.count_atoms(simp_Lp) == len(self._cont_Lp),
+        'number of atoms in contact selection bad for test:L')
     return cmd.pair_fit(simp_R, simp_Rp, simp_L, simp_Lp)
 
   def RMSDSep(self, rec, lig):
@@ -314,10 +334,14 @@ class PyMolAligner:
       len(self._cont_L)))
     eprint('%s: %d vs %d' % (simp_Lp, cmd.count_atoms(simp_Lp),
       len(self._cont_Lp)))
-    assert cmd.count_atoms(simp_R) == len(self._cont_R)
-    assert cmd.count_atoms(simp_Rp) == len(self._cont_Rp)
-    assert cmd.count_atoms(simp_L) == len(self._cont_L)
-    assert cmd.count_atoms(simp_Lp) == len(self._cont_Lp)
+    eassert(cmd.count_atoms(simp_R) == len(self._cont_R),
+        'number of atoms in contact selection bad for gold:R')
+    eassert(cmd.count_atoms(simp_Rp) == len(self._cont_Rp),
+        'number of atoms in contact selection bad for test:R')
+    eassert(cmd.count_atoms(simp_L) == len(self._cont_L),
+        'number of atoms in contact selection bad for gold:L')
+    eassert(cmd.count_atoms(simp_Lp) == len(self._cont_Lp),
+        'number of atoms in contact selection bad for test:L')
     return cmd.pair_fit(simp_R, simp_Rp, simp_L, simp_Lp)
 
 ##     # This stuff isn't needed anymore.
@@ -394,6 +418,9 @@ def addCommonArgs(parser):
       help='Number of processor cores to use')
   parser.add_argument('--input_fn', dest='input_fn', default=None,
       help='Use if inputs to --*_confs are actually a filename, not a Regex',
+      action='store_true')
+  parser.add_argument('-V', '--verbose', dest='verbose', default=False,
+      help='Print quite a bit of output',
       action='store_true')
 
 def get_parser():
@@ -490,10 +517,10 @@ class TogetherMols:
     cmd.create('pL', 'goldp & chain %s' % args.gold_lig_chains)
     cmd.create('pRp', 'testp & chain %s' % args.test_rec_chains)
     cmd.create('pLp', 'testp & chain %s' % args.test_lig_chains)
-    assert cmd.count_atoms('pR') > 0
-    assert cmd.count_atoms('pL') > 0
-    assert cmd.count_atoms('pRp') > 0
-    assert cmd.count_atoms('pLp') > 0
+    eassert(cmd.count_atoms('pR') > 0, 'no atoms in gold:R')
+    eassert(cmd.count_atoms('pL') > 0, 'no atoms in gold:L')
+    eassert(cmd.count_atoms('pRp') > 0, 'no atoms in test:R')
+    eassert(cmd.count_atoms('pLp') > 0, 'no atoms in test:L')
     for obj in cmd.get_names():
       eprint('obj is %s' % obj)
     self._gold_rec_chains = args.gold_rec_chains
@@ -540,7 +567,8 @@ def RunMols(args, separated):
   rec_files = runner.GetReceptorModels()
   eprint('ligs are', lig_files)
   eprint('recs are', rec_files)
-  assert len(lig_files) == len(rec_files)
+  eassert(len(lig_files) == len(rec_files),
+      'you didn\'t specify the correct number of rec/lig files!')
 
   if not _VERBOSE:
     # Get rid of unwanted output.
@@ -558,7 +586,11 @@ def RunMols(args, separated):
     print('%s %f' % all_rms[i])
 
 def main():
+  global _VERBOSE
   args = get_parser().parse_args()
+  if args.verbose:
+    print('Using verbose output')
+    _VERBOSE=1
   RunMols(args, hasattr(args, 'gold_r'))
 
 if __name__ == 'pymol':
