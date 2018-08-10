@@ -74,6 +74,14 @@ def eprint(*args, **kwargs):
   if _VERBOSE:
     print(*args, file=sys.stderr, **kwargs)
 
+def load_pdb(pdb_fn, pdb_str):
+  cmd.load(pdb_fn, pdb_str)
+
+  # Need to do some cleanup of these.
+  cmd.alter(pdb_str, 'segi=""')
+  cmd.remove('%s & not (alt ""+A)' % pdb_str)
+  cmd.alter(pdb_str, 'alt=""')
+
 def getAlignmentList(str1, str2):
   """Get the alignment mapping from str1 (gold) => str2 (test). At the end,
   len(alns) == len(goldp)
@@ -468,10 +476,10 @@ def RunSingle(obj):
 class SeparateMols:
   def __init__(self, args):
     # Load the proteins.
-    cmd.load(args.gold_r, 'pR')
-    cmd.load(args.test_r, 'pRp')
-    cmd.load(args.gold_l, 'pL')
-    cmd.load(args.test_l, 'pLp')
+    load_pdb(args.gold_r, 'pR')
+    load_pdb(args.test_r, 'pRp')
+    load_pdb(args.gold_l, 'pL')
+    load_pdb(args.test_l, 'pLp')
 
     if args.prot_confs:
       self._lig_confs = getRegexFiles(args.prot_confs, args.input_fn)
@@ -492,7 +500,7 @@ class SeparateMols:
   def runSingle(self, x):
     lig = x[1]
     lig_name = CleanName(lig[:-4]) # Remove the '.pdb'
-    cmd.load(lig, lig_name)
+    load_pdb(lig, lig_name)
 
 
     # One case where these come together (SwarmDock).
@@ -503,7 +511,7 @@ class SeparateMols:
     rec = x[2]
     rec_name = CleanName(rec[:-4])
     if rec_name != 'pRp':
-      cmd.load(rec, rec_name)
+      load_pdb(rec, rec_name)
 
     rms = x[0].RMSDSep(rec_name, lig_name)
     #print 'Finished, rms is %f' % rms
@@ -511,8 +519,9 @@ class SeparateMols:
 
 class TogetherMols:
   def __init__(self, args):
-    cmd.load(args.gold_p, 'goldp')
-    cmd.load(args.test_p, 'testp')
+    load_pdb(args.gold_p, 'goldp')
+    load_pdb(args.test_p, 'testp')
+
     cmd.create('pR', 'goldp & chain %s' % args.gold_rec_chains)
     cmd.create('pL', 'goldp & chain %s' % args.gold_lig_chains)
     cmd.create('pRp', 'testp & chain %s' % args.test_rec_chains)
@@ -539,7 +548,7 @@ class TogetherMols:
   def runSingle(self, x):
     prot = x[1] # x[2] is None
     prot_name = CleanName(prot[:-4])
-    cmd.load(prot, prot_name)
+    load_pdb(prot, prot_name)
 
     rec_name = prot_name + '_R'
     lig_name = prot_name + '_L'
@@ -555,11 +564,6 @@ def RunMols(args, separated):
     runner = SeparateMols(args)
   else:
     runner = TogetherMols(args)
-
-  # Need to do some cleanup of these.
-  cmd.alter('all', 'segi=""')
-  cmd.remove('not (alt ""+A)')
-  cmd.alter('all', 'alt=""')
 
   alnr = PyMolAligner('pR', 'pRp', 'pL', 'pLp', args.dist)
 
