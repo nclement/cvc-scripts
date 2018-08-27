@@ -164,7 +164,7 @@ def getFullRes(sel):
       space=sp)
   return sp['full']
 
-def fixContact(contact, contact_idx, aln_list):
+def fixContact(contact, contact_idx, aln_list, fatal_missing):
   # Remove things that align with nothing in the other sequence.
   no_align = []
   for i, x in enumerate(contact_idx):
@@ -173,6 +173,10 @@ def fixContact(contact, contact_idx, aln_list):
   for i, x in enumerate(no_align):
     # Each thing we delete will reduce the position by 1.
     eprint('Deleting contact at position %d=%d' % (x, contact_idx[x-i]))
+    if fatal_missing:
+      eassert(False, 'Error aligning to a gap! Remove --fail_on_missing_atoms '
+          'to continue.')
+      
     del contact[x-i]
     del contact_idx[x-i]
 
@@ -244,7 +248,7 @@ def SimplifySelection(prot, cont):
   return str + ')'
 
 class PyMolAligner:
-  def __init__(self, protR, protRp, protL, protLp, X):
+  def __init__(self, protR, protRp, protL, protLp, X, fail_on_missing_atoms):
     # Remember these.
     self._protR = protR
     self._protL = protL
@@ -284,12 +288,14 @@ class PyMolAligner:
     self._cont_R_idx = getContactResIndx(self._cont_R, self._full_R)
     self._cont_L_idx = getContactResIndx(self._cont_L, self._full_L)
 
+    eprint('Before fixing, R contact is', self._cont_R, self._cont_R_idx)
+    eprint('Before fixing, L contact is', self._cont_L, self._cont_L_idx)
     # If there are gaps in the alignment, should skip these (otherwise the
     # RMS calculation will be incorrect).
     (self._cont_R, self._cont_R_idx) = fixContact(
-        self._cont_R, self._cont_R_idx, aln_list_R)
+        self._cont_R, self._cont_R_idx, aln_list_R, fail_on_missing_atoms)
     (self._cont_L, self._cont_L_idx) = fixContact(
-        self._cont_L, self._cont_L_idx, aln_list_L)
+        self._cont_L, self._cont_L_idx, aln_list_L, fail_on_missing_atoms)
 
     eprint('R Contact is', self._cont_R)
     eprint('R Contact_idx is', self._cont_R_idx)
@@ -427,6 +433,10 @@ def addCommonArgs(parser):
   parser.add_argument('--input_fn', dest='input_fn', default=None,
       help='Use if inputs to --*_confs are actually a filename, not a Regex',
       action='store_true')
+  parser.add_argument('--fail_on_missing_atoms', action='store_true',
+      help='If a contact atom is aligned to a gap, fail and exit. If this flag '
+           'is not specified, the program will silently continue upond finding '
+           'this case.')
   parser.add_argument('-V', '--verbose', dest='verbose', default=False,
       help='Print quite a bit of output',
       action='store_true')
@@ -565,7 +575,8 @@ def RunMols(args, separated):
   else:
     runner = TogetherMols(args)
 
-  alnr = PyMolAligner('pR', 'pRp', 'pL', 'pLp', args.dist)
+  alnr = PyMolAligner('pR', 'pRp', 'pL', 'pLp', args.dist,
+      args.fail_on_missing_atoms)
 
   lig_files = runner.GetLigandModels()
   rec_files = runner.GetReceptorModels()
