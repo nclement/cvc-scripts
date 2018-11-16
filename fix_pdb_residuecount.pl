@@ -14,8 +14,14 @@ my $residue_output = "";
 my $def_chain = "A";
 
 while(<>) {
+  # If it's one of these, just print it out and ignore.
+  if (/^(REMARK|HELIX|SHEET)/) {
+    print $_;
+    next;
+  }
 	if (!/^(ATOM|HETATM)/) {
-    # Don't print it, just add it to the end of the residue output
+    # Don't print it, just add it to the end of the residue output. This will
+    # catch TER atoms.
 		$residue_output .= $_;
 		next;
 	}

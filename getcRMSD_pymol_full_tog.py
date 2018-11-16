@@ -13,7 +13,7 @@ def printVerbose(*str):
     print str
 
 if len(sys.argv) < 4:
-  print("usage getcRMSD_pymol_full.py <GOLD_R> <TEST_R> <GOLD_L> <TEST_L> [LIMIT=10]")
+  print("usage getcRMSD_pymol_full.py <GOLD> <TEST> <CHAINS_R> <CHAINS_L> [LIMIT=10]")
   os._exit(1)
 prot=sys.argv[1]  # Real protein
 samp=sys.argv[2]  # Sampled protein

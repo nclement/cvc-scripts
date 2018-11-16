@@ -77,26 +77,26 @@ SAMPLE_RAMACHANDRAN="$F3DOCK_DIR/sampleProtein_Rama"
 SINGLES="$SCRIPTS/runSingles_parallel.sh"
 
 one_time=$(date +%s)
-echo "############################"
-echo "# 0. Generating rmsd atoms #"
-echo "############################"
-if [ $stage -le 0 ]; then
-  mkdir -p $OUTDIR/orig
-  # Fix the ligand so it doesnt have any errors.
-  $FIX_PDB $LIGAND > $OUTDIR/$LIG_SHORT.pdb
-  $FIX_PDB $RECEPTOR > $OUTDIR/$REC_SHORT.pdb
-  $FIX_PDB $LIG_GOLD > $OUTDIR/orig/lig_gold.pdb
-  $FIX_PDB $REC_GOLD > $OUTDIR/orig/rec_gold.pdb
-  # Then get the .pqr from the ligand.
-  cd $OUTDIR/orig
-  $DOCK_LIGAND lig_gold.pdb
-
-  RMSD_ATOMS=$OUTDIR/orig/rmsd_atoms.txt
-  LIG_RMSD=$OUTDIR/orig/lig_gold.pqr
-  $PYMOL -qrc $SCRIPTS/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $OUTDIR/orig/rec_gold.pdb \
-        | grep -v "^PyMOL" > $RMSD_ATOMS
-fi
-
+## echo "############################"
+## echo "# 0. Generating rmsd atoms #"
+## echo "############################"
+## if [ $stage -le 0 ]; then
+##   mkdir -p $OUTDIR/orig
+##   # Fix the ligand so it doesnt have any errors.
+##   $FIX_PDB $LIGAND > $OUTDIR/$LIG_SHORT.pdb
+##   $FIX_PDB $RECEPTOR > $OUTDIR/$REC_SHORT.pdb
+##   $FIX_PDB $LIG_GOLD > $OUTDIR/orig/lig_gold.pdb
+##   $FIX_PDB $REC_GOLD > $OUTDIR/orig/rec_gold.pdb
+##   # Then get the .pqr from the ligand.
+##   cd $OUTDIR/orig
+##   $DOCK_LIGAND lig_gold.pdb
+## 
+##   RMSD_ATOMS=$OUTDIR/orig/rmsd_atoms.txt
+##   LIG_RMSD=$OUTDIR/orig/lig_gold.pqr
+##   $PYMOL -qrc $SCRIPTS/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $OUTDIR/orig/rec_gold.pdb \
+##         | grep -v "^PyMOL" > $RMSD_ATOMS
+## fi
+## 
 two_time=$(date +%s)
 echo "############################################"
 echo "# Time for step 1 is `date -u -d @$(($two_time - $one_time)) +"%T"`# "
@@ -291,11 +291,12 @@ if [ $stage -le 6 ]; then
     cp $OUTDIR/aligned/$rec .
     # Need to do this to get the rmsd_atoms file.
     $DOCK_LIGAND $lig 128
-    $GET_RMSD $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pqr ${lig%.pdb}.pqr $CONTACT_RMSD > dock_${i}_rmsd_atoms.txt
+    #$GET_RMSD $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pqr ${lig%.pdb}.pqr $CONTACT_RMSD > dock_${i}_rmsd_atoms.txt
 
     # Include the rmsd atoms just for testing purposes.
     #USE_PREV=1 $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
-    NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
+    #NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
+    NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt
     $DOCK_SCORE dock_$i.txt | sed "s/^/$i /" > dock_${i}_score.txt
   done
 fi
