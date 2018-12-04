@@ -17,4 +17,4 @@ If you export this directory and add it to PYTHONPATH, it should work.
    for separate (R&L) as well as full RMSD.
  * `alignRMSD_single.py`: Computes the one-sided cRMSD (only cRMSD for relevant
    atoms) for one or more proteins.
-
+ * `PymolVisualizationHelper.py`: Helper to print out alignment residues, for displaying in Pymol.

@@ -183,6 +183,20 @@ class PyMolAligner:
     eprint('Rp cont (len:%d) is' % len(self._cont_Rp), self._cont_Rp)
     eprint('Lp cont (len:%d) is' % len(self._cont_Lp), self._cont_Lp)
 
+  def __str__(self):
+    retstr = ''
+    # Load objects.
+    retstr += 'load %s as gold_r\n' % self.protR
+    retstr += 'load %s as gold_l\n' % self.protL
+    retstr += 'load %s as test_r\n' % self.protRp
+    retstr += 'load %s as test_l\n' % self.protLp
+    # Select contact atoms.
+    retstr += 'select cont_gold_r, %s\n' % self._cont_R
+    retstr += 'select cont_gold_l, %s\n' % self._cont_L
+    retstr += 'select cont_test_r, %s\n' % self._cont_Rp
+    retstr += 'select cont_test_l, %s\n' % self._cont_Lp
+    return retstr
+
   def RMSDTog(self, prot):
     """Returns the RMSD between gold and test, specifying a single structure and
     getting R+L from chains."""
