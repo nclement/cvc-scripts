@@ -186,15 +186,22 @@ class PyMolAligner:
   def __str__(self):
     retstr = ''
     # Load objects.
-    retstr += 'load %s as gold_r\n' % self.protR
-    retstr += 'load %s as gold_l\n' % self.protL
-    retstr += 'load %s as test_r\n' % self.protRp
-    retstr += 'load %s as test_l\n' % self.protLp
+    #retstr += 'load %s as gold_r\n' % self._protR
+    #retstr += 'load %s as gold_l\n' % self._protL
+    #retstr += 'load %s as test_r\n' % self._protRp
+    #retstr += 'load %s as test_l\n' % self._protLp
     # Select contact atoms.
-    retstr += 'select cont_gold_r, %s\n' % self._cont_R
-    retstr += 'select cont_gold_l, %s\n' % self._cont_L
-    retstr += 'select cont_test_r, %s\n' % self._cont_Rp
-    retstr += 'select cont_test_l, %s\n' % self._cont_Lp
+    simp_R = utils.SimplifySelection(self._protR, self._cont_R)
+    simp_Rp = utils.SimplifySelection(self._protRp, self._cont_Rp)
+    simp_L = utils.SimplifySelection(self._protL, self._cont_L)
+    simp_Lp = utils.SimplifySelection(self._protLp, self._cont_Lp)
+    retstr += 'select cont_gold_r, %s\n' % simp_R
+    retstr += 'select cont_gold_l, %s\n' % simp_L
+    retstr += 'select cont_test_r, %s\n' % simp_Rp
+    retstr += 'select cont_test_l, %s\n' % simp_Lp
+    retstr += 'align cont_test_r, cont_gold_r\n'
+    retstr += 'align cont_test_l, cont_gold_l\n'
+    retstr += 'show_as cartoon\n'
     return retstr
 
   def RMSDTog(self, prot):

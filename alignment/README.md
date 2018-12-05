@@ -6,7 +6,12 @@ But...this doesn't work for the Educational Pymol. So we need to run it directly
 with Pymol.... Which means we need to add a hack to include this directory in
 the Pymol's Python path.
 
-If you export this directory and add it to PYTHONPATH, it should work.
+If you export this directory and add it to PYTHONPATH, it should work, e.g.
+
+```bash
+export PYTHONPATH=$PYTHONPATH:<path_to_cvc>/alignment
+pymol -qc <script> -- --help
+```
 
 # Scripts Contained Herein
 

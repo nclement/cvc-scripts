@@ -29,6 +29,7 @@ def _get_unique_chain(chains, default_chain='A'):
 def load_pdb(pdb_fn, pdb_str, default_chain='A'):
   # Delete it if it already exists to avoid appending state.
   cmd.delete(pdb_str)
+  eprint('load %s, %s' %(pdb_fn, pdb_str))
   cmd.load(pdb_fn, pdb_str)
 
   # Need to do some cleanup of these.

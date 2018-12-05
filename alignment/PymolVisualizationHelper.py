@@ -1,5 +1,8 @@
 """ Output text that can be used to display cRMSD atoms. """
 
+from PyMolAligner import PyMolAligner
+import utils
+
 def get_parser():
   """Set up arguments.
   
@@ -22,13 +25,32 @@ def get_parser():
 
   parser.add_argument("-X", "--dist", dest="dist", default=10, type=int,
                       help="Max distance between contact atoms")
+  parser.add_argument('-V', '--verbose', dest='verbose', default=False,
+      help='Print quite a bit of output',
+      action='store_true')
 
   return parser
 
 def main():
-  args = get_parser().parse_args()
-  alnr = PyMolAligner(args.gold_r, args.test_r, args.gold_l, args.test_l,
-      args.dist)
+  try:
+    args = get_parser().parse_args()
+  except SystemExit, ext:
+    return
+
+  # Print the output from this.
+  utils._VERBOSE=1
+  utils.load_pdb(args.gold_r, 'pR')
+  utils.load_pdb(args.test_r, 'pRp')
+  utils.load_pdb(args.gold_l, 'pL')
+  utils.load_pdb(args.test_l, 'pLp')
+
+  if args.verbose:
+    print('Using verbose output')
+    utils._VERBOSE=1
+  else:
+    utils._VERBOSE=0
+
+  alnr = PyMolAligner('pR', 'pRp', 'pL', 'pLp', args.dist)
 
   print (alnr)
 
