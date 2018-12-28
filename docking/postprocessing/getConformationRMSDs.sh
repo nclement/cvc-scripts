@@ -74,6 +74,7 @@ $POST_SCRIPTS_DIR/conformationGenerator $LIG $tmpXforms 0 $(($NUM-1));
 
 ls ${LIG::${#LIG}-4}_conf_*.pdb > $tmpSingles;
 
+export PYTHONPATH=$SCRIPTS_DIR/alignment:$PYTHONPATH
 $PYMOL -qc $CRMSD -- split_pdb \
     -R $REC_GOLD -L $LIG_GOLD \
     -r $REC -l $LIG \

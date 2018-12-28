@@ -29,7 +29,7 @@ NUM_EXTRA=5
 NUM_SAMPS_GEND=`echo "$NUM_SAMPS * $NUM_EXTRA" | bc`
 #RAMACHANDRAN_PROB_FILES="/work/01872/nclement/uq/torsions/Dunbrack/Dunbrack_ctx0_res0.1_fn.txt";
 RAMACHANDRAN_PROB_FILES="/work/01872/nclement/uq/torsions/Dunbrack/Dunbrack_ctx0_res1_fn.txt";
-rama_args="-R $RAMACHANDRAN_PROB_FILES -N $NUM_SAMPS_GEND --max-clash=10 --max-severe=10 --clash-frac 0.35 --severe-frac 0.35 -s 5 --multiply-gauss"
+rama_args="-R $RAMACHANDRAN_PROB_FILES -N $NUM_SAMPS_GEND --max-clash=10 --max-severe=10 --clash-frac 0.35 --severe-frac 0.35 -s 5 --use-std-random --increase-clash-after 1000 --do-recursive"
 CONTACT_RMSD=5
 
 
@@ -99,7 +99,7 @@ one_time=$(date +%s)
 ## 
 two_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 1 is `date -u -d @$(($two_time - $one_time)) +"%T"`# "
+echo "# Time for step 0 is `date -u -d @$(($two_time - $one_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
@@ -118,7 +118,7 @@ fi
 
 three_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 2 is $(($three_time - $two_time)) #"
+echo "# Time for step 1 is `date -u -d @$(($three_time - $two_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
@@ -130,13 +130,15 @@ if [ $stage -le 2 ]; then
   rm -rf $samp_dir
   mkdir -p $samp_dir
   cd $OUTDIR
-  $SAMPLE_RAMACHANDRAN -i $OUTDIR/$LIG_SHORT.pdb -o $samp_dir/${LIG_SHORT}_samp -S $OUTDIR/chains/${LIG_SHORT}_fluct_resi.txt $rama_args
-  $SAMPLE_RAMACHANDRAN -i $OUTDIR/$REC_SHORT.pdb -o $samp_dir/${REC_SHORT}_samp -S $OUTDIR/chains/${REC_SHORT}_fluct_resi.txt $rama_args
+  # Uses OMP
+  export OMP_NUM_THREADS=$NPROC
+  $SAMPLE_RAMACHANDRAN -i $OUTDIR/$LIG_SHORT.pdb -o $samp_dir/${LIG_SHORT}_samp -S $OUTDIR/chains/${LIG_SHORT}_fluct_resi.txt $rama_args --do-recursive-fn=$OUTDIR/chains/${LIG_SHORT}_fcc.txt
+  $SAMPLE_RAMACHANDRAN -i $OUTDIR/$REC_SHORT.pdb -o $samp_dir/${REC_SHORT}_samp -S $OUTDIR/chains/${REC_SHORT}_fluct_resi.txt $rama_args --do-recursive-fn=$OUTDIR/chains/${REC_SHORT}_fcc.txt
 fi
 
 four_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 3 is $(($four_time - $three_time)) #"
+echo "# Time for step 2 is `date -u -d @$(($four_time - $three_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
@@ -150,7 +152,7 @@ fi
 
 five_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 3 is $(($five_time - $four_time)) #"
+echo "# Time for step 3 is `date -u -d @$(($five_time - $four_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
@@ -190,7 +192,7 @@ head recepts_en.txt -n $NUM_SAMPS | sort -R > recepts_use.txt
 
 six_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 4 is $(($six_time - $five_time)) #"
+echo "# Time for step 4 is `date -u -d @$(($six_time - $five_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
@@ -210,15 +212,18 @@ if [ $stage -le 5 ]; then
   for i in `seq 0 $(($NUM_SAMPS - 1))`; do
     lig=${LIG_LIST[$i]}_ambermin.pdb
     rec=${REC_LIST[$i]}_ambermin.pdb
-    $FIX_PDB $samp_dir/AMBER/$rec > $OUTDIR/aligned/test_rec.pdb
-    $FIX_PDB $samp_dir/AMBER/$lig > $OUTDIR/aligned/$lig # Don't need to change this one.
-    $ALIGN_CONTACT $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pdb $OUTDIR/aligned/test_rec.pdb $OUTDIR/aligned/$rec
+    # Not needed
+    ##$FIX_PDB $samp_dir/AMBER/$rec > $OUTDIR/aligned/test_rec.pdb
+    ##$FIX_PDB $samp_dir/AMBER/$lig > $OUTDIR/aligned/$lig # Don't need to change this one.
+    ##$ALIGN_CONTACT $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pdb $OUTDIR/aligned/test_rec.pdb $OUTDIR/aligned/$rec
+    $FIX_PDB $samp_dir/AMBER/$rec > $OUTDIR/aligned/$rec
+    $FIX_PDB $samp_dir/AMBER/$lig > $OUTDIR/aligned/$lig
   done
 fi
 
 sev_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 5 is $(($sev_time - $six_time)) #"
+echo "# Time for step 5 is `date -u -d @$(($sev_time - $six_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
@@ -261,7 +266,7 @@ echo "#####################################################"
 
 eight_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 6 is $(($eight_time - $sev_time)) #"
+echo "# Time for step 6 is `date -u -d @$(($eight_time - $sev_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
@@ -289,13 +294,13 @@ if [ $stage -le 6 ]; then
     rec=${REC_LIST[$i]}_ambermin.pdb
     cp $OUTDIR/aligned/$lig .
     cp $OUTDIR/aligned/$rec .
-    # Need to do this to get the rmsd_atoms file.
-    $DOCK_LIGAND $lig 128
-    #$GET_RMSD $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pqr ${lig%.pdb}.pqr $CONTACT_RMSD > dock_${i}_rmsd_atoms.txt
-
-    # Include the rmsd atoms just for testing purposes.
-    #USE_PREV=1 $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
-    #NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
+    ## # Need to do this to get the rmsd_atoms file.
+    ## #$DOCK_LIGAND $lig 128
+    ## #$GET_RMSD $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pqr ${lig%.pdb}.pqr $CONTACT_RMSD > dock_${i}_rmsd_atoms.txt
+    ## 
+    ## # Include the rmsd atoms just for testing purposes.
+    ## #USE_PREV=1 $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
+    ## #NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
     NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt
     $DOCK_SCORE dock_$i.txt | sed "s/^/$i /" > dock_${i}_score.txt
   done
@@ -306,7 +311,7 @@ cat dock_*_score.txt | sort -k 2gr > dock_all_score.txt
 
 e_time=$(date +%s)
 echo "############################################"
-echo "# Time for step 7 is $(($e_time - $eight_time)) #"
+echo "# Time for step 7 is `date -u -d @$(($e_time - $eight_time)) +"%T"`# "
 echo "############################################"
 echo
 echo
