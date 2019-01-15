@@ -69,7 +69,7 @@ if [ -z ${HBOND_FILTER+x} ]; then
 fi
 
 export USE_HBOND=$HBOND_FILTER
-$LIGAND $LIG
+bash -x $LIGAND $LIG
 bash -x $RECEPTOR $REC
 # Then do the RMSD atoms if requested.
 if ! [ -z ${RMSD_ATOMS_GEN+x} ]; then

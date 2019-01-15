@@ -16,4 +16,8 @@ rms_cur name ca and p1, name ca and p2
 EOF
 )
 #echo $rms
-echo $rms | grep "RMS =" | sed 's/.*=\s\+//' | sed 's/ .*//'
+if echo $rms | grep -q "RMSD ="; then
+  echo $rms | grep "RMSD =" | sed 's/.*=\s\+//' | sed 's/ .*//'
+else
+  echo $rms
+fi

@@ -5,7 +5,8 @@
 
 protA=$1  # Original protein A
 protB=$2  # Docked protein B
-X=${3:-5}
+# Vreven et al 2015 (zlab5) suggests to use 10\AA as the limit
+X=${3:-10}
 
 SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
 # Need variables to be defined here.

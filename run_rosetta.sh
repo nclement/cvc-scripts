@@ -1,6 +1,7 @@
 #! /bin/bash
 #module use ~/cvc-modules
 #module restore rosetta
+module load intel/18.0.0  impi/18.0.0
 module load rosetta/3.9
 module list
 
@@ -22,17 +23,7 @@ echo "out: $out"
 tog=$out.pdb
 echo " -- tog: $tog"
 
-# Need to fix the PDB with a few things:
-# 1. Get rid of END
-# 2. Change residue to be correct.
-# 3. Add TER after each chain.
-grep "^\(ATOM\|HETATM\|TER\)" $PDB_r | sed 's/^\(.\{21\}\)./\1R/' | $ADD_TER > $tog
-grep "^\(ATOM\|HETATM\|TER\)" $PDB_l | sed 's/^\(.\{21\}\)./\1L/' | $ADD_TER >> $tog
-# Need to fix it as well.
-#$TACC_ROSETTA_TOOLS/protein_tools/scripts/clean_pdb.py $tog ignorechain -database=$ROSETTA_DB
-#mv ${tog%.pdb}_ignorechain.pdb $tog
-awk -f $SCRIPTS_DIR/rosetta_fixcharmm.awk $tog > ${tog%.pdb}_cleaned.pdb
-mv ${tog%.pdb}_cleaned.pdb $tog
+$SCRIPTS_DIR/rosetta_prep_pdb.sh $PDB_r $PDB_l $tog
 
 #ibrun -np $NPROC $TACC_ROSETTA_BIN/docking_protocol.mpiomp.linuxiccrelease -database $ROSETTA_DB -s $tog -dock_pert 3 8 -spin -no_filters -out:overwrite -out:file:scorefile 3AAD.fasc -out:file:fullatom -mute core.io.database -nstruct 1000
 ibrun -np $NPROC $TACC_ROSETTA_BIN/docking_protocol.cxx11mpi.linuxiccrelease -database $ROSETTA_DB -s $tog -dock_pert 3 8 -spin -no_filters -out:overwrite -out:file:scorefile $out.fasc -out:file:fullatom -mute core.io.database -nstruct 1000
