@@ -12,12 +12,16 @@ use Data::Dumper qw(Dumper);
 my $inp_l = shift;
 my $inp_r = shift;
 my $minned = shift;
+my $outp_l = shift;
+my $outp_r = shift;
 
-die "usage <orig L> <orig R> <minimized tog>" if !$inp_l || !$inp_r || !$minned;
+die "usage <orig L> <orig R> <minimized tog> [<output L> <output R>]"
+    if !$inp_l || !$inp_r || !$minned;
 
 # Lookup table of acceptable translations.
 my %lookup_table;
 $lookup_table{"HIS"}{"HIE"} = 1;
+$lookup_table{"HIS"}{"HSD"} = 1;
 
 sub sameRes {
   my ($t, $m) = @_;
@@ -27,8 +31,10 @@ sub sameRes {
   return 0;
 }
 
-(my $outp_l = $inp_l) =~ s/(...._l_.\.pdb)/lc($1)/e;
-(my $outp_r = $inp_r) =~ s/(...._r_.\.pdb)/lc($1)/e;
+if (!$outp_l && !$outp_r) {
+  ($outp_l = $inp_l) =~ s/(...._l_.\.pdb)/lc($1)/e;
+  ($outp_r = $inp_r) =~ s/(...._r_.\.pdb)/lc($1)/e;
+}
 print "Writing to $outp_l and $outp_r\n";
 
 open (my $MINNED, '<', $minned) or die "Could not open minned filename [$minned]: $!\n";
@@ -74,7 +80,7 @@ sub process_file {
 
     # Get the current residue name and number.
     ($curres, $curnum, $curchain) = &get_next_res($INF, $curres, $curnum);
-    #print "Found curres $curres:$curchain:$curnum at midx=$midx\n";
+    print "Found curres $curres:$curchain:$curnum at midx=$midx\n";
 
 
     last if ($curres eq 'NA');
@@ -82,7 +88,8 @@ sub process_file {
     my $minnum = substr $minned[$midx], 22, 4;
     if (!&sameRes($curres, $minres)) {
       # Failed!
-      print "ERROR: Could not identify correct residue! Found [$minres:$minnum], expected [$curres:$curnum]\n";
+      print "ERROR: Could not identify correct residue! ",
+            "Found min[$minres:$minnum], expected cur[$curres:$curnum]\n";
       exit;
     }
     my $nextminnum = $minnum;

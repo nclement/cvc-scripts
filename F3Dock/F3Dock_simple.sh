@@ -20,6 +20,8 @@ NUM_SAMPS=$9    # Number of samples to generate.
 NPROC=${10:-16}   # Number of processors to use.
 stage=${11:-2}  # Stage to start on.
 
+F2D_PROC=${F2D_PROC:-$NPROC}
+
 module use ~/cvc-modules
 module restore f3dock
 
@@ -28,8 +30,9 @@ MAX_HP_LEVEL=4 # Max HingeProt level.
 NUM_EXTRA=5
 NUM_SAMPS_GEND=`echo "$NUM_SAMPS * $NUM_EXTRA" | bc`
 #RAMACHANDRAN_PROB_FILES="/work/01872/nclement/uq/torsions/Dunbrack/Dunbrack_ctx0_res0.1_fn.txt";
+R_stdv=5
 RAMACHANDRAN_PROB_FILES="/work/01872/nclement/uq/torsions/Dunbrack/Dunbrack_ctx0_res1_fn.txt";
-rama_args="-R $RAMACHANDRAN_PROB_FILES -N $NUM_SAMPS_GEND --max-clash=10 --max-severe=10 --clash-frac 0.35 --severe-frac 0.35 -s 5 --use-std-random --increase-clash-after 1000 --do-recursive"
+rama_args="-R $RAMACHANDRAN_PROB_FILES -N $NUM_SAMPS_GEND --max-clash=10 --max-severe=10 --clash-frac 0.35 --severe-frac 0.35 -s $R_stdv --use-std-random --increase-clash-after 1000 --do-recursive"
 CONTACT_RMSD=5
 
 
@@ -301,7 +304,7 @@ if [ $stage -le 6 ]; then
     ## # Include the rmsd atoms just for testing purposes.
     ## #USE_PREV=1 $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
     ## #NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
-    NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt
+    NUM_THREADS=$F2D_PROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt
     $DOCK_SCORE dock_$i.txt | sed "s/^/$i /" > dock_${i}_score.txt
   done
 fi
