@@ -30,6 +30,7 @@ if !$tmpl || !$inp || !$outp;
 my %lookup_table;
 $lookup_table{"HIS"}{"HIE"} = 1;
 $lookup_table{"HIS"}{"HSD"} = 1;
+$lookup_table{"ASP"}{"ASN"} = 1;
 
 # Lookup table of accetped mutations.
 my %mutations;
@@ -62,6 +63,7 @@ sub sameRes {
   return 0;
 }
 
+print "Reading input from [$inp]\n";
 open (my $INP, '<', $inp) or die "Could not open input filename [$inp]: $!\n";
 my @input = <$INP>;
 close($INP);
@@ -71,7 +73,7 @@ sub get_next_res {
   my $newres = 'NA';
 
   while(<$INF>) {
-    next if $_ !~ /^(ATOM|TER)/;
+    next if $_ !~ /^(ATOM)/;
     my $thisres = substr($_, 17, 3);
     my $thisnum = substr($_, 22, 4);
     my $thischain = substr($_, 21, 1);
@@ -86,7 +88,7 @@ sub get_next_res {
 
 my $midx = 0; # Current input index.
 
-print "Reading from [$tmpl]\n";
+print "Reading template from [$tmpl]\n";
 my $curres = 'NA';
 my $curnum = '-1';
 my $curchain = '0';
@@ -94,7 +96,7 @@ my $curchain = '0';
 open (my $TMPL, "<", $tmpl) or die "Could not open orig filename [$tmpl]: $!\n";
 open (my $OUTF, ">", $outp) or die "Could not open output file [$outp]: $!\n";
 while(!eof($TMPL) and $midx <= $#input) {
-  while ($midx <= $#input and $input[$midx] !~ /^(ATOM|TER)/) {
+  while ($midx <= $#input and $input[$midx] !~ /^(ATOM)/) {
     print $OUTF $input[$midx];
     $midx++;
   }
@@ -110,8 +112,8 @@ while(!eof($TMPL) and $midx <= $#input) {
   if (!&sameRes($curchain, $curnum, $curres, $inpres)) {
     # Failed!
     print "ERROR: Could not identify correct residue! ",
-    "Found inp[$inpres:$inpnum], expected cur[$curres:$curnum]\n";
-    exit;
+    "Found inp[X:$inpres:$inpnum], expected cur[$curchain:$curres:$curnum]\n";
+    exit -1;
   }
   my $nextinpnum = $inpnum;
   while (&sameRes($curchain, $curnum, $curres, $inpres) && $inpnum eq $nextinpnum) {
