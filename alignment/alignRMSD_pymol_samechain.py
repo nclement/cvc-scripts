@@ -196,10 +196,11 @@ class TogetherMols:
     utils.load_pdb(args.gold_p, 'goldp')
     utils.load_pdb(args.test_p, 'testp')
 
-    cmd.create('pR', 'goldp & chain %s' % args.gold_rec_chains)
-    cmd.create('pL', 'goldp & chain %s' % args.gold_lig_chains)
-    cmd.create('pRp', 'testp & chain %s' % args.test_rec_chains)
-    cmd.create('pLp', 'testp & chain %s' % args.test_lig_chains)
+    eprint('goldp & chain %s' % '+'.join(args.gold_rec_chains))
+    cmd.create('pR', 'goldp & chain %s' % '+'.join(args.gold_rec_chains))
+    cmd.create('pL', 'goldp & chain %s' % '+'.join(args.gold_lig_chains))
+    cmd.create('pRp', 'testp & chain %s' % '+'.join(args.test_rec_chains))
+    cmd.create('pLp', 'testp & chain %s' % '+'.join(args.test_lig_chains))
     eassert(cmd.count_atoms('pR') > 0, 'no atoms in gold:R')
     eassert(cmd.count_atoms('pL') > 0, 'no atoms in gold:L')
     eassert(cmd.count_atoms('pRp') > 0, 'no atoms in test:R')
@@ -227,8 +228,14 @@ class TogetherMols:
     rec_name = prot_name + '_R'
     lig_name = prot_name + '_L'
 
-    cmd.select(rec_name, '%s & chain %s' %(prot_name, self._test_rec_chains))
-    cmd.select(lig_name, '%s & chain %s' %(prot_name, self._test_lig_chains))
+    eprint('cmd.select %s, %s & chain %s' % (
+      rec_name, prot_name, '+'.join(self._test_rec_chains)))
+    eprint('cmd.select %s, %s & chain %s' % (
+      lig_name, prot_name, '+'.join(self._test_lig_chains)))
+    cmd.select(rec_name, '%s & chain %s' %(
+      prot_name, '+'.join(self._test_rec_chains)))
+    cmd.select(lig_name, '%s & chain %s' %(
+      prot_name, '+'.join(self._test_lig_chains)))
 
     rms = x[0].RMSDSep(rec_name, lig_name)
     return (prot_name, rms)

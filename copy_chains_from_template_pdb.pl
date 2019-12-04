@@ -110,7 +110,7 @@ while(!eof($TMPL) and $midx <= $#input) {
   if (!&sameRes($curchain, $curnum, $curres, $inpres)) {
     # Failed!
     print "ERROR: Could not identify correct residue! ",
-    "Found inp[$inpres:$inpnum], expected cur[$curres:$curnum]\n";
+    "Found inp[X:$inpres:$inpnum], expected cur[$curchain:$curres:$curnum]\n";
     exit;
   }
   my $nextinpnum = $inpnum;
