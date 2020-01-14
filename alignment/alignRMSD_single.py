@@ -10,6 +10,7 @@ Will work with one or more of R' and L'.
 from __future__ import print_function
 
 from PyMolAligner import PyMolAligner
+from multiprocessing import Pool
 import utils
 from utils import eprint,eassert
 
@@ -64,7 +65,22 @@ def get_test_structures(pp, p_list):
     prot_list.append(pp)
 
   return prot_list
-  
+
+def CleanName(prot_name):
+  return prot_name.replace('.', '_').replace('/', '_')
+
+# Dirty hack because multiprocessing can't call class functions.
+def RunSingleL(obj):
+  lig = obj[2]
+  lig_name = CleanName(lig[:-4])  # Remove the '.pdb'
+  utils.load_pdb(lig, lig_name)
+  return obj[0].RMSDSep(obj[1], lig_name, also_separate=True)
+def RunSingleR(obj):
+  rec = obj[1]
+  rec_name = CleanName(rec[:-4])  # Remove the '.pdb'
+  utils.load_pdb(rec, rec_name)
+  return obj[0].RMSDSep(rec_name, obj[2], also_separate=True)
+
 def main():
   if not utils._VERBOSE:
     # Get rid of unwanted output.
@@ -100,15 +116,27 @@ def main():
 
   alnr = PyMolAligner('pR', 'pRp', 'pL', 'pLp', args.dist)
 
+  # Test with a single one because Pool hides traceback.
+  if utils._VERBOSE:
+    if len(pRList) != 0:
+      rms = RunSingleR((alnr, pRList[0], 'pLp'))
+      prot = pRList[0]
+    else:
+      rms = RunSingleL((alnr, 'pRp', pLList[0]))
+      prot = pLList[0]
+    print("%s %s" % (prot, rms))
+
+  p = Pool(args.nproc)
+  all_rms_l = p.map(RunSingleL, [(alnr, 'pRp', pLList[i]) for i in
+    range(len(pLList))])
+  all_rms_r = p.map(RunSingleR, [(alnr, pRList[i], 'pLp') for i in
+    range(len(pRList))])
+
   # Print the RMSD here.
-  for l in pLList:
-    utils.load_pdb(l, 'test_l')
-    cont = alnr.RMSDSep('pRp', 'test_l', also_separate=True)
-    print("%s %f" % (l, cont[2]))
-  for r in pRList:
-    utils.load_pdb(r, 'test_r')
-    cont = alnr.RMSDSep('test_r', 'pLp', also_separate=True)
-    print("%s %f" % (r, cont[1]))
+  for i, l in enumerate(pLList):
+    print("%s %f" % (l, all_rms_l[i][2]))
+  for i, r in enumerate(pRList):
+    print("%s %f" % (r, all_rms_r[i][1]))
 
 if __name__ == 'pymol':
   main()

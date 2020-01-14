@@ -14,7 +14,8 @@ F2D_prev=${F2DOCK_PREV}
 F2D=${F2DOCK_REFACTORED}
 
 #module load gcc/4.7.1
-module load mvapich2/2.1
+module load mvapich2/2.3
+module load intel/18.0.2  impi/18.0.2
 module load fftw3
 ml
 
@@ -49,6 +50,7 @@ RMSD_ATOMS=$4 # Optional, for adding RMSD. Should be ligand (moving) RMSD atoms
 # Quit if the outfile already exists
 has=`grep -c "END PEAKS" ${OUT}`
 if [[ "$has" -eq "1" ]]; then
+  echo "Quitting because 'END PEAKS' already exists in outfile ${OUT}"
   exit
 fi
 
@@ -72,7 +74,7 @@ export USE_HBOND=$HBOND_FILTER
 bash -x $LIGAND $LIG
 bash -x $RECEPTOR $REC
 # Then do the RMSD atoms if requested.
-if ! [ -z ${RMSD_ATOMS_GEN+x} ]; then
+if [[ ${RMSD_ATOMS_GEN+x} ]]; then
   LIG_RMSD=${LIG%.pdb}.pqr
   echo $PYMOL -qrc $SCRIPTS_DIR/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $REC \
     \| grep -v "^PyMOL" \> $RMSD_ATOMS
