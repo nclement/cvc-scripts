@@ -10,11 +10,16 @@ _VERBOSE=0
 def eassert(*asrt, **kwargs):
     line_num = ''.join([str(inspect.stack()[1][1]),
           ":", str(inspect.stack()[1][2]), ":", str(inspect.stack()[1][3])])
+    fail_on_error = kwargs.get('fail_on_error', True)
     if not asrt[0]:
       msg = 'failure at line [' + str(line_num) + ']'
       if len(asrt) > 1:
         msg += ' : ' + asrt[1]
-        raise AssertionError(msg)
+        if fail_on_error:
+          raise AssertionError(msg)
+        else:
+          return False
+    return True
 
 def eprint(*args, **kwargs):
   if _VERBOSE:

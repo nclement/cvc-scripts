@@ -49,7 +49,9 @@ while (<>) {
   # From the standard:
   #   "The combination of residue numbering and insertion code defines the unique
   #   residue"
-  print get_residue($resn) if "$resi$icode" ne "$resi_$icode_";
+  if ("$resi$icode" ne "$resi_$icode_") {
+    print "$chain $resi ", get_residue($resn), "\n";
+  }
   $resi_ = $resi;
   $icode_ = $icode;
 }

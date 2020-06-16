@@ -34,10 +34,15 @@ fi
 
 ${SCRIPTS_DIR}/makeAmberInp.sh $NCYC > INP/${PDB}.amberin
 
-echo sander -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
-# Stampede has the following function (multi-threaded)
-#ibrun pmemd.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
-ibrun sander.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
+## echo ibrun sander -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
+## # Stampede has the following function (multi-threaded)
+## #ibrun pmemd.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
+#echo ibrun sander.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
+#ibrun sander.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd
+
+echo mpirun pmemd.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd -x AMBER/${PDB}.min.nc -inf AMBER/${PDB}.min.info
+mpirun pmemd.MPI -O -i INP/${PDB}.amberin -o AMBER/${PDB}.amberout -c AMBER/${VAC}.crd -p AMBER/${VAC}.top -r AMBER/${VAC}.min.crd -x AMBER/${PDB}.min.nc -inf AMBER/${PDB}.min.info
+
 # Extract the new file.
 ambpdb -p AMBER/${VAC}.top -c AMBER/${VAC}.min.crd > AMBER/${PDB_SHORT}_ambermin.pdb
 # Lonestar needs the following:

@@ -44,6 +44,12 @@ def get_parser():
                       help='Max distance between contact atoms')
   parser.add_argument('-N', dest='nproc', default=1, type=int,
       help='Number of processor cores to use')
+  # Conformation generation, we want both iRMSD distance from the bound
+  # conformation and the unbound. Which means that -R should specify bound
+  # and -l should specify unbound. Output will be 2 values.
+  parser.add_argument('-B', '--both', dest='both', default=False,
+      help='Compute both iRMSD from receptor and ligand',
+      action='store_true')
 
   parser.add_argument('-V', '--verbose', dest='verbose', default=False,
       help='Print quite a bit of output',
@@ -74,12 +80,18 @@ def RunSingleL(obj):
   lig = obj[2]
   lig_name = CleanName(lig[:-4])  # Remove the '.pdb'
   utils.load_pdb(lig, lig_name)
-  return obj[0].RMSDSep(obj[1], lig_name, also_separate=True)
+  if obj[3]: # both
+    return [obj[0].RMSDSep('pRp', lig_name, also_separate=True, fail_on_error=False),
+            obj[0].RMSDSep('pR', lig_name, also_separate=True, fail_on_error=False)]
+  return obj[0].RMSDSep(obj[1], lig_name, also_separate=True, fail_on_error=False)
 def RunSingleR(obj):
   rec = obj[1]
   rec_name = CleanName(rec[:-4])  # Remove the '.pdb'
   utils.load_pdb(rec, rec_name)
-  return obj[0].RMSDSep(rec_name, obj[2], also_separate=True)
+  if obj[3]: # both
+    return [obj[0].RMSDSep(rec_name, 'pLp', also_separate=True, fail_on_error=False),
+            obj[0].RMSDSep(rec_name, also_separate=True, fail_on_error=False)]
+  return obj[0].RMSDSep(rec_name, obj[2], also_separate=True, fail_on_error=False)
 
 def main():
   if not utils._VERBOSE:
@@ -109,6 +121,13 @@ def main():
   if len(pLList) != 0:
     pLp = pLList[0]
 
+  # We want to do something a bit different if --both is specified.
+  if args.both:
+    pRp = args.test_r
+    pLp = args.test_l
+    pRList = get_test_structures(None, args.test_r_files)
+    pLList = get_test_structures(None, args.test_l_files)
+
   utils.load_pdb(pR, 'pR')
   utils.load_pdb(pRp, 'pRp')
   utils.load_pdb(pL, 'pL')
@@ -119,24 +138,45 @@ def main():
   # Test with a single one because Pool hides traceback.
   if utils._VERBOSE:
     if len(pRList) != 0:
-      rms = RunSingleR((alnr, pRList[0], 'pLp'))
+      rms = RunSingleR((alnr, pRList[0], 'pLp', args.both))
       prot = pRList[0]
     else:
-      rms = RunSingleL((alnr, 'pRp', pLList[0]))
+      rms = RunSingleL((alnr, 'pRp', pLList[0], args.both))
       prot = pLList[0]
-    print("%s %s" % (prot, rms))
+    if rms:
+      print("%s %s" % (prot, rms))
+    else:
+      print("%s NA" % prot)
 
   p = Pool(args.nproc)
-  all_rms_l = p.map(RunSingleL, [(alnr, 'pRp', pLList[i]) for i in
+  all_rms_l = p.map(RunSingleL, [(alnr, 'pRp', pLList[i], args.both) for i in
     range(len(pLList))])
-  all_rms_r = p.map(RunSingleR, [(alnr, pRList[i], 'pLp') for i in
+  all_rms_r = p.map(RunSingleR, [(alnr, pRList[i], 'pLp', args.both) for i in
     range(len(pRList))])
 
   # Print the RMSD here.
   for i, l in enumerate(pLList):
-    print("%s %f" % (l, all_rms_l[i][2]))
+    if all_rms_l[i]:
+      if args.both:
+        print("%s %f %f" % (l, all_rms_l[i][0][2], all_rms_l[i][1][2]))
+      else:
+        print("%s %f" % (l, all_rms_l[i][2]))
+    else:
+      if args.both:
+        print("%s NA NA")
+      else:
+        print("%s NA" % l)
   for i, r in enumerate(pRList):
-    print("%s %f" % (r, all_rms_r[i][1]))
+    if all_rms_r[i]:
+      if args.both:
+        print("%s %f %f" % (r, all_rms_r[i][0][1], all_rms_r[i][1][1]))
+      else:
+        print("%s %f" % (r, all_rms_r[i][1]))
+    else:
+      if args.both:
+        print("%s NA NA" % r)
+      else:
+        print("%s NA" % r)
 
 if __name__ == 'pymol':
   main()

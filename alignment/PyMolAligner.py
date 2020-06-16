@@ -229,7 +229,7 @@ class PyMolAligner:
         'number of atoms in contact selection bad for test:L')
     return pymol.cmd.pair_fit(simp_R, simp_Rp, simp_L, simp_Lp)
 
-  def RMSDSep(self, rec, lig, also_separate=False):
+  def RMSDSep(self, rec, lig, also_separate=False, fail_on_error=True):
     """Returns the RMSD between two proteins when they are specified as two
     objects.
 
@@ -248,14 +248,18 @@ class PyMolAligner:
       len(self._cont_L)))
     eprint('%s: %d vs %d' % (simp_Lp, pymol.cmd.count_atoms(simp_Lp),
       len(self._cont_Lp)))
-    eassert(pymol.cmd.count_atoms(simp_R) == len(self._cont_R),
-        'number of atoms in contact selection bad for gold:R')
-    eassert(pymol.cmd.count_atoms(simp_Rp) == len(self._cont_Rp),
-        'number of atoms in contact selection bad for test:R')
-    eassert(pymol.cmd.count_atoms(simp_L) == len(self._cont_L),
-        'number of atoms in contact selection bad for gold:L')
-    eassert(pymol.cmd.count_atoms(simp_Lp) == len(self._cont_Lp),
-        'number of atoms in contact selection bad for test:L')
+    if not  eassert(pymol.cmd.count_atoms(simp_R) == len(self._cont_R),
+        'number of atoms in contact selection bad for gold:R', fail_on_error=fail_on_error):
+      return None
+    if not eassert(pymol.cmd.count_atoms(simp_Rp) == len(self._cont_Rp),
+        'number of atoms in contact selection bad for test:R', fail_on_error=fail_on_error):
+      return None
+    if not eassert(pymol.cmd.count_atoms(simp_L) == len(self._cont_L),
+        'number of atoms in contact selection bad for gold:L', fail_on_error=fail_on_error):
+      return None
+    if not eassert(pymol.cmd.count_atoms(simp_Lp) == len(self._cont_Lp),
+        'number of atoms in contact selection bad for test:L', fail_on_error=fail_on_error):
+      return None
 
     if also_separate:
       return (pymol.cmd.pair_fit(simp_R, simp_Rp, simp_L, simp_Lp),
