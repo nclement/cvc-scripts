@@ -81,16 +81,22 @@ def RunSingleL(obj):
   lig_name = CleanName(lig[:-4])  # Remove the '.pdb'
   utils.load_pdb(lig, lig_name)
   if obj[3]: # both
-    return [obj[0].RMSDSep('pRp', lig_name, also_separate=True, fail_on_error=False),
-            obj[0].RMSDSep('pR', lig_name, also_separate=True, fail_on_error=False)]
+    bound_rms = obj[0].RMSDSep('pRp', lig_name, also_separate=True, fail_on_error=False)
+    unbound_rms = obj[0].RMSDSepSelf('pRp', lig_name, also_separate=True, fail_on_error=False)
+    return [bound_rms or [None, float('nan'), float('nan')],
+        unbound_rms or [None, float('nan'), float('nan')]]
+
   return obj[0].RMSDSep(obj[1], lig_name, also_separate=True, fail_on_error=False)
 def RunSingleR(obj):
   rec = obj[1]
   rec_name = CleanName(rec[:-4])  # Remove the '.pdb'
   utils.load_pdb(rec, rec_name)
   if obj[3]: # both
-    return [obj[0].RMSDSep(rec_name, 'pLp', also_separate=True, fail_on_error=False),
-            obj[0].RMSDSep(rec_name, also_separate=True, fail_on_error=False)]
+    bound_rms = obj[0].RMSDSep(rec_name, 'pLp', also_separate=True, fail_on_error=False)
+    unbound_rms = obj[0].RMSDSepSelf(rec_name, 'pLp', also_separate=True, fail_on_error=False)
+    return [bound_rms or [None, float('nan'), float('nan')],
+        unbound_rms or [None, float('nan'), float('nan')]]
+
   return obj[0].RMSDSep(rec_name, obj[2], also_separate=True, fail_on_error=False)
 
 def main():

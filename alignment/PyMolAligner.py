@@ -229,6 +229,17 @@ class PyMolAligner:
         'number of atoms in contact selection bad for test:L')
     return pymol.cmd.pair_fit(simp_R, simp_Rp, simp_L, simp_Lp)
 
+  def RMSDSepSelf(self, rec, lig, also_separate=False, fail_on_error=True):
+    """Same as below, but aligns to the original pRp and pLp."""
+    simp_Rp = utils.SimplifySelection(rec, self._cont_Rp)
+    simp_Lp = utils.SimplifySelection(lig, self._cont_Lp)
+    simp_R = utils.SimplifySelection(self._protRp, self._cont_Rp)
+    simp_L = utils.SimplifySelection(self._protLp, self._cont_Lp)
+    eprint('prot rp,lp is %s,%s -> %s,%s' % (self._protRp, self._protLp, rec, lig))
+
+    return self.RMSDSepInternal(
+        simp_R, simp_L, simp_Rp, simp_Lp, also_separate, fail_on_error)
+
   def RMSDSep(self, rec, lig, also_separate=False, fail_on_error=True):
     """Returns the RMSD between two proteins when they are specified as two
     objects.
@@ -240,6 +251,13 @@ class PyMolAligner:
     simp_Rp = utils.SimplifySelection(rec, self._cont_Rp)
     simp_L = utils.SimplifySelection(self._protL, self._cont_L)
     simp_Lp = utils.SimplifySelection(lig, self._cont_Lp)
+    eprint('prot rp,lp is %s,%s -> %s,%s' % (self._protR, self._protL, rec, lig))
+
+    return self.RMSDSepInternal(
+        simp_R, simp_L, simp_Rp, simp_Lp, also_separate, fail_on_error)
+
+  def RMSDSepInternal(self, simp_R, simp_L, simp_Rp, simp_Lp, also_separate, fail_on_error):
+    """Refactored to differentiate RMSDSep and RMSDSepSelf."""
     eprint('%s: %d vs %d' % (simp_R, pymol.cmd.count_atoms(simp_R),
       len(self._cont_R)))
     eprint('%s: %d vs %d' % (simp_Rp, pymol.cmd.count_atoms(simp_Rp),
