@@ -20,7 +20,7 @@ use Data::Dumper qw(Dumper);
 
 my $tmpl = shift;
 my $inp = shift;
-my $outp = shift;
+my $outp = shift; # Can be same as `inp` but must be different from `tmpl`.
 my $muts = shift; 
 
 die "usage <orig> <input> <output> [<mutation_str>]"

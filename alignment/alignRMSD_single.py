@@ -133,6 +133,8 @@ def main():
     pLp = args.test_l
     pRList = get_test_structures(None, args.test_r_files)
     pLList = get_test_structures(None, args.test_l_files)
+    if utils._VERBOSE:
+      print('pRList is %d, pLList is %d' % (len(pRList), len(pLList)))
 
   utils.load_pdb(pR, 'pR')
   utils.load_pdb(pRp, 'pRp')

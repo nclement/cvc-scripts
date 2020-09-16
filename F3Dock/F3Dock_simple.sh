@@ -17,9 +17,10 @@ LIG_CHAIN=$6    # Chain identifier(s) of the ligand
 LIG_GOLD=$7     # The actual ligand (we won't use except for statistics)
 OUTDIR=`readlink -f $8` # Output directory.
 NUM_SAMPS=$9    # Number of samples to generate.
-NPROC=${10:-16}   # Number of processors to use.
+NPROC=${10:-16} # Number of processors to use.
 stage=${11:-2}  # Stage to start on.
 
+PROTOCOL=${PROTOCOL:-f3d}  # Sampling protocol to use; should be `f3d`, `atom`, or `hinge`.
 F2D_PROC=${F2D_PROC:-$NPROC}
 
 module use ~/cvc-modules
@@ -38,6 +39,7 @@ CONTACT_RMSD=5
 
 LIG_SHORT=`basename $LIGAND | sed 's/.pdb//'`
 REC_SHORT=`basename $RECEPTOR | sed 's/.pdb//'`
+samp_dir=$OUTDIR/samples
 
 echo "Running F3Dock script with:"
 echo " Receptor: $RECEPTOR [$REC_SHORT] chains $REC_CHAIN"
@@ -78,6 +80,26 @@ HINGES_RECURSIVE="$F3DOCK_DIR/FCC_HingeProt"
 GET_RMSD=$SCRIPTS/docking/getRMSDAtoms.sh
 SAMPLE_RAMACHANDRAN="$F3DOCK_DIR/sampleProtein_Rama"
 SINGLES="$SCRIPTS/runSingles_parallel.sh"
+
+
+# Some logic doing with the sampling protocol:
+if [[ "$PROTOCOL" == "atom" ]]; then
+  # Clean up the samp_dir
+  rm -rf $samp_dir
+  mkdir -p $samp_dir
+  # Generate samples first.
+  $SCRIPTS/F3Dock/sample_atomic.sh $LIGAND   $NUM_SAMPS_GEND $samp_dir/${LIG_SHORT}
+  $SCRIPTS/F3Dock/sample_atomic.sh $RECEPTOR $NUM_SAMPS_GEND $samp_dir/${REC_SHORT}
+
+  # Save these for future steps of the pipeline.
+  (cd $samp_dir;
+   ls ${LIG_SHORT}_samp*.pdb > ligands_premin.txt;
+   ls ${REC_SHORT}_samp*.pdb > recepts_premin.txt;)
+
+  # Skip to energy minimization.
+  stage=$((stage>4 ? stage : 4))
+fi
+
 
 one_time=$(date +%s)
 ## echo "############################"
@@ -128,7 +150,6 @@ echo
 echo "#######################################################"
 echo "# 2. Sampling according to Ramachandran distributions #"
 echo "#######################################################"
-samp_dir=$OUTDIR/samples
 if [ $stage -le 2 ]; then
   rm -rf $samp_dir
   mkdir -p $samp_dir
@@ -151,6 +172,11 @@ echo "#####################################"
 if [ $stage -le 3 ]; then
   export SCWRL4
   ls $samp_dir/${LIG_SHORT}_samp* $samp_dir/${REC_SHORT}_samp* | xargs -n 1 -P $NPROC sh -c '$SCWRL4 -i $1 -o $1.scfix.pdb' sh
+
+  # Need to save these for future steps of the pipeline.
+  (cd $samp_dir;
+   ls ${LIG_SHORT}_samp*.scfix.pdb > ligands_premin.txt;
+   ls ${REC_SHORT}_samp*.scfix.pdb > recepts_premin.txt)
 fi
 
 five_time=$(date +%s)
@@ -165,13 +191,14 @@ echo "###################################################################"
 # Go into that directory (AMBER scripts need this to happen)
 cd $samp_dir
 
-# Need to save these for future steps of the pipeline.
-ls ${LIG_SHORT}_samp*.scfix.pdb > ligands_premin.txt
-ls ${REC_SHORT}_samp*.scfix.pdb > recepts_premin.txt
-
+# Must have the following files:
+#  ligands_premin.txt
+#  recepts_premin.txt
 if [ $stage -le 4 ]; then
-  $AMBERMIN_PAR ligands_premin.txt $NPROC 500 # Just do 1 proc for now.
-  $AMBERMIN_PAR recepts_premin.txt $NPROC 500
+  #$AMBERMIN_PAR ligands_premin.txt $NPROC 500
+  #$AMBERMIN_PAR recepts_premin.txt $NPROC 500
+  $AMBERMIN_PAR ligands_premin.txt 1 500 # Just do 1 proc for now.
+  $AMBERMIN_PAR recepts_premin.txt 1 500 # The srun command hates more that that.
 #    # Get each of the files in here and minimize (briefly)
 #    for file in `cat ligands_premin.txt recepts_premin.txt`; do
 #      # Only run for 500 iterations.
@@ -185,8 +212,9 @@ done > ligands_en.txt
 for file in `cat recepts_premin.txt`; do
   echo $file $($AMBEREN $file)
 done > recepts_en.txt
-sort -k 2g ligands_en.txt -o ligands_en.txt
-sort -k 2g recepts_en.txt -o recepts_en.txt
+# Sometimes Amber minimization fails, so let's strip off anything without energy.
+awk '{if (NF > 1) print}' ligands_en.txt | sort -k 2g -o recepts_en.txt
+awk '{if (NF > 1) print}' recepts_en.txt | sort -k 2g -o recepts_en.txt
 
 # Now need to sort them by energy, then only use the top k, but randomly sort them.
 head ligands_en.txt -n $NUM_SAMPS | sort -R > ligands_use.txt
@@ -304,7 +332,8 @@ if [ $stage -le 6 ]; then
     ## # Include the rmsd atoms just for testing purposes.
     ## #USE_PREV=1 $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
     ## #NUM_THREADS=$NPROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt dock_${i}_rmsd_atoms.txt
-    NUM_THREADS=$F2D_PROC TYPE=$TYPE $DOCK_BOTH $lig $rec dock_$i.txt
+    RES_CONT_FILTER=true HBOND_FILTER=false NUM_THREADS=$F2D_PROC TYPE=$TYPE \
+      $DOCK_BOTH $lig $rec dock_$i.txt
     $DOCK_SCORE dock_$i.txt | sed "s/^/$i /" > dock_${i}_score.txt
   done
 fi
