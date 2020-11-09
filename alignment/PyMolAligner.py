@@ -1,6 +1,6 @@
 """ Make this a class so we can use it elsewhere. """
-from Bio import pairwise2
-from Bio.SubsMat import MatrixInfo as matlist
+from Bio import Align
+from Bio.Align import substitution_matrices
 from math import log
 import pymol
 import utils
@@ -56,15 +56,38 @@ def _testContactRes(aln_list, contact_idx, full_seq):
     test_cont.append(full_seq[aln_list[x]])
   return test_cont
 
-def _gap_function(x, y):  # x is gap position in seq, y is gap length
-  if y == 0:  # No gap
-    return 0
-  elif y == 1:  # Gap open penalty
-      return -2
-  return - (2 + y/4.0 + log(y)/2.0)
-blosum_matrix = matlist.blosum62
 def _getBestAlignment(seq1, seq2):
   eprint('Doing the alignment...')
+  def _gap_fn(start, length):
+    if length == 0:
+      return 0
+    elif length == 1:  # Gap open penalty
+      return -2
+    return - (2 + length/4.0 + log(length)/2.0)  # Don't penalize for massive gaps
+
+  aligner = Align.PairwiseAligner()
+  aligner.substitution_matrix = substitution_matrices.load("BLOSUM62")
+  # This gap fn gives a massive hit to speed...
+  #aligner.gap_score = _gap_fn
+  aligner.open_gap_score = -10
+  aligner.extend_gap_score = -0.5
+  alns = aligner.align(seq1, seq2)
+  eprint('Finished!')
+
+  # alns[0] is the best alignment, but in a funny format. Let's try and adjust.
+  aln_strings = str(alns[0]).split()
+  assert len(aln_strings) == 3
+  return [aln_strings[0], aln_strings[2]]
+
+def _getBestAlignmentPrev(seq1, seq2):
+  def _gap_function(x, y):  # x is gap position in seq, y is gap length
+    if y == 0:  # No gap
+      return 0
+    elif y == 1:  # Gap open penalty
+        return -2
+    return - (2 + y/4.0 + log(y)/2.0)
+  eprint('Doing the alignment...')
+  blosum_matrix = matlist.blosum62
   alns = pairwise2.align.globaldc(seq1, seq2, blosum_matrix,
       _gap_function, _gap_function, one_alignment_only=True)
   eprint('Finished!')

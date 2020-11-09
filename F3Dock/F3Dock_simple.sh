@@ -30,29 +30,34 @@ module restore f3dock
 MAX_HP_LEVEL=4 # Max HingeProt level.
 NUM_EXTRA=5
 NUM_SAMPS_GEND=`echo "$NUM_SAMPS * $NUM_EXTRA" | bc`
-#RAMACHANDRAN_PROB_FILES="/work/01872/nclement/uq/torsions/Dunbrack/Dunbrack_ctx0_res0.1_fn.txt";
-R_stdv=5
-RAMACHANDRAN_PROB_FILES="/work/01872/nclement/uq/torsions/Dunbrack/Dunbrack_ctx0_res1_fn.txt";
-rama_args="-R $RAMACHANDRAN_PROB_FILES -N $NUM_SAMPS_GEND --max-clash=10 --max-severe=10 --clash-frac 0.35 --severe-frac 0.35 -s $R_stdv --use-std-random --increase-clash-after 1000 --do-recursive"
+# Default std of 5 unless specified
+R_stdv=${R_stdv:-5}
+# Context for Ramachandran distributions.
+R_ctx=${R_ctx:-1}
 CONTACT_RMSD=5
 
 
 LIG_SHORT=`basename $LIGAND | sed 's/.pdb//'`
 REC_SHORT=`basename $RECEPTOR | sed 's/.pdb//'`
 samp_dir=$OUTDIR/samples
+# Need to compute these offline.
+#hinges_prefix=$OUTDIR/chains/
+hinges_prefix=/work/01872/nclement/F2dock_rerun/benchmark5/hinges/hp.5.
 
 echo "Running F3Dock script with:"
+echo " Protocol: $PROTOCOL"
 echo " Receptor: $RECEPTOR [$REC_SHORT] chains $REC_CHAIN"
 echo " Ligand  : $LIGAND [$LIG_SHORT] chains $LIG_CHAIN"
 echo " output directory: $OUTDIR"
+echo " hinges dir: $hinges_prefix"
 echo " number processors: $NPROC"
 echo " number of samples: $NUM_SAMPS"
 
 # Debug tool
 #stage=2
 # stages are:
-#   0: Generate RMSD atoms
-#   1: Recursive chain decomposition
+#   0: Generate RMSD atoms - don't do this anymore
+#   1: Recursive chain decomposition - do this offline
 #   2: Ramachandran sampling
 #   3: Adding side chains
 #   4: Brief energy minimization
@@ -60,8 +65,8 @@ echo " number of samples: $NUM_SAMPS"
 #   6: F2Dock (coarse)
 #   7: F2Dock (fine)
 
-SCRIPTS="$(dirname -- "$(readlink -f -- "$0")")"
-SCRIPTS=$SCRIPTS/..
+F3DOCK_SCRIPTS="$(dirname -- "$(readlink -f -- "$0")")"
+SCRIPTS=$F3DOCK_SCRIPTS/..
 source $SCRIPTS/Makefile.def
 
 DOCK_SCRIPTS=$SCRIPTS/docking
@@ -82,175 +87,15 @@ SAMPLE_RAMACHANDRAN="$F3DOCK_DIR/sampleProtein_Rama"
 SINGLES="$SCRIPTS/runSingles_parallel.sh"
 
 
-# Some logic doing with the sampling protocol:
-if [[ "$PROTOCOL" == "atom" ]]; then
-  # Clean up the samp_dir
-  rm -rf $samp_dir
-  mkdir -p $samp_dir
-  # Generate samples first.
-  $SCRIPTS/F3Dock/sample_atomic.sh $LIGAND   $NUM_SAMPS_GEND $samp_dir/${LIG_SHORT}
-  $SCRIPTS/F3Dock/sample_atomic.sh $RECEPTOR $NUM_SAMPS_GEND $samp_dir/${REC_SHORT}
-
-  # Save these for future steps of the pipeline.
-  (cd $samp_dir;
-   ls ${LIG_SHORT}_samp*.pdb > ligands_premin.txt;
-   ls ${REC_SHORT}_samp*.pdb > recepts_premin.txt;)
-
-  # Skip to energy minimization.
-  stage=$((stage>4 ? stage : 4))
-fi
-
-
-one_time=$(date +%s)
-## echo "############################"
-## echo "# 0. Generating rmsd atoms #"
-## echo "############################"
-## if [ $stage -le 0 ]; then
-##   mkdir -p $OUTDIR/orig
-##   # Fix the ligand so it doesnt have any errors.
-##   $FIX_PDB $LIGAND > $OUTDIR/$LIG_SHORT.pdb
-##   $FIX_PDB $RECEPTOR > $OUTDIR/$REC_SHORT.pdb
-##   $FIX_PDB $LIG_GOLD > $OUTDIR/orig/lig_gold.pdb
-##   $FIX_PDB $REC_GOLD > $OUTDIR/orig/rec_gold.pdb
-##   # Then get the .pqr from the ligand.
-##   cd $OUTDIR/orig
-##   $DOCK_LIGAND lig_gold.pdb
-## 
-##   RMSD_ATOMS=$OUTDIR/orig/rmsd_atoms.txt
-##   LIG_RMSD=$OUTDIR/orig/lig_gold.pqr
-##   $PYMOL -qrc $SCRIPTS/get_contact_ca_rmsd_atoms.py -- $LIG_RMSD $OUTDIR/orig/rec_gold.pdb \
-##         | grep -v "^PyMOL" > $RMSD_ATOMS
-## fi
-## 
-two_time=$(date +%s)
-echo "############################################"
-echo "# Time for step 0 is `date -u -d @$(($two_time - $one_time)) +"%T"`# "
-echo "############################################"
-echo
-echo
-echo "###############################################################"
-echo "# 1. Performing recursive chain decomposition (One time only) #"
-echo "###############################################################"
-if [ $stage -le 1 ]; then
-  rm -rf $OUTDIR/chains
-  mkdir -p $OUTDIR/chains
-  cp $OUTDIR/$LIG_SHORT.pdb $OUTDIR/chains
-  cp $OUTDIR/$REC_SHORT.pdb $OUTDIR/chains
-  cd $OUTDIR/chains
-  $HINGES_RECURSIVE $OUTDIR/$LIG_SHORT.pdb $LIG_CHAIN . F $MAX_HP_LEVEL 1 2>&1 | tee $LIG_SHORT.FCC
-  $HINGES_RECURSIVE $OUTDIR/$REC_SHORT.pdb $REC_CHAIN . F $MAX_HP_LEVEL 1 2>&1 | tee $REC_SHORT.FCC
-fi
-
-three_time=$(date +%s)
-echo "############################################"
-echo "# Time for step 1 is `date -u -d @$(($three_time - $two_time)) +"%T"`# "
-echo "############################################"
-echo
-echo
-echo "#######################################################"
-echo "# 2. Sampling according to Ramachandran distributions #"
-echo "#######################################################"
-if [ $stage -le 2 ]; then
-  rm -rf $samp_dir
-  mkdir -p $samp_dir
-  cd $OUTDIR
-  # Uses OMP
-  export OMP_NUM_THREADS=$NPROC
-  $SAMPLE_RAMACHANDRAN -i $OUTDIR/$LIG_SHORT.pdb -o $samp_dir/${LIG_SHORT}_samp -S $OUTDIR/chains/${LIG_SHORT}_fluct_resi.txt $rama_args --do-recursive-fn=$OUTDIR/chains/${LIG_SHORT}_fcc.txt
-  $SAMPLE_RAMACHANDRAN -i $OUTDIR/$REC_SHORT.pdb -o $samp_dir/${REC_SHORT}_samp -S $OUTDIR/chains/${REC_SHORT}_fluct_resi.txt $rama_args --do-recursive-fn=$OUTDIR/chains/${REC_SHORT}_fcc.txt
-fi
-
-four_time=$(date +%s)
-echo "############################################"
-echo "# Time for step 2 is `date -u -d @$(($four_time - $three_time)) +"%T"`# "
-echo "############################################"
-echo
-echo
-echo "#####################################"
-echo "# 3. Adding side chains to proteins #"
-echo "#####################################"
-if [ $stage -le 3 ]; then
-  export SCWRL4
-  ls $samp_dir/${LIG_SHORT}_samp* $samp_dir/${REC_SHORT}_samp* | xargs -n 1 -P $NPROC sh -c '$SCWRL4 -i $1 -o $1.scfix.pdb' sh
-
-  # Need to save these for future steps of the pipeline.
-  (cd $samp_dir;
-   ls ${LIG_SHORT}_samp*.scfix.pdb > ligands_premin.txt;
-   ls ${REC_SHORT}_samp*.scfix.pdb > recepts_premin.txt)
-fi
-
-five_time=$(date +%s)
-echo "############################################"
-echo "# Time for step 3 is `date -u -d @$(($five_time - $four_time)) +"%T"`# "
-echo "############################################"
-echo
-echo
-echo "###################################################################"
-echo "# 4. Performing (brief) energy minimization and computing energy. #"
-echo "###################################################################"
-# Go into that directory (AMBER scripts need this to happen)
-cd $samp_dir
-
-# Must have the following files:
-#  ligands_premin.txt
-#  recepts_premin.txt
-if [ $stage -le 4 ]; then
-  #$AMBERMIN_PAR ligands_premin.txt $NPROC 500
-  #$AMBERMIN_PAR recepts_premin.txt $NPROC 500
-  $AMBERMIN_PAR ligands_premin.txt 1 500 # Just do 1 proc for now.
-  $AMBERMIN_PAR recepts_premin.txt 1 500 # The srun command hates more that that.
-#    # Get each of the files in here and minimize (briefly)
-#    for file in `cat ligands_premin.txt recepts_premin.txt`; do
-#      # Only run for 500 iterations.
-#      $AMBERMIN $file 500
-#    done
-fi
-
-for file in `cat ligands_premin.txt`; do
-  echo $file $($AMBEREN $file)
-done > ligands_en.txt
-for file in `cat recepts_premin.txt`; do
-  echo $file $($AMBEREN $file)
-done > recepts_en.txt
-# Sometimes Amber minimization fails, so let's strip off anything without energy.
-awk '{if (NF > 1) print}' ligands_en.txt | sort -k 2g -o recepts_en.txt
-awk '{if (NF > 1) print}' recepts_en.txt | sort -k 2g -o recepts_en.txt
-
-# Now need to sort them by energy, then only use the top k, but randomly sort them.
-head ligands_en.txt -n $NUM_SAMPS | sort -R > ligands_use.txt
-head recepts_en.txt -n $NUM_SAMPS | sort -R > recepts_use.txt
 
 
 six_time=$(date +%s)
-echo "############################################"
-echo "# Time for step 4 is `date -u -d @$(($six_time - $five_time)) +"%T"`# "
-echo "############################################"
-echo
-echo
-echo "###################################################"
-echo "# 5. Aligning proteins back to original receptor. #"
-echo "###################################################"
-# Only need to align proteins we'll actually use.
-IFS=$'\n' LIG_LIST=($(cat $samp_dir/ligands_use.txt | cut -f 1 -d ' ' | sed 's/.pdb$//'))
-IFS=$'\n' REC_LIST=($(cat $samp_dir/recepts_use.txt | cut -f 1 -d ' ' | sed 's/.pdb$//'))
-if [ $stage -le 5 ]; then
-  # Create these if needs be.
-  rm -rf $OUTDIR/aligned
-  mkdir $OUTDIR/aligned
-  # Copy original here.
-  $FIX_PDB $RECEPTOR > $OUTDIR/aligned/orig_receptor.pdb
+# These have all been exported to conformation_gen.sh
+export R_stdv R_ctx
+$F3DOCK_SCRIPTS/conformation_gen.sh $PROTOCOL $OUTDIR $LIGAND $RECEPTOR $NUM_SAMPS $NPROC
 
-  for i in `seq 0 $(($NUM_SAMPS - 1))`; do
-    lig=${LIG_LIST[$i]}_ambermin.pdb
-    rec=${REC_LIST[$i]}_ambermin.pdb
-    # Not needed
-    ##$FIX_PDB $samp_dir/AMBER/$rec > $OUTDIR/aligned/test_rec.pdb
-    ##$FIX_PDB $samp_dir/AMBER/$lig > $OUTDIR/aligned/$lig # Don't need to change this one.
-    ##$ALIGN_CONTACT $OUTDIR/orig/rec_gold.pdb $OUTDIR/orig/lig_gold.pdb $OUTDIR/aligned/test_rec.pdb $OUTDIR/aligned/$rec
-    $FIX_PDB $samp_dir/AMBER/$rec > $OUTDIR/aligned/$rec
-    $FIX_PDB $samp_dir/AMBER/$lig > $OUTDIR/aligned/$lig
-  done
-fi
+
+
 
 sev_time=$(date +%s)
 echo "############################################"

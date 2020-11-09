@@ -25,10 +25,18 @@ while(<>) {
 		$residue_output .= $_;
 		next;
 	}
+
 	my $line = $_;
   my $chain = substr($line, 21, 1);
 	my $resi = substr($line, 22, 4);
+  my $resn = substr($line, 17, 3);
 	my $insertion = substr($line, 26, 1);
+
+  # Amber adds waters. But this can make things hard for us. So delete them.
+  if ($resn eq 'WAT') {
+    next
+  }
+
 	# If there's something in the insertion column, remove it
   # and keep going
   # Insertion column enforces similar numbering among different species.

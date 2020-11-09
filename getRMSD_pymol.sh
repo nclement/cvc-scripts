@@ -19,4 +19,4 @@ align name ca and p1, name ca and p2
 EOF
 )
 #echo $rms
-echo $rms | grep "RMS =" | sed 's/.*=\s\+//' | sed 's/ .*//'
+echo $rms | grep "RMSD =" | sed 's/.*=\s\+//' | sed 's/ .*//'

@@ -3,7 +3,7 @@
 # I don't know why, but there are some serious bugs when running the F3Dock
 # sampleHinges method without doing this first. Could be a version problem?
 #
-# Also fixes the residue count
+# Also fixes the residue count, unless a second argument is given.
 #
 # usage: fix_pdb_atomcount.pl <PDB_INPUT>
 #
@@ -19,7 +19,19 @@ my $prev_res = -1;
 my $prev_insertion = " ";
 my $residue_output = "";
 
-while(<>) {
+my $INF;
+# It's possible that we're just reading from STDIN, so we need to handle this.
+if ( -t STDIN ) {
+  my $inf = shift;
+  open($INF, "<", $inf) or die "Error: Could not open input file [$inf]: $!";
+} else {
+  $INF = \*STDIN;
+}
+my $fix_residue = shift;
+$fix_residue = $fix_residue ? 0 : 1;
+
+
+while(<$INF>) {
 	if (!/^(ATOM|HETATM)/) {
     #print $_;
     $residue_output .= $_;
@@ -44,7 +56,9 @@ while(<>) {
     $prev_insertion = $insertion;
 	}
   substr( $line, 5, 6 ) = sprintf("% 6d", $atom_count++);
-	substr( $line, 22, 4 ) = sprintf("%4d", $count);
+  if ($fix_residue) {
+    substr( $line, 22, 4 ) = sprintf("%4d", $count);
+  }
 	$residue_output .= $line;
 	$resi_count++;
 }
