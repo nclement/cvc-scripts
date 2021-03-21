@@ -27,7 +27,8 @@ ROSETTA_DB=/work/01872/nclement/software/rosetta_database/3.9
 PDBF_l_in=$1
 PDBF_r_in=$2
 out=$3
-NPROC=${NPROC:-48}
+#NPROC=${NPROC:-96}
+NPROC=96
 NUM_DOCK=1000
 
 PDBF_r=${out}.r_fn.txt
@@ -37,6 +38,7 @@ echo "PDB r: $PDBF_r_in, $PDBF_r"
 echo "PDB l: $PDBF_l_in, $PDBF_l"
 echo "out: $out"
 
+zero_time=$(date +%s)
 rm -rf inp && mkdir -p inp
 rm -rf output_files && mkdir -p output_files
 for fl in $(cat ${PDBF_r_in}); do
@@ -53,6 +55,10 @@ ls inp/${out}.l.*.pdb > ${PDBF_l}
 # Grab the first one.
 cat $(head -n 1 ${PDBF_r}) $(head -n 1 ${PDBF_l}) > inp/${out}.tog.pdb
 
+one_time=$(date +%s)
+echo "############################################"
+echo "# RE: Time for initializing is `date -u -d @$(($one_time - $zero_time)) +"%T"`# "
+echo "############################################"
 # Do some input minimization things. Not parallel, so may as well just run it in one thread.
 # This will overwrite the files in ${PFBF_{rl}}, so we can use them again below.
 $TACC_ROSETTA_BIN/docking_prepack_protocol.cxx11mpi.linuxiccrelease -database $ROSETTA_DB \
@@ -61,6 +67,10 @@ $TACC_ROSETTA_BIN/docking_prepack_protocol.cxx11mpi.linuxiccrelease -database $R
   -ex1 -ex2aro \
   -out:path:all output_files -out:suffix _ensemble_prepack -out:overwrite
 
+two_time=$(date +%s)
+echo "############################################"
+echo "# RE: Time for minimizing inputs is `date -u -d @$(($two_time - $one_time)) +"%T"`# "
+echo "############################################"
 
 #ibrun -np $NPROC $TACC_ROSETTA_BIN/docking_protocol.mpiomp.linuxiccrelease -database $ROSETTA_DB -s $tog -dock_pert 3 8 -spin -no_filters -out:overwrite -out:file:scorefile 3AAD.fasc -out:file:fullatom -mute core.io.database -nstruct 1000
 
@@ -82,5 +92,9 @@ ibrun -np $NPROC $TACC_ROSETTA_BIN/docking_protocol.cxx11mpi.linuxiccrelease -da
   -out:path:all output_files -out:overwrite -out:file:scorefile $out.fasc -out:file:fullatom \
   -nstruct $NUM_STRUCT
 
+three_time=$(date +%s)
+echo "############################################"
+echo "# RE: Time for doing docking is `date -u -d @$(($three_time - $two_time)) +"%T"`# "
+echo "############################################"
 # Then create a file with the poses that are in the top NUM_DOCK.
-grep -v -e total_score -e "SEQUENCE" ${out}.fasc | sort -k 2n | head -n ${NUM_DOCK} | awk '{print $27}' | sed 's/$/.pdb/' > $out.pdb_fn.txt
+grep -v -e total_score -e "SEQUENCE" output_files/${out}.fasc | sort -k 2n | head -n ${NUM_DOCK} | awk '{print $33}' | sed -e 's~^~output_files/~' -e 's/$/.pdb/' > $out.pdb_fn.txt
