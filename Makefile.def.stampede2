@@ -4,38 +4,47 @@
 #
 # https://svn.ices.utexas.edu/repos/cvc/trunk/MolSurf/
 # /work/01872/nclement/MolSurf/release/bin/MolSurf
-#MOLSURF_BIN=/work/01872/nclement/MolSurf/release/bin/
+#MOLSURF_BIN=/net/electron/workspace/nclement/MolSurf/release/bin/
 MOLSURF_BIN=/work/01872/nclement/MolSurf/release_s2/bin/
-MolSurf=$MOLSURF_BIN/MolSurf
+MolSurf=${MOLSURF_BIN}/MolSurf
 # https://svn.ices.utexas.edu/repos/cvc/trunk/MolEnergy/
 # /work/01872/nclement/MolEnergy/release/bin/MolEnergy
 MolEnergy=/work/01872/nclement/MolEnergy/release/bin/MolEnergy
+#MolEnergy=/net/electron/workspace/nclement/MolEnergy/release/bin/MolEnergy
 # https://svn.ices.utexas.edu/repos/cvc/trunk/OPA-Ref/
 GPUEnergy=/work/01872/nclement/OPARef
+#GPUEnergy=/net/electron/workspace/nclement/OPARef
 # https://svn.ices.utexas.edu/repos/cvc/branches/TexMol-Qt4/
+#TEXMOL_BIN=/work/01872/nclement/TexMol-Qt4/release/bin
+TEXMOL_BIN=/work/01872/nclement/TexMol-Qt4/rel2/bin
 TEXMOL_QT4=/work/01872/nclement/TexMol-Qt4/release/bin/TexMol
+#TEXMOL_QT4=/net/electron/workspace/nclement/TexMol-Qt4/release/bin/TexMol
 # https://svn.ices.utexas.edu/repos/cvc/trunk/F2Dock-refactored/
-#F2DOCK_REFACTORED_BIN=/work/01872/nclement/F2Dock-refactored/release/bin/
+#F2DOCK_REFACTORED_BIN=/net/electron/workspace/nclement/F2Dock-refactored/release/bin
 F2DOCK_REFACTORED_BIN=/work/01872/nclement/F2Dock-refactored/release_s2/bin/
 F2DOCK_REFACTORED=${F2DOCK_REFACTORED_BIN}/F2Dock
 # A previous version of F2Dock
 F2DOCK_PREV=/work/01872/nclement/F2Dock_prev/src/runF2Dock.sh
 # https://svn.ices.utexas.edu/repos/cvc/branches/F3Dock/
 F3DOCK_DIR=/work/01872/nclement/F3Dock/release_s2/bin
+#F3DOCK_DIR=/net/electron/workspace/nclement/F3Dock/release/bin
 
 #--------------------------------------
 # Following are programs not developed by the lab.
 #
 # Download from http://www.poissonboltzmann.org/docs/downloads/#downloads
 PDB2PQR=/work/01872/nclement/software/pdb2pqr-src-2.1.0/pdb2pqr.py
+#PDB2PQR=/net/electron/workspace/nclement/software/mgltools_x86_64Linux2_1.5.6/MGLToolsPckgs/MolKit/pdb2pqr/pdb2pqr.py
 #
 # Download from http://zhanglab.ccmb.med.umich.edu/TM-align/
 # /work/01872/nclement/software/TMalign/TMalign
 TM_ALIGN=/work/01872/nclement/software/TMalign/TMalign
+#TM_ALIGN=/net/electron/workspace/nclement/software/TMalign/TMalign
 #
 # Download from https://www.pymol.org/
 # /work/01872/nclement/software/pymol/pymol
 PYMOL=/work/01872/nclement/software/pymol/pymol
+#PYMOL=/net/electron/workspace/nclement/software/pymol/pymol
 #
 # Download from http://ambermd.org/antechamber/download.html
 # Also included as a module on many systems (try 'module spider amber')
@@ -48,18 +57,27 @@ AMBER_leaprc_path=/home1/apps/intel17/impi17_0/amber/16.0/dat/leap/cmd/leaprc.ff
 # Download from http://zdock.umassmed.edu/software/
 # /work/01872/nclement/software/zdock3.0.2_linux_x64/
 ZDOCK_DIR=/work/01872/nclement/software/zdock3.0.2_linux_x64/
+#ZDOCK_DIR=/net/electron/workspace/nclement/software/zdock3.0.2_linux_x64/
 #
 # Download from http://mgltools.scripps.edu/downloads
 # /work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6
 MGL_DIR=/work/01872/nclement/software/MGLTools-1.5.6/mgltools_x86_64Linux2_1.5.6
+#MGL_DIR=/net/electron/workspace/nclement/software/mgltools_x86_64Linux2_1.5.6
 #
 # Download from http://dunbrack.fccc.edu/scwrl4/SCWRL4.php
 SCWRL4=/work/01872/nclement/software/Scwrl4/Scwrl4
+#SCWRL4=/net/electron/workspace/nlcement/software/Scwrl4/Scwrl4
 #
 # Download from https://openbabel.org/docs/dev/Installation/install.html
 #OBABEL=/opt/apps/openbabel/2.3.2/bin/obabel
 OBABEL=/work/01872/nclement/software/openbabel-install/bin/obabel
+#OBABEL=/net/electron/workspace/nclement/software/openbabel-2.3.2/build/bin/obabel
 #
 # Download from https://www.charmm.org/charmm/
 #CHARMM=/org/centers/cvc/software/c7/builds/charmm/charmm
 CHARMM=/work/01872/nclement/software/charmm/exec/gnu/charmm
+#CHARMM=/org/centers/cvc/software/c7/programs/charmm/c36b2/exec/gnu/charmm
+#
+# Download from https://people.mpi-inf.mpg.de/~wahl/
+# Or, a local copy is included with this repository.
+TA_ALGS=/work/01872/nclement/scripts/discrepancy/TA_algs
