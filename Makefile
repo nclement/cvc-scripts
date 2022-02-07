@@ -14,7 +14,7 @@ OPT_FLAGS=-std=c++11 -O3
 DEBUG_FLAGS=-std=c++11 -g -O0
 FLAGS=${OPT_FLAGS}
 
-SUBDIRS = docking/postprocessing hbond
+SUBDIRS = docking/postprocessing hbond discrepancy/TA_algs
 
 all : ${TARGETS} subdirs test-existence
 	@echo
