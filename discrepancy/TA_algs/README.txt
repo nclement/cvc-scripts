@@ -8,7 +8,13 @@ modern Mac (Mac OS X) or a Windows machine running Cygwin would work
 the same way.)
 
 NB: This package has been modified slightly by Nathan Clement
-(nclement@utexas.edu) to work with modern C++ compilers.
+(nclement@utexas.edu) to work with modern C++ compilers. You may need to edit
+the two variables `GXX` and `GPP` to work with your compiler, e.g. consider
+setting them to
+
+    GXX=gcc
+    GPP=g++
+
 
 COMPILING
 

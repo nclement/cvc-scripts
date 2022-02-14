@@ -280,7 +280,7 @@ double oldmain(double **pointset, int n, int d) {
 #endif
 
         //(Possibly) Snap the points and compute the best of the rounded points 
-        double fxc = best_of_rounded_bardelta(xn_minus_index, xn_extraminus_index, xn_best_index);
+        double fxc = best_of_rounded_bardelta(xn_minus_index, xn_extraminus_index, xn_best_index, current_iteration);
 #ifdef PRINT_UPDATE_CANDIDATES
         fprintf(stderr, "Iter. %d candidate %10g (vs %10g best %10g) -- ",
                 g_current_iteration, fxc, current, global[t]);

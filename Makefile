@@ -14,7 +14,10 @@ OPT_FLAGS=-std=c++11 -O3
 DEBUG_FLAGS=-std=c++11 -g -O0
 FLAGS=${OPT_FLAGS}
 
-SUBDIRS = docking/postprocessing hbond discrepancy/TA_algs
+SUBDIRS = docking/postprocessing hbond discrepancy/TA_algs ${TEXMOL_SAMPLES}
+ifneq ($(wildcard ${TEXMOL_DIR}/samples),)
+	SUBDIRS+=${TEXMOL_DIR}/samples
+endif
 
 all : ${TARGETS} subdirs test-existence
 	@echo
@@ -34,6 +37,7 @@ RMSDBasic : RMSDBasic.cpp
 subdirs: $(SUBDIRS)
 
 $(SUBDIRS):
+	echo making '$@'
 	@${MAKE} -C $@
 
 test-existence: Makefile.def

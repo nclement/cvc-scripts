@@ -7,7 +7,8 @@
 
 ml cxx11/4.9.1
 
-SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
+SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")/.."
+source ${SCRIPTS_DIR}/Makefile.def
 
 GEN_PRGN=$F3DOCK_DIR/testPRGN
 GEN_RANDOM=${TEXMOL_BIN}/testSampleGenerator
@@ -21,22 +22,25 @@ STAR_DISC_Wal=${TA_ALGS}/TA_improved_delta
 # Needs tpy, one of:
 #     tpy=std (using standard c++ rand)
 #     tpy=random (using mt19937 rand)
-#     tpy=prgn
+#     tpy=prgn.mt or prgn.nisan for mt19937 or nisan PRG
 #     tpy=halton
 #     tpy=naive
 # Also needs N
 # Also needs d
 # Also needs ptfile
-# Optional, set OVERWRITE=false (default true)
+# Optional:
+#   OVERWRITE=false (default true)
+
 
 wal_trials=5
 
 NPROC=16
 #M=1024
-M=1000
+M=1001
+M_MINUS=$(($M-1))
 STAR_M=15000
 SAME_RUNS=100
-OVERWRITE=true
+OVERWRITE=${OVERWRITE:-true}
 
 runWal() {
   t_pts=$1;
@@ -54,9 +58,13 @@ if [ "$tpy" == 'random' ]; then
   if [ ! -f $pts ] || $OVERWRITE ; then
     $GEN_RANDOM $M $d $N 0 $pts &> /dev/null
   fi
-elif [ "$tpy" == 'prgn' ]; then
+elif [ "$tpy" == 'prgn.mt' ]; then
   if [ ! -f $pts ] || $OVERWRITE ; then
     $GEN_PRGN $M $d $N 1 > $pts 2> /dev/null
+  fi
+elif [ "$tpy" == 'prgn.nisan' ]; then
+  if [ ! -f $pts ] || $OVERWRITE ; then
+    $GEN_PRGN $M $d $N 4 > $pts 2> /dev/null
   fi
 elif [ "$tpy" == 'std' ]; then
   if [ ! -f $pts ] || $OVERWRITE ; then 
@@ -92,6 +100,6 @@ fi
 head="$d $N reals"
 ptsWal=$pts.Wal
 echo $head > $ptsWal
-tail -n $N $pts | perl -anle "for(@F) {printf \"%f \", \$_/$M;}; print \"\"" >> $ptsWal
+tail -n $N $pts | perl -anle "for(@F) {printf \"%f \", \$_/$M_MINUS;}; print \"\"" >> $ptsWal
 # Run the program.
 runWal $ptsWal

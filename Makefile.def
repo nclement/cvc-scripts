@@ -15,10 +15,11 @@ MolEnergy=/work/01872/nclement/MolEnergy/release/bin/MolEnergy
 GPUEnergy=/work/01872/nclement/OPARef
 #GPUEnergy=/net/electron/workspace/nclement/OPARef
 # https://svn.ices.utexas.edu/repos/cvc/branches/TexMol-Qt4/
+#TEXMOL_DIR=/work/01872/nclement/TexMol-Qt4
+TEXMOL_DIR=/workspace/nclement/cvc/TexMol-Qt4
 #TEXMOL_BIN=/work/01872/nclement/TexMol-Qt4/release/bin
-TEXMOL_BIN=/work/01872/nclement/TexMol-Qt4/rel2/bin
-TEXMOL_QT4=/work/01872/nclement/TexMol-Qt4/release/bin/TexMol
-#TEXMOL_QT4=/net/electron/workspace/nclement/TexMol-Qt4/release/bin/TexMol
+TEXMOL_BIN=${TEXTMOL_DIR}/rel2/bin
+TEXMOL_QT4=${TEXTMOL_DIR}/release/bin/TexMol
 # https://svn.ices.utexas.edu/repos/cvc/trunk/F2Dock-refactored/
 #F2DOCK_REFACTORED_BIN=/net/electron/workspace/nclement/F2Dock-refactored/release/bin
 F2DOCK_REFACTORED_BIN=/work/01872/nclement/F2Dock-refactored/release_s2/bin/
@@ -26,8 +27,8 @@ F2DOCK_REFACTORED=${F2DOCK_REFACTORED_BIN}/F2Dock
 # A previous version of F2Dock
 F2DOCK_PREV=/work/01872/nclement/F2Dock_prev/src/runF2Dock.sh
 # https://svn.ices.utexas.edu/repos/cvc/branches/F3Dock/
-F3DOCK_DIR=/work/01872/nclement/F3Dock/release_s2/bin
-#F3DOCK_DIR=/net/electron/workspace/nclement/F3Dock/release/bin
+#F3DOCK_DIR=/work/01872/nclement/F3Dock/release_s2/bin
+F3DOCK_DIR=/workspace/nclement/cvc/F3Dock/release/bin
 
 #--------------------------------------
 # Following are programs not developed by the lab.
@@ -80,4 +81,4 @@ CHARMM=/work/01872/nclement/software/charmm/exec/gnu/charmm
 #
 # Download from https://people.mpi-inf.mpg.de/~wahl/
 # Or, a local copy is included with this repository.
-TA_ALGS=/work/01872/nclement/scripts/discrepancy/TA_algs
+TA_ALGS=/workspace/nclement/cvc-scripts/discrepancy/TA_algs
