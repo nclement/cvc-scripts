@@ -13,8 +13,8 @@ source ${SCRIPTS_DIR}/Makefile.def
 GEN_PRGN=$F3DOCK_DIR/testPRGN
 GEN_RANDOM=${TEXMOL_BIN}/testSampleGenerator
 GEN_HALTON=${TEXMOL_BIN}/fsu.edu.halton
-FSU_TO_MINE=${TEXMOL_BIN}/../../samples/fsu.edu_to_mine.pl
-NEXT_P_RAND=${TEXMOL_BIN}/../../samples/next_n_rand
+FSU_TO_MINE=${TEXMOL_DIR}/samples/fsu.edu_to_mine.pl
+NEXT_P_RAND=${TEXMOL_DIR}/samples/next_n_rand
 STAR_DISC_Walbar=${TA_ALGS}/TA_improved_bardelta
 STAR_DISC_Wal=${TA_ALGS}/TA_improved_delta
 
