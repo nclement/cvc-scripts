@@ -56,7 +56,7 @@ out=$ptfile.last
 
 if [ "$tpy" == 'random' ]; then
   if [ ! -f $pts ] || $OVERWRITE ; then
-    $GEN_RANDOM $M $d $N 0 $pts &> /dev/null
+    $GEN_RANDOM $M_MINUS $d $N 0 $pts &> /dev/null
   fi
 elif [ "$tpy" == 'prgn.mt' ]; then
   if [ ! -f $pts ] || $OVERWRITE ; then
@@ -90,8 +90,8 @@ $ones
 $($NEXT_P_RAND $d)
 EOF
     $GEN_HALTON $hout < $hin &> /dev/null
-    $FSU_TO_MINE $M $hout > $pts
-    sed -i "1s/^/$M $d $N\n/" $pts
+    $FSU_TO_MINE $M_MINUS $hout > $pts
+    sed -i "1s/^/$M_MINUS $d $N\n/" $pts
   fi
 fi
 
